@@ -1,6 +1,6 @@
 [project]
 name = "japanophile-mcp"
-version = "0.3.0"
+version = "0.3.1"
 description = "Japanophile wiadomo - kanji/JLPT learning tools, Japanese culture knowledge box, travel and diary roadmap. First -phile repo."
 readme = "README.md"
 license = { text = "MIT" }
@@ -35,6 +35,15 @@ packages = ["src/japanophile_mcp"]
 line-length = 100
 target-version = "py311"
 extend-exclude = [".venv", "webapp", "mcpb", "docs", "assets"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/japanophile_mcp/activity_log.py" = ["BLE001"]
+"src/japanophile_mcp/services/apps_routes.py" = ["BLE001", "PLW1510", "S110", "S112", "ASYNC220"]
+"src/japanophile_mcp/services/llm_engine.py" = ["BLE001", "PLW1510"]
+"src/japanophile_mcp/services/llm_providers.py" = ["BLE001", "PLW1510", "SIM117"]
+"src/japanophile_mcp/services/fleet_catalog.py" = ["BLE001"]
+"src/japanophile_mcp/services/fleet_common.py" = ["BLE001"]
+"src/japanophile_mcp/utils/gh_cli.py" = ["BLE001", "PLW1510"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

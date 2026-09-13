@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.2",
   "name": "japanophile-mcp",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Japanophile workstation: kanji/JLPT/vocab learning tools plus Japanese culture knowledge box. First -phile repo.",
   "author": { "name": "sandraschi" },
   "server": {

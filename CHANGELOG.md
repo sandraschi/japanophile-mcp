@@ -1,5 +1,16 @@
 # CHANGELOG - japanophile-mcp
 
+## 0.3.1 (2026-09-13) - First GitHub release (MCPB)
+
+- Webapp: fleet LLM settings/onboarding, Ollama inference test, Chat gate + proxy errors.
+- Activity log API and Logs UI; Apps hub; user prefs (JLPT study level).
+- Help and Travel tabbed planners (Shinkansen, buses, hazards, destinations, airlines).
+- Kanji table loads full seed via `/api/kanji/all`; `/games/kanji-table.html` route fix.
+- Know embed fixes; games static theme; compat kanji API expanded.
+- Tests: logs, kanji table, LLM registry, user prefs (isolated data dir).
+
+**Release asset:** `japanophile-mcp-v0.3.1.mcpb` only (NSIS installer unchanged from 0.3.0 build notes).
+
 ## 0.3.0 (2026-09-13) - Stage 3: installer + bundle shipped
 
 - NSIS installer (Japanophile MCP_0.3.0_x64-setup.exe, 31.2MB): makensis via

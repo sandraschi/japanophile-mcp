@@ -19,7 +19,7 @@ from .db import ASSET_ROOT, REPO_ROOT
 
 
 def build_app() -> FastAPI:
-    app = FastAPI(title="japanophile-mcp", version="0.2.0")
+    app = FastAPI(title="japanophile-mcp", version="0.3.1")
     # Webapp origin (11194), Tauri, LAN dev: same open-CORS posture as fleet.
     app.add_middleware(
         CORSMiddleware,

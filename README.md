@@ -1,5 +1,14 @@
 # japanophile-mcp
 
+<p align="center">
+  <a href="https://github.com/sandraschi/japanophile-mcp/releases/tag/v0.3.1"><img src="https://img.shields.io/github/v/release/sandraschi/japanophile-mcp?style=flat-square" alt="Release"></a>
+  <a href="https://github.com/casey/just"><img src="https://img.shields.io/badge/just-ready_to_go-7c5cfc?style=flat-square&logo=just&logoColor=white" alt="Just"></a>
+  <a href="https://python.org"><img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"></a>
+  <a href="https://github.com/PrefectHQ/fastmcp"><img src="https://img.shields.io/badge/FastMCP-3.4%2B-7c5cfc?style=flat-square" alt="FastMCP"></a>
+  <a href="https://github.com/sandraschi/japanophile-mcp/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/sandraschi/japanophile-mcp/ci.yml?branch=main&style=flat-square" alt="CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-yellow?style=flat-square" alt="MIT"></a>
+</p>
+
 Your Japanophile workstation: kanji/JLPT learning tools, Japanese culture knowledge box, travel and diary on the roadmap. First **-phile repo** (fleet doc: `mcp-central-docs/projects/japanophile-mcp/PHILE_PATTERN.md`). Polite name on listings; working title was weeaboo, retired to joke status.
 
 Ports: backend **11193**, frontend **11194**. Registered in `mcp-central-docs/operations/WEBAPP_PORTS.md`.
@@ -64,8 +73,8 @@ Learn tools (~15 html/js games), 29 knowledge pages, kanji/JLPT seeds vendored f
 
 ## Roadmap
 
-- Tauri NSIS winapp, `.mcpb` bundle (packaging).
-- Plan + Remember: travel planner, diary, SRS.
+- Tauri NSIS winapp (installer built at 0.3.0; next release when rebased on 0.3.1).
+- Plan + Remember: travel planner APIs, diary, SRS.
 - **austrophile-mcp** as second -phile template.
 
 Docs: [TOOLS](docs/TOOLS.md) - [CONFIGURATION](docs/CONFIGURATION.md) - [INSTALL](INSTALL.md)

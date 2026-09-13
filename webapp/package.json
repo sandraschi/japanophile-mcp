@@ -1,7 +1,7 @@
 {
 	"name": "japanophile-webapp",
 	"private": true,
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port 11194 --host 127.0.0.1",
