@@ -418,11 +418,46 @@ function changeGridPage(delta) {
     }
 }
 
-// Load kanji data (offline - the dictionary API on legacy port 9876 is gone)
+// Load kanji data from japanophile backend (kanji_database.db seed)
 async function loadKanjiData() {
+    try {
+        const resp = await fetch('/api/kanji/all?limit=13108');
+        if (!resp.ok) {
+            throw new Error(`HTTP ${resp.status}`);
+        }
+        const payload = await resp.json();
+        if (payload.success && Array.isArray(payload.kanji) && payload.kanji.length > 0) {
+            allKanjiData = payload.kanji.map(normalizeKanjiRow);
+            filteredData = [...allKanjiData];
+            console.log(`Loaded ${allKanjiData.length} kanji from /api/kanji/all`);
+            return;
+        }
+        console.warn('Kanji API empty or failed:', payload.error || payload);
+    } catch (error) {
+        console.warn('Kanji API unreachable, using offline fallback:', error);
+    }
     allKanjiData = getFallbackKanjiData();
     filteredData = [...allKanjiData];
-    console.log(`Loaded ${allKanjiData.length} kanji from offline dataset`);
+    console.log(`Loaded ${allKanjiData.length} kanji from offline fallback`);
+}
+
+function normalizeKanjiRow(row) {
+    return {
+        kanji: row.kanji,
+        onyomi: Array.isArray(row.onyomi) ? row.onyomi : [],
+        kunyomi: Array.isArray(row.kunyomi) ? row.kunyomi : [],
+        meanings: Array.isArray(row.meanings)
+            ? row.meanings
+            : row.meanings
+              ? [String(row.meanings)]
+              : [],
+        jlpt: row.jlpt || '',
+        grade: row.grade != null && row.grade !== '' ? String(row.grade) : '',
+        strokes: row.strokes != null ? row.strokes : 0,
+        categories: Array.isArray(row.categories) ? row.categories : [],
+        frequency: row.frequency != null ? row.frequency : 99999,
+        radical: row.radical || '',
+    };
 }
 
 // Fallback kanji data for offline use (the dictionary API on legacy port 9876 is gone)

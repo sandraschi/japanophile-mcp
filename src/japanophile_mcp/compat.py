@@ -47,29 +47,39 @@ def _call(tool, *args, **kwargs) -> dict:
 
 def mount_compat(app: FastAPI) -> None:
     @app.get("/api/kanji/all")
-    def kanji_all(limit: int = 500) -> JSONResponse:
+    def kanji_all(limit: int = 13108, jouyou_only: bool = False) -> JSONResponse:
         db = resolve_db("kanji_database.db")
         if db is None:
             return JSONResponse({"success": False, "error": "seed missing"})
         conn = open_ro(db)
         try:
-            rows = conn.execute(
-                "SELECT kanji, meanings, categories, strokes, grade, radical, jlpt"
-                " FROM kanji LIMIT ?",
-                (max(1, min(limit, 2000)),),
-            ).fetchall()
+            lim = max(1, min(limit, 15000))
+            q = (
+                "SELECT kanji, onyomi, kunyomi, meanings, categories, strokes, grade,"
+                " radical, jlpt, frequency FROM kanji"
+            )
+            params: list = []
+            if jouyou_only:
+                q += " WHERE is_jouyou = 1"
+            q += " ORDER BY frequency ASC, kanji ASC LIMIT ?"
+            params.append(lim)
+            rows = conn.execute(q, params).fetchall()
             return JSONResponse(
                 {
                     "success": True,
+                    "count": len(rows),
                     "kanji": [
                         {
                             "kanji": r["kanji"],
+                            "onyomi": _arr(r["onyomi"]),
+                            "kunyomi": _arr(r["kunyomi"]),
                             "meanings": _arr(r["meanings"]),
                             "categories": _arr(r["categories"]),
                             "strokes": r["strokes"],
                             "grade": r["grade"],
                             "radical": r["radical"],
                             "jlpt": r["jlpt"],
+                            "frequency": r["frequency"],
                         }
                         for r in rows
                     ],
@@ -131,7 +141,9 @@ def mount_compat(app: FastAPI) -> None:
     def examples_search(word: str = "", limit: int = 4) -> JSONResponse:
         db = resolve_db("kanji.db")
         if db is None:
-            return JSONResponse({"success": False, "error": "kanji.db missing — restore data/kanji.db from git"})
+            return JSONResponse(
+                {"success": False, "error": "kanji.db missing — restore data/kanji.db from git"}
+            )
         conn = open_ro(db)
         try:
             rows = conn.execute(
@@ -228,7 +240,9 @@ def mount_compat(app: FastAPI) -> None:
 def _vocab_list(level: str, limit: int):
     db = resolve_db("kanji.db")
     if db is None:
-        return JSONResponse({"success": False, "error": "kanji.db missing — restore data/kanji.db from git"})
+        return JSONResponse(
+            {"success": False, "error": "kanji.db missing — restore data/kanji.db from git"}
+        )
     conn = open_ro(db)
     try:
         lvl = (level or "all").strip().upper()

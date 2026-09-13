@@ -13,6 +13,9 @@ build/
 # Writable / local only
 data/progress.db
 data/progress.db-*
+data/llm_keys.json
+data/user_prefs.json
+data/llm_settings.json
 
 # Vendored corpora (committed): kanji.db, wakan_vocab.json — see data/README.md
 # Ignore other accidental drops under data/

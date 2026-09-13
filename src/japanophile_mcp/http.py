@@ -9,9 +9,9 @@ from __future__ import annotations
 import argparse
 
 import uvicorn
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from . import server
@@ -36,6 +36,24 @@ def build_app() -> FastAPI:
     from .tools_web import mount_tools_routes
 
     mount_tools_routes(app, server.mcp)
+
+    api = APIRouter(prefix="/api")
+    from .services.apps_routes import register_apps_routes
+    from .services.llm_routes import register_llm_routes
+    from .services.logs_routes import register_logs_routes
+    from .services.prefs_routes import register_user_prefs_routes
+
+    register_apps_routes(api)
+    register_llm_routes(api)
+    register_logs_routes(api)
+    register_user_prefs_routes(api)
+    app.include_router(api)
+
+    from .activity_log import install_log_handler, log_activity, register_activity_middleware
+
+    install_log_handler()
+    register_activity_middleware(app)
+    log_activity("system", "japanophile-mcp HTTP bridge ready", level="INFO")
 
     @app.get("/health")
     def health() -> dict:
@@ -114,7 +132,28 @@ def build_app() -> FastAPI:
         return JSONResponse(_call(server.knowledge, "get", page=page))
 
     games = ASSET_ROOT / "games" / "japanese-language"
+    know_dir = ASSET_ROOT / "knowledge" / "japan"
+    kanji_table_html = know_dir / "kanji-table.html"
     if games.is_dir():
+        styles_path = games / "styles.css"
+        if styles_path.is_file():
+
+            @app.get("/styles.css")
+            def games_stylesheet() -> FileResponse:
+                return FileResponse(styles_path, media_type="text/css")
+
+        js_dir = games / "js"
+        if js_dir.is_dir():
+            app.mount("/js", StaticFiles(directory=str(js_dir)), name="games-js")
+
+        # Kanji wall page lives under knowledge/; Games iframe expects /games/kanji-table.html
+        if kanji_table_html.is_file():
+
+            @app.get("/games/kanji-table.html")
+            def games_kanji_table_page() -> HTMLResponse:
+                body = kanji_table_html.read_text(encoding="utf-8-sig")
+                return HTMLResponse(content=body, media_type="text/html; charset=utf-8")
+
         app.mount("/games", StaticFiles(directory=str(games), html=True), name="games")
     know = ASSET_ROOT / "knowledge" / "japan"
     if know.is_dir():

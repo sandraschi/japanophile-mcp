@@ -1,5 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { type KanjiEntry, type QuizQuestion, api } from "../lib/api";
+import {
+	type JlptLevel,
+	type UserPrefs,
+	loadPrefsLocal,
+	quizLevelsForStudy,
+	resolvePrefs,
+	subscribePrefs,
+} from "../lib/prefs";
 
 type Tab = "kanji" | "quiz" | "vocab";
 
@@ -101,8 +109,10 @@ function KanjiPanel() {
 }
 
 function QuizPanel() {
-	const [level, setLevel] = useState("N5");
-	const [session] = useState(() => `web-${Date.now()}`);
+	const [prefs, setPrefs] = useState<UserPrefs>(() => loadPrefsLocal());
+	const allowed = quizLevelsForStudy(prefs.default_jlpt_level);
+	const [level, setLevel] = useState<JlptLevel>(prefs.default_jlpt_level);
+	const [session, setSession] = useState(prefs.progress_session_id);
 	const [question, setQuestion] = useState<QuizQuestion | null>(null);
 	const [picked, setPicked] = useState<string | null>(null);
 	const [verdict, setVerdict] = useState("");
@@ -111,6 +121,21 @@ function QuizPanel() {
 		correct: number;
 	} | null>(null);
 	const [t0, setT0] = useState(0);
+
+	useEffect(() => {
+		resolvePrefs().then((p) => {
+			setPrefs(p);
+			setSession(p.progress_session_id);
+			const levels = quizLevelsForStudy(p.default_jlpt_level);
+			setLevel((cur) => (levels.includes(cur) ? cur : p.default_jlpt_level));
+		});
+		return subscribePrefs((p) => {
+			setPrefs(p);
+			setSession(p.progress_session_id);
+			const levels = quizLevelsForStudy(p.default_jlpt_level);
+			setLevel((cur) => (levels.includes(cur) ? cur : p.default_jlpt_level));
+		});
+	}, []);
 
 	const next = async () => {
 		setPicked(null);
@@ -148,11 +173,13 @@ function QuizPanel() {
 				<select
 					data-testid="quiz-level"
 					value={level}
-					onChange={(e) => setLevel(e.target.value)}
+					onChange={(e) => setLevel(e.target.value as JlptLevel)}
 					className="rounded border border-zinc-700 bg-zinc-900 px-3 py-2"
 				>
-					{["N5", "N4", "N3", "N2", "N1"].map((l) => (
-						<option key={l}>{l}</option>
+					{allowed.map((l) => (
+						<option key={l} value={l}>
+							{l}
+						</option>
 					))}
 				</select>
 				<button

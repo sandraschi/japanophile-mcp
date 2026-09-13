@@ -1,4 +1,5 @@
 """Vendored data/ corpora manifest (skip if files absent — e.g. partial CI clone)."""
+
 from __future__ import annotations
 
 import pytest

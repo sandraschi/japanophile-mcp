@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const GAMES = [
 	["kanji-table.html", "Kanji table (2,500 wall)"],
@@ -10,10 +11,25 @@ const GAMES = [
 	["japanese-flashcards.html", "Flashcards"],
 	["japanese-grammar.html", "Grammar"],
 	["japanese-listening.html", "Listening"],
-];
+] as const;
+
+const GAME_FILES = new Set(GAMES.map(([file]) => file));
 
 export default function Games() {
-	const [current, setCurrent] = useState(GAMES[0][0]);
+	const [params] = useSearchParams();
+	const initial = useMemo(() => {
+		const g = params.get("game");
+		if (g && GAME_FILES.has(g as (typeof GAMES)[number][0])) {
+			return g;
+		}
+		return GAMES[0][0];
+	}, [params]);
+	const [current, setCurrent] = useState(initial);
+
+	useEffect(() => {
+		setCurrent(initial);
+	}, [initial]);
+
 	return (
 		<div>
 			<h2 className="mb-4 text-2xl font-bold">
@@ -29,7 +45,11 @@ export default function Games() {
 						key={file}
 						data-testid={`game-${file}`}
 						onClick={() => setCurrent(file)}
-						className={`rounded px-3 py-1.5 text-sm ${current === file ? "bg-zinc-100 text-black" : "bg-zinc-800 text-zinc-300"}`}
+						className={`rounded px-3 py-1.5 text-sm ${
+							current === file
+								? "bg-violet-600 text-white"
+								: "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+						}`}
 					>
 						{label}
 					</button>
@@ -39,7 +59,7 @@ export default function Games() {
 				data-testid="game-frame"
 				title={current}
 				src={`http://127.0.0.1:11193/games/${current}`}
-				className="h-[70vh] w-full rounded border border-zinc-800 bg-white"
+				className="h-[70vh] w-full rounded border border-zinc-800 bg-zinc-900"
 			/>
 		</div>
 	);

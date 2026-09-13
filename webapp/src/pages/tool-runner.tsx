@@ -1,22 +1,23 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { PageLoading } from "@/components/PageLoading";
+import { ToolsHarnessExplainer } from "@/components/tools-harness-explainer";
 import { API_BASE } from "@/lib/api";
 import {
+	type JsonSchema,
+	type ToolMeta,
 	cleanArgs,
 	emptyArgs,
 	relatedPage,
 	schemaType,
 	toolCategory,
-	type JsonSchema,
-	type ToolMeta,
 } from "@/lib/tool-schema";
-import { PageLoading } from "@/components/PageLoading";
-import { ToolsHarnessExplainer } from "@/components/tools-harness-explainer";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 
 function fieldValue(value: unknown): string {
 	if (value == null) return "";
 	if (typeof value === "string") return value;
-	if (typeof value === "boolean" || typeof value === "number") return String(value);
+	if (typeof value === "boolean" || typeof value === "number")
+		return String(value);
 	return JSON.stringify(value);
 }
 
@@ -35,7 +36,9 @@ export default function ToolRunner() {
 		if (!toolName) return;
 		setLoading(true);
 		try {
-			const res = await fetch(`${API_BASE}/api/tools/${encodeURIComponent(toolName)}`);
+			const res = await fetch(
+				`${API_BASE}/api/tools/${encodeURIComponent(toolName)}`,
+			);
 			const json = await res.json();
 			if (!res.ok) throw new Error(json.detail || `HTTP ${res.status}`);
 			const meta = json.tool as ToolMeta;
@@ -68,7 +71,10 @@ export default function ToolRunner() {
 		() => Object.entries(tool?.parameters?.properties || {}),
 		[tool],
 	);
-	const required = useMemo(() => new Set(tool?.parameters?.required || []), [tool]);
+	const required = useMemo(
+		() => new Set(tool?.parameters?.required || []),
+		[tool],
+	);
 	const related = tool ? relatedPage(tool.name) : null;
 
 	const run = async () => {
@@ -77,14 +83,19 @@ export default function ToolRunner() {
 		setError(null);
 		try {
 			const arguments_ = cleanArgs(tool.parameters, values);
-			const res = await fetch(`${API_BASE}/api/tools/${encodeURIComponent(tool.name)}`, {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ arguments: arguments_ }),
-			});
+			const res = await fetch(
+				`${API_BASE}/api/tools/${encodeURIComponent(tool.name)}`,
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ arguments: arguments_ }),
+				},
+			);
 			const json = await res.json();
 			if (!res.ok)
-				throw new Error(typeof json.detail === "string" ? json.detail : `HTTP ${res.status}`);
+				throw new Error(
+					typeof json.detail === "string" ? json.detail : `HTTP ${res.status}`,
+				);
 			setResult(json.result);
 		} catch (e) {
 			setError(e instanceof Error ? e.message : "Invoke failed");
@@ -95,7 +106,9 @@ export default function ToolRunner() {
 	};
 
 	if (loading) {
-		return <PageLoading testId="tool-runner-loading" label="Loading tool schema…" />;
+		return (
+			<PageLoading testId="tool-runner-loading" label="Loading tool schema…" />
+		);
 	}
 
 	if (!tool) {
@@ -120,7 +133,10 @@ export default function ToolRunner() {
 					<p className="text-sm text-zinc-500">{toolCategory(tool.name)}</p>
 				</div>
 				{related ? (
-					<Link to={related} className="rounded bg-zinc-800 px-3 py-2 text-sm hover:bg-zinc-700">
+					<Link
+						to={related}
+						className="rounded bg-zinc-800 px-3 py-2 text-sm hover:bg-zinc-700"
+					>
 						Related page
 					</Link>
 				) : null}
@@ -142,7 +158,9 @@ export default function ToolRunner() {
 							schema={schema}
 							required={required.has(key)}
 							value={values[key]}
-							onChange={(next) => setValues((prev) => ({ ...prev, [key]: next }))}
+							onChange={(next) =>
+								setValues((prev) => ({ ...prev, [key]: next }))
+							}
 						/>
 					))
 				)}
@@ -167,7 +185,9 @@ export default function ToolRunner() {
 						className="max-h-[32rem] overflow-auto rounded border border-zinc-800 bg-zinc-950 p-4 text-xs whitespace-pre-wrap"
 						data-testid="tool-runner-result"
 					>
-						{typeof result === "string" ? result : JSON.stringify(result, null, 2)}
+						{typeof result === "string"
+							? result
+							: JSON.stringify(result, null, 2)}
 					</pre>
 				)}
 			</div>

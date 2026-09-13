@@ -9,6 +9,8 @@ from urllib.parse import unquote
 from fastapi import Body, FastAPI, HTTPException
 from fastmcp import FastMCP
 
+from .activity_log import log_activity
+
 
 def _tool_row(tool) -> dict:
     params = (
@@ -17,7 +19,9 @@ def _tool_row(tool) -> dict:
         else {"type": "object", "properties": {}}
     )
     ann = getattr(tool, "annotations", None)
-    annotations = ann.model_dump() if hasattr(ann, "model_dump") else (ann if isinstance(ann, dict) else None)
+    annotations = (
+        ann.model_dump() if hasattr(ann, "model_dump") else (ann if isinstance(ann, dict) else None)
+    )
     tags = getattr(tool, "tags", None) or []
     return {
         "name": tool.name,
@@ -53,6 +57,7 @@ def mount_tools_routes(app: FastAPI, mcp_app: FastMCP) -> None:
         tools = await mcp_app.list_tools()
         rows = [_tool_row(tool) for tool in tools]
         rows.sort(key=lambda item: item["name"])
+        log_activity("api", f"tools catalog ({len(rows)} tools)")
         return {"tools": rows, "count": len(rows)}
 
     @app.get("/api/tools/{tool_name}")
@@ -78,8 +83,24 @@ def mount_tools_routes(app: FastAPI, mcp_app: FastMCP) -> None:
             raise HTTPException(status_code=400, detail="arguments must be an object")
         try:
             result = await tool.run(arguments)
+            log_activity(
+                "tool_call",
+                f"web invoke {wanted}",
+                meta={"args": list(arguments.keys())},
+            )
             return {"success": True, "tool": wanted, "result": _serialize_tool_result(result)}
-        except HTTPException:
+        except HTTPException as exc:
+            log_activity(
+                "tool_call",
+                f"web invoke {wanted} HTTP {exc.status_code}",
+                level="WARNING" if exc.status_code < 500 else "ERROR",
+                meta={"detail": str(exc.detail)[:200]},
+            )
             raise
         except Exception as exc:
+            log_activity(
+                "tool_call",
+                f"web invoke {wanted} failed: {exc}",
+                level="ERROR",
+            )
             raise HTTPException(status_code=400, detail=str(exc)) from exc

@@ -22,41 +22,38 @@ export function PageLoading({
 }: PageLoadingProps) {
 	if (variant === "page") {
 		return (
-			<div
+			<output
 				className={`flex min-h-[320px] flex-col items-center justify-center gap-3 p-12 ${className}`}
 				data-testid={testId}
-				role="status"
 				aria-busy="true"
 			>
 				<Spinner large />
 				{label ? <p className="text-sm text-zinc-400">{label}</p> : null}
-			</div>
+			</output>
 		);
 	}
 
 	if (variant === "row") {
 		return (
-			<div
+			<output
 				className={`flex items-center justify-center gap-2 p-12 ${className}`}
 				data-testid={testId}
-				role="status"
 				aria-busy="true"
 			>
 				<Spinner large />
 				{label ? <span className="text-sm text-zinc-400">{label}</span> : null}
-			</div>
+			</output>
 		);
 	}
 
 	return (
-		<p
+		<output
 			className={`flex items-center gap-2 text-xs text-zinc-400 animate-pulse ${className}`}
 			data-testid={testId}
-			role="status"
 			aria-busy="true"
 		>
 			<Spinner />
 			{label ?? "Loading…"}
-		</p>
+		</output>
 	);
 }

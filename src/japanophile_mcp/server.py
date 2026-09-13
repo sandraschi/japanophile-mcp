@@ -9,6 +9,7 @@ planner + diary tools.
 from __future__ import annotations
 
 import html as html_mod
+import re
 import sqlite3
 from html.parser import HTMLParser
 from pathlib import Path
@@ -34,9 +35,7 @@ def resolve_knowledge_page(page: str) -> Path | None:
     """Resolve a knowledge slug to assets/knowledge/japan/{slug}.html."""
     if not KNOWLEDGE_DIR.is_dir():
         return None
-    name = "".join(
-        c for c in page.strip().lower().replace(" ", "-") if c.isalnum() or c in "-_"
-    )
+    name = "".join(c for c in page.strip().lower().replace(" ", "-") if c.isalnum() or c in "-_")
     target = KNOWLEDGE_DIR / (name + ".html")
     if target.is_file():
         return target
@@ -46,8 +45,20 @@ def resolve_knowledge_page(page: str) -> Path | None:
     return None
 
 
-# Vendored pages link ../../styles.css (ai-games-collection layout). In the
-# webapp iframe (srcDoc) that sheet never loads — inject readable dark-theme defaults.
+# Index/utility HTML — not standalone Know articles (tree is 4MB w/ broken inline branches).
+KNOWLEDGE_NAV_EXCLUDE = frozenset({"japanese-knowledge-tree", "kanji-table"})
+
+
+def knowledge_page_stems() -> list[str]:
+    if not KNOWLEDGE_DIR.is_dir():
+        return []
+    stems = sorted(p.stem for p in KNOWLEDGE_DIR.glob("*.html"))
+    return [s for s in stems if s not in KNOWLEDGE_NAV_EXCLUDE]
+
+
+# Vendored pages link ../../styles.css (ai-games-collection layout). In srcDoc that
+# URL resolves to the games /styles.css on the frontend origin — wrong theme. Strip it
+# and inject fleet Know embed styles instead.
 KNOW_EMBED_STYLE = """<style id="japanophile-know-embed">
 html, body {
   background: #18181b !important;
@@ -56,22 +67,40 @@ html, body {
   line-height: 1.6;
   margin: 0;
   padding: 1rem 1.25rem 2rem;
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 0 !important;
 }
 .container, .content-section, .content-text, .section-content,
-.branch-content, p, li, td, dd, dt {
+.branch-content, .store-text, p, li, td, dd, dt {
   color: #e4e4e7 !important;
+}
+.branch-content { margin-top: 0 !important; }
+.store-section, .content-section {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border-left: 4px solid #eab308;
 }
 h1, h2, h3, h4, .section-title, .store-section h2 {
   color: #fafafa !important;
 }
+.store-section h2 { color: #fde047 !important; }
 strong, b { color: #f4f4f5 !important; }
 a { color: #60a5fa !important; }
 .back-button { display: none !important; }
 </style>"""
 
+_KNOW_STYLESHEET_LINK = re.compile(
+    r'<link[^>]+href=["\']\.\./\.\./styles\.css["\'][^>]*>\s*',
+    re.IGNORECASE,
+)
+
 
 def knowledge_html_for_embed(path: Path) -> str:
     raw = path.read_text(encoding="utf-8-sig")
+    raw = _KNOW_STYLESHEET_LINK.sub("", raw)
     if "japanophile-know-embed" in raw:
         return raw
     marker = "<head>"
@@ -370,7 +399,7 @@ def knowledge(operation: str, page: str = "") -> dict:
     if not KNOWLEDGE_DIR.is_dir():
         return fail("Knowledge pages missing: assets/knowledge/japan/ not found.")
     if operation == "list":
-        pages = sorted(p.stem for p in KNOWLEDGE_DIR.glob("*.html"))
+        pages = knowledge_page_stems()
         return ok(f"{len(pages)} knowledge page(s).", pages)
     if operation == "get":
         target = resolve_knowledge_page(page)
@@ -395,12 +424,12 @@ def japanophile_help() -> dict:
     if kanji_big:
         status["kanji.db"] = f"ready ({kanji_big.as_posix()})"
     else:
-        status["kanji.db"] = (
-            "MISSING — restore data/kanji.db from git (vocab, jmdict, examples)"
-        )
+        status["kanji.db"] = "MISSING — restore data/kanji.db from git (vocab, jmdict, examples)"
     wakan = resolve_data_file("wakan_vocab.json")
     status["wakan_vocab.json"] = (
-        f"ready ({wakan.as_posix()})" if wakan else "MISSING — restore data/wakan_vocab.json from git"
+        f"ready ({wakan.as_posix()})"
+        if wakan
+        else "MISSING — restore data/wakan_vocab.json from git"
     )
     pages = len(list(KNOWLEDGE_DIR.glob("*.html"))) if KNOWLEDGE_DIR.is_dir() else 0
     metrics = {

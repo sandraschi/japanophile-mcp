@@ -1,20 +1,25 @@
+import { LlmPageGate } from "@/components/LlmPageGate";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { LlmPageGate } from "@/components/LlmPageGate";
+import {
+	Navigate,
+	RouterProvider,
+	createBrowserRouter,
+} from "react-router-dom";
 import App from "./App";
+import AiSettingsPage from "./pages/AiSettingsPage";
 import Chat from "./pages/Chat";
 import Dashboard from "./pages/Dashboard";
+import Diary from "./pages/Diary";
 import Games from "./pages/Games";
 import Help from "./pages/Help";
 import Know from "./pages/Know";
-import Travel from "./pages/Travel";
-import Diary from "./pages/Diary";
 import Learn from "./pages/Learn";
 import Logs from "./pages/Logs";
-import Settings from "./pages/Settings";
 import Skills from "./pages/Skills";
 import Tools from "./pages/Tools";
+import Travel from "./pages/Travel";
+import { AppsPage } from "./pages/apps";
 import ToolRunner from "./pages/tool-runner";
 import "./index.css";
 
@@ -40,7 +45,9 @@ const router = createBrowserRouter([
 			{ path: "skills", element: <Skills /> },
 			{ path: "tools", element: <Tools /> },
 			{ path: "tools/:name", element: <ToolRunner /> },
-			{ path: "settings", element: <Settings /> },
+			{ path: "apps", element: <AppsPage /> },
+			{ path: "settings", element: <AiSettingsPage /> },
+			{ path: "ai-settings", element: <Navigate to="/settings" replace /> },
 			{ path: "help", element: <Help /> },
 			{ path: "logs", element: <Logs /> },
 		],

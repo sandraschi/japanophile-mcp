@@ -57,7 +57,13 @@ def test_knowledge_html_route():
     disp = res.headers.get("content-disposition", "")
     assert "attachment" not in disp.lower()
     assert "japanophile-know-embed" in res.text
+    assert "../../styles.css" not in res.text
     assert "20th Century" in res.text or "20th century" in res.text.lower()
+    anime = client.get("/api/knowledge/html/anime")
+    assert anime.status_code == 200
+    assert "Anime Industry" in anime.text
+    assert ".store-text" in anime.text
+    assert "../../styles.css" not in anime.text
     bad = client.get("/api/knowledge/html/no-such-page-xyz")
     assert bad.status_code == 404
 
@@ -66,6 +72,9 @@ def test_knowledge_list_get():
     lst = _call(server.knowledge, "list")
     assert lst["success"], lst
     assert "manga" in lst["data"]
+    assert "anime" in lst["data"]
+    assert "japanese-knowledge-tree" not in lst["data"]
+    assert "kanji-table" not in lst["data"]
     got = _call(server.knowledge, "get", page="manga")
     assert got["success"], got
     assert len(got["data"]) > 100

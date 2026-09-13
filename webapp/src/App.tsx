@@ -10,6 +10,7 @@ const links = [
 	["Chat", "/chat"],
 	["Skills", "/skills"],
 	["Tools", "/tools"],
+	["Apps", "/apps"],
 	["Settings", "/settings"],
 	["Help", "/help"],
 	["Logs", "/logs"],

@@ -1,7 +1,7 @@
+import { KnowledgeArticleView } from "@/components/KnowledgeArticleView";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { api } from "../lib/api";
-import { KnowledgeArticleView } from "@/components/KnowledgeArticleView";
 
 /** Human-ish label for sidebar (manga, 20thcentury, …). */
 export function pageLabel(stem: string): string {
@@ -11,10 +11,15 @@ export function pageLabel(stem: string): string {
 }
 
 export default function Know() {
-	const [searchParams] = useSearchParams();
+	const [searchParams, setSearchParams] = useSearchParams();
 	const [pages, setPages] = useState<string[]>([]);
 	const [current, setCurrent] = useState("");
 	const [error, setError] = useState("");
+
+	const selectPage = (stem: string) => {
+		setCurrent(stem);
+		setSearchParams(stem ? { page: stem } : {}, { replace: true });
+	};
 
 	useEffect(() => {
 		api
@@ -53,7 +58,7 @@ export default function Know() {
 							<button
 								type="button"
 								data-testid={`know-${p}`}
-								onClick={() => setCurrent(p)}
+								onClick={() => selectPage(p)}
 								className={`w-full rounded px-3 py-1.5 text-left text-sm ${current === p ? "bg-zinc-800 text-white" : "text-zinc-400 hover:bg-zinc-900"}`}
 							>
 								{pageLabel(p)}
@@ -61,7 +66,7 @@ export default function Know() {
 						</li>
 					))}
 				</ul>
-				<div className="min-h-[70vh] flex-1" data-testid="know-article">
+				<div className="min-w-0 flex-1" data-testid="know-article">
 					{!current ? (
 						<p className="text-zinc-500">Pick a page.</p>
 					) : (

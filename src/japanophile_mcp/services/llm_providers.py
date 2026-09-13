@@ -1,0 +1,848 @@
+"""Unified local + cloud LLM provider registry, keystore, and chat proxy helpers.
+
+Pilot for the fleet pattern (see docs/SPEC-llm-providers.md): the webapp never
+talks to providers from the browser. All traffic goes through the backend, and
+API keys live in a 0600 keystore under the data dir (or env vars, which win).
+
+Provider IDs and key env names intentionally match the local-llm-mcp gateway so
+a later "delegate to gateway when reachable" step is a drop-in.
+"""
+
+from __future__ import annotations
+
+import json
+import logging
+import os
+import sys
+import threading
+from collections.abc import AsyncIterator
+from pathlib import Path
+from typing import Any
+
+import httpx
+
+logger = logging.getLogger(__name__)
+
+LOCAL_PROBE_TIMEOUT = 3.0
+CLOUD_TIMEOUT = 30.0
+CHAT_TIMEOUT = 120.0
+KEYSTORE_NAME = "llm_keys.json"
+ANTHROPIC_VERSION = "2023-06-01"
+
+PROVIDERS: tuple[dict[str, Any], ...] = (
+    {
+        "id": "ollama",
+        "label": "Ollama",
+        "kind": "local",
+        "base_url": "http://localhost:11434",
+        # Native API: /v1 ignores options (e.g. num_ctx), and long-ctx models
+        # default to 262k KV which offloads to CPU. Native honors num_ctx.
+        "chat_path": "/api/chat",
+        "models_path": "/api/tags",
+        "tag_style": "ollama",
+        "key_env": None,
+        "curated": [],
+    },
+    {
+        "id": "lmstudio",
+        "label": "LM Studio",
+        "kind": "local",
+        "base_url": "http://localhost:1234",
+        "chat_path": "/v1/chat/completions",
+        "models_path": "/v1/models",
+        "tag_style": "openai",
+        "key_env": None,
+        "curated": [],
+    },
+    {
+        "id": "vllm",
+        "label": "vLLM",
+        "kind": "local",
+        "base_url": "http://localhost:8000",
+        "chat_path": "/v1/chat/completions",
+        "models_path": "/v1/models",
+        "tag_style": "openai",
+        "key_env": None,
+        "curated": [],
+    },
+    {
+        "id": "openai",
+        "label": "OpenAI",
+        "kind": "cloud",
+        "base_url": "https://api.openai.com/v1",
+        "chat_path": "/chat/completions",
+        "models_path": "/models",
+        "tag_style": "openai",
+        "key_env": "OPENAI_API_KEY",
+        "curated": ["gpt-4o", "gpt-4o-mini"],
+    },
+    {
+        "id": "anthropic",
+        "label": "Anthropic",
+        "kind": "cloud",
+        "base_url": "https://api.anthropic.com",
+        "chat_path": "/v1/messages",
+        "models_path": "/v1/models",
+        "tag_style": "anthropic",
+        "key_env": "ANTHROPIC_API_KEY",
+        "curated": ["claude-sonnet-4-20250514", "claude-opus-4-20250514", "claude-fable-5.1"],
+    },
+    {
+        "id": "deepseek",
+        "label": "DeepSeek",
+        "kind": "cloud",
+        # No /v1 prefix on this host: chat is POST /chat/completions.
+        "base_url": "https://api.deepseek.com",
+        "chat_path": "/chat/completions",
+        "models_path": "/models",
+        "tag_style": "openai",
+        "key_env": "DEEPSEEK_API_KEY",
+        # Flash first: newest and stronger than pro despite the name.
+        "curated": ["deepseek-v4-flash", "deepseek-v4-pro", "deepseek-v4-flash-vision-exp"],
+    },
+    {
+        "id": "openrouter",
+        "label": "OpenRouter",
+        "kind": "cloud",
+        "base_url": "https://openrouter.ai/api/v1",
+        "chat_path": "/chat/completions",
+        "models_path": "/models",
+        "tag_style": "openai",
+        "key_env": "OPENROUTER_API_KEY",
+        "curated": [
+            "openrouter/auto",
+            "anthropic/claude-sonnet-4",
+            "openai/gpt-4o",
+            "meta-llama/llama-4-maverick",
+        ],
+    },
+    {
+        "id": "meta",
+        "label": "Meta",
+        "kind": "cloud",
+        "base_url": "https://api.meta.ai/v1",
+        "chat_path": "/chat/completions",
+        "models_path": "/models",
+        "tag_style": "openai",
+        "key_env": "MODEL_API_KEY",
+        # Contributor first: $0.20/M out, training-on-prompts acceptable per owner.
+        "curated": [
+            "muse-spark-1.3-contributor",
+            "muse-spark-1.3",
+            "muse-spark-1.2-contributor",
+            "muse-spark-1.2",
+            "muse-spark-1.1",
+        ],
+    },
+)
+
+
+def get_provider(provider_id: str) -> dict[str, Any] | None:
+    """Return the registry row for a provider ID, or None."""
+    for row in PROVIDERS:
+        if row["id"] == provider_id:
+            return row
+    return None
+
+
+def require_provider(provider_id: str) -> dict[str, Any]:
+    row = get_provider(provider_id)
+    if row is None:
+        known = ", ".join(r["id"] for r in PROVIDERS)
+        raise ValueError(f"Unknown provider '{provider_id}'. Known: {known}")
+    return row
+
+
+def _data_dir() -> Path:
+    from japanophile_mcp.db import DATA_DIR
+
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    return DATA_DIR
+
+
+def keystore_path(settings=None) -> Path:
+    _ = settings
+    return _data_dir() / KEYSTORE_NAME
+
+
+def _read_keystore(settings=None) -> dict[str, str]:
+    path = keystore_path(settings)
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as exc:
+        logger.warning("llm keystore unreadable (%s); treating as empty", exc)
+        return {}
+    return {k: v for k, v in data.items() if isinstance(v, str) and v}
+
+
+def _write_keystore(entries: dict[str, str], settings=None) -> None:
+    path = keystore_path(settings)
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps(entries, indent=2), encoding="utf-8")
+    try:
+        os.chmod(tmp, 0o600)
+    except OSError:
+        logger.debug("chmod 0600 on keystore failed (non-POSIX fs); continuing")
+    os.replace(tmp, path)
+    try:
+        os.chmod(path, 0o600)
+    except OSError:
+        pass
+
+
+def get_key(provider_id: str, settings=None) -> str:
+    """Resolve an API key: env var first, then keystore. Empty when unset."""
+    row = require_provider(provider_id)
+    env_name = row.get("key_env")
+    if env_name:
+        value = os.environ.get(env_name, "").strip()
+        if value:
+            return value
+    return _read_keystore(settings).get(provider_id, "")
+
+
+def is_configured(provider_id: str, settings=None) -> bool:
+    """True when a cloud provider has a key available. Locals need no key."""
+    row = require_provider(provider_id)
+    if row["kind"] == "local":
+        return True
+    return bool(get_key(provider_id, settings))
+
+
+def keys_configured(settings=None) -> dict[str, bool]:
+    return {r["id"]: is_configured(r["id"], settings) for r in PROVIDERS if r["kind"] == "cloud"}
+
+
+def save_key(provider_id: str, api_key: str, settings=None) -> None:
+    row = require_provider(provider_id)
+    if row["kind"] != "cloud":
+        raise ValueError(f"Provider '{provider_id}' takes no API key")
+    key = (api_key or "").strip()
+    if not key:
+        raise ValueError("Empty API key")
+    entries = _read_keystore(settings)
+    entries[provider_id] = key
+    _write_keystore(entries, settings)
+
+
+def delete_key(provider_id: str, settings=None) -> bool:
+    require_provider(provider_id)
+    entries = _read_keystore(settings)
+    if provider_id not in entries:
+        return False
+    del entries[provider_id]
+    _write_keystore(entries, settings)
+    return True
+
+
+def public_provider_info(settings=None) -> list[dict[str, Any]]:
+    """Registry rows safe for GET responses: capability flags, never key bytes."""
+    return [
+        {
+            "id": r["id"],
+            "label": r["label"],
+            "kind": r["kind"],
+            "base_url": r["base_url"],
+            "needs_key": r["kind"] == "cloud",
+            "key_env": r.get("key_env"),
+            "configured": is_configured(r["id"], settings),
+        }
+        for r in PROVIDERS
+    ]
+
+
+def _parse_model_list(tag_style: str, payload: Any) -> list[str]:
+    if not isinstance(payload, dict):
+        return []
+    if tag_style == "ollama":
+        models = payload.get("models") or []
+        return [m.get("name", "") for m in models if isinstance(m, dict) and m.get("name")]
+    data = payload.get("data") or []
+    return [m.get("id", "") for m in data if isinstance(m, dict) and m.get("id")]
+
+
+async def probe_local(provider_id: str) -> tuple[bool, list[str]]:
+    """Probe a local engine (fast timeout). Returns (reachable, models)."""
+    row = require_provider(provider_id)
+    if row["kind"] != "local":
+        raise ValueError(f"Provider '{provider_id}' is not local")
+    url = row["base_url"] + row["models_path"]
+    try:
+        async with httpx.AsyncClient(timeout=LOCAL_PROBE_TIMEOUT) as client:
+            resp = await client.get(url)
+    except Exception as exc:
+        logger.debug("local probe %s failed: %s", provider_id, exc)
+        return False, []
+    if resp.status_code >= 500:
+        return False, []
+    try:
+        models = _parse_model_list(row["tag_style"], resp.json())
+    except Exception:
+        models = []
+    return True, models
+
+
+async def list_models(provider_id: str, settings=None) -> dict[str, Any]:
+    """Model list with source flag. Cloud: live when keyed, else curated."""
+    row = require_provider(provider_id)
+    if row["kind"] == "local":
+        reachable, models = await probe_local(provider_id)
+        return {
+            "provider": provider_id,
+            "models": models,
+            "source": "live" if reachable else "none",
+        }
+    key = get_key(provider_id, settings)
+    if not key:
+        return {"provider": provider_id, "models": list(row["curated"]), "source": "curated"}
+    url = row["base_url"] + row["models_path"]
+    headers = _auth_headers(row, key)
+    try:
+        async with httpx.AsyncClient(timeout=CLOUD_TIMEOUT) as client:
+            resp = await client.get(url, headers=headers)
+            resp.raise_for_status()
+            models = _parse_model_list(row["tag_style"], resp.json())
+    except Exception as exc:
+        logger.warning("live model list for %s failed (%s); curated fallback", provider_id, exc)
+        return {"provider": provider_id, "models": list(row["curated"]), "source": "curated"}
+    if not models:
+        return {"provider": provider_id, "models": list(row["curated"]), "source": "curated"}
+    return {"provider": provider_id, "models": models, "source": "live"}
+
+
+def _local_base_url(provider_id: str, endpoint: str = "") -> str:
+    row = require_provider(provider_id)
+    ep = endpoint.strip().rstrip("/")
+    return ep or str(row["base_url"]).rstrip("/")
+
+
+def _auth_headers(row: dict[str, Any], api_key: str) -> dict[str, str]:
+    headers = {"Content-Type": "application/json"}
+    if row["id"] == "anthropic":
+        headers["x-api-key"] = api_key
+        headers["anthropic-version"] = ANTHROPIC_VERSION
+    elif row["id"] == "openrouter":
+        headers["Authorization"] = f"Bearer {api_key}"
+        headers["HTTP-Referer"] = "http://localhost:10771/"
+        headers["X-Title"] = "japanophile-mcp"
+    elif row["kind"] == "cloud":
+        headers["Authorization"] = f"Bearer {api_key}"
+    return headers
+
+
+def _openai_body(model: str, messages: list[dict[str, Any]]) -> dict[str, Any]:
+    return {"model": model, "messages": messages, "stream": False}
+
+
+def _to_anthropic(model: str, messages: list[dict[str, Any]]) -> dict[str, Any]:
+    """Map OpenAI messages array to the Anthropic Messages API body."""
+    system_parts: list[str] = []
+    converted: list[dict[str, Any]] = []
+    for msg in messages:
+        role = msg.get("role", "user")
+        content = msg.get("content", "")
+        if role == "system":
+            system_parts.append(str(content))
+        elif role in ("user", "assistant"):
+            converted.append({"role": role, "content": str(content)})
+        else:
+            converted.append({"role": "user", "content": str(content)})
+    body: dict[str, Any] = {"model": model, "max_tokens": 1024, "messages": converted}
+    if system_parts:
+        body["system"] = "\n\n".join(system_parts)
+    return body
+
+
+def _from_anthropic(payload: dict[str, Any]) -> str:
+    blocks = payload.get("content") or []
+    texts = [b.get("text", "") for b in blocks if isinstance(b, dict) and b.get("type") == "text"]
+    return "".join(texts)
+
+
+# Context window for local Ollama chat: Ollama's vram-based default is 32k,
+# but long-ctx models (e.g. 262k) would eat VRAM and offload to CPU.
+OLLAMA_NUM_CTX = 32768
+
+
+def _provider_http_error(provider_id: str, exc: httpx.HTTPStatusError) -> RuntimeError:
+    status = exc.response.status_code if exc.response is not None else "?"
+    detail = ""
+    if exc.response is not None:
+        try:
+            data = exc.response.json()
+            if isinstance(data, dict):
+                detail = str(
+                    data.get("error") or data.get("message") or data.get("detail") or ""
+                ).strip()
+            else:
+                detail = str(data).strip()
+        except (json.JSONDecodeError, ValueError):
+            detail = (exc.response.text or "").strip()[:800]
+    msg = f"Provider '{provider_id}' HTTP {status}"
+    if detail:
+        msg = f"{msg}: {detail}"
+    return RuntimeError(msg)
+
+
+def _to_ollama_native(model: str, messages: list[dict[str, Any]]) -> dict[str, Any]:
+    """Map OpenAI messages array to the Ollama native /api/chat body."""
+    converted = [
+        {"role": m.get("role", "user"), "content": str(m.get("content", ""))} for m in messages
+    ]
+    return {
+        "model": model,
+        "messages": converted,
+        "stream": False,
+        "options": {"num_ctx": OLLAMA_NUM_CTX},
+    }
+
+
+def _from_ollama_native(payload: dict[str, Any]) -> str:
+    return str((payload.get("message") or {}).get("content", ""))
+
+
+async def test_provider(
+    provider_id: str,
+    *,
+    model: str = "",
+    endpoint: str = "",
+) -> dict[str, Any]:
+    """Settings Test button: list models; for Ollama also run a one-token inference smoke test."""
+    listing = await list_models(provider_id)
+    models = listing["models"]
+    source = listing["source"]
+    out: dict[str, Any] = {
+        "success": False,
+        "provider": provider_id,
+        "models": models,
+        "source": source,
+        "engine": source == "live",
+        "inference": None,
+        "message": "",
+    }
+    if source != "live":
+        out["message"] = "Engine not reachable (tags/models API failed)."
+        return out
+    if not models:
+        out["message"] = "Engine reachable but no models — run ollama pull <model>."
+        return out
+    if provider_id != "ollama":
+        out["success"] = True
+        out["message"] = f"{len(models)} models ({source})"
+        return out
+
+    pick = model.strip() or models[0]
+    base = _local_base_url("ollama", endpoint)
+    url = f"{base}/api/chat"
+    body = _to_ollama_native(pick, [{"role": "user", "content": "Reply with exactly: OK"}])
+    body["options"] = {"num_ctx": 512, "num_predict": 8}
+
+    try:
+        async with httpx.AsyncClient(timeout=CHAT_TIMEOUT) as client:
+            resp = await client.post(url, json=body)
+            resp.raise_for_status()
+            _from_ollama_native(resp.json())
+    except httpx.HTTPStatusError as exc:
+        err = str(_provider_http_error(provider_id, exc))
+        out["inference"] = False
+        if "llama-server" in err.lower():
+            out["message"] = (
+                "Ollama API responds but llama-server cannot run inference. "
+                "Reinstall Ollama (winget install -e --id Ollama.Ollama --force). "
+                f"Detail: {err.split(': ', 1)[-1] if ': ' in err else err}"
+            )
+        else:
+            out["message"] = err
+        return out
+    except Exception as exc:
+        out["inference"] = False
+        out["message"] = f"Inference probe failed: {exc}"
+        return out
+
+    out["success"] = True
+    out["inference"] = True
+    out["message"] = (
+        f"Inference OK ({pick}) · {len(models)} model(s) on {base.replace('http://', '')}"
+    )
+    return out
+
+
+def _ollama_stream_text(payload: dict[str, Any]) -> str:
+    """Extract delta text from one Ollama native SSE line ({}), "" when final."""
+    if payload.get("done"):
+        return ""
+    return str((payload.get("message") or {}).get("content", ""))
+
+
+async def chat_complete(
+    provider_id: str,
+    model: str,
+    messages: list[dict[str, Any]],
+    settings=None,
+) -> str:
+    """Non-streaming chat via the backend proxy. Returns assistant text."""
+    row = require_provider(provider_id)
+    if not model.strip():
+        raise ValueError("Empty model name")
+    key = get_key(provider_id, settings) if row["kind"] == "cloud" else ""
+    if row["kind"] == "cloud" and not key:
+        raise ValueError(f"Provider '{provider_id}' has no API key configured")
+    headers = _auth_headers(row, key)
+    if row["id"] == "anthropic":
+        url = row["base_url"] + row["chat_path"]
+        body = _to_anthropic(model, messages)
+    elif row["id"] == "ollama":
+        url = row["base_url"] + row["chat_path"]
+        body = _to_ollama_native(model, messages)
+    else:
+        url = row["base_url"] + row["chat_path"]
+        body = _openai_body(model, messages)
+    try:
+        async with httpx.AsyncClient(timeout=CHAT_TIMEOUT) as client:
+            resp = await client.post(url, json=body, headers=headers)
+            resp.raise_for_status()
+            data = resp.json()
+    except httpx.HTTPStatusError as exc:
+        raise _provider_http_error(provider_id, exc) from exc
+    except Exception as exc:
+        raise RuntimeError(f"Provider '{provider_id}' unreachable ({exc})") from exc
+    if row["id"] == "anthropic":
+        return _from_anthropic(data)
+    if row["id"] == "ollama":
+        return _from_ollama_native(data)
+    try:
+        return data["choices"][0]["message"]["content"] or ""
+    except (KeyError, IndexError, TypeError) as exc:
+        raise RuntimeError(f"Provider '{provider_id}' returned an unexpected body") from exc
+
+
+def _openai_sse_chunk(model: str, text: str) -> bytes:
+    import time
+    import uuid
+
+    chunk = {
+        "id": f"chatcmpl-{uuid.uuid4().hex[:12]}",
+        "object": "chat.completion.chunk",
+        "created": int(time.time()),
+        "model": model,
+        "choices": [{"index": 0, "delta": {"content": text}, "finish_reason": None}],
+    }
+    return ("data: " + json.dumps(chunk) + "\n\n").encode("utf-8")
+
+
+async def chat_stream(
+    provider_id: str,
+    model: str,
+    messages: list[dict[str, Any]],
+    settings=None,
+) -> AsyncIterator[bytes]:
+    """Streaming chat as OpenAI-style SSE bytes, normalized for every provider."""
+    row = require_provider(provider_id)
+    if not model.strip():
+        raise ValueError("Empty model name")
+    key = get_key(provider_id, settings) if row["kind"] == "cloud" else ""
+    if row["kind"] == "cloud" and not key:
+        raise ValueError(f"Provider '{provider_id}' has no API key configured")
+    headers = _auth_headers(row, key)
+    headers["Accept"] = "text/event-stream"
+    if row["id"] == "anthropic":
+        url = row["base_url"] + row["chat_path"]
+        body = _to_anthropic(model, messages)
+        body["stream"] = True
+        async with httpx.AsyncClient(timeout=CHAT_TIMEOUT) as client:
+            async with client.stream("POST", url, json=body, headers=headers) as resp:
+                resp.raise_for_status()
+                async for line in resp.aiter_lines():
+                    if not line.startswith("data: "):
+                        continue
+                    payload = line[6:].strip()
+                    if payload in ("[DONE]", ""):
+                        continue
+                    try:
+                        event = json.loads(payload)
+                    except json.JSONDecodeError:
+                        continue
+                    if event.get("type") == "content_block_delta":
+                        text = (event.get("delta") or {}).get("text", "")
+                        if text:
+                            yield _openai_sse_chunk(model, text)
+    elif row["id"] == "ollama":
+        url = row["base_url"] + row["chat_path"]
+        body = _to_ollama_native(model, messages)
+        body["stream"] = True
+        async with httpx.AsyncClient(timeout=CHAT_TIMEOUT) as client:
+            async with client.stream("POST", url, json=body, headers=headers) as resp:
+                resp.raise_for_status()
+                async for line in resp.aiter_lines():
+                    text = line.strip()
+                    if not text:
+                        continue
+                    try:
+                        event = json.loads(text)
+                    except json.JSONDecodeError:
+                        continue
+                    delta = _ollama_stream_text(event)
+                    if delta:
+                        yield _openai_sse_chunk(model, delta)
+    else:
+        url = row["base_url"] + row["chat_path"]
+        body = _openai_body(model, messages)
+        body["stream"] = True
+        async with httpx.AsyncClient(timeout=CHAT_TIMEOUT) as client:
+            async with client.stream("POST", url, json=body, headers=headers) as resp:
+                resp.raise_for_status()
+                async for line in resp.aiter_lines():
+                    if line.startswith("data: "):
+                        yield (line + "\n\n").encode("utf-8")
+    yield b"data: [DONE]\n\n"
+
+
+def _parse_nvidia_smi(stdout: str) -> list[dict[str, Any]]:
+    """Parse `nvidia-smi --query-gpu=index,name,memory.total,memory.used,memory.free
+    --format=csv,noheader,nounits` output. Never raises: garbage lines are skipped."""
+    gpus: list[dict[str, Any]] = []
+    for line in (stdout or "").splitlines():
+        parts = [p.strip() for p in line.split(",")]
+        if len(parts) < 5:
+            continue
+        try:
+            gpus.append(
+                {
+                    "index": int(parts[0]),
+                    "name": ",".join(parts[1:-3]).strip(),
+                    "total_mb": int(parts[-3]),
+                    "used_mb": int(parts[-2]),
+                    "free_mb": int(parts[-1]),
+                }
+            )
+        except ValueError:
+            continue
+    return gpus
+
+
+def gpu_vram() -> list[dict[str, Any]]:
+    """Live per-GPU VRAM via nvidia-smi. Empty list when unavailable (no GPU,
+    no driver, timeout). Shared by the REST endpoint and the llm_ops MCP tool."""
+    import subprocess
+
+    try:
+        proc = subprocess.run(
+            [
+                "nvidia-smi",
+                "--query-gpu=index,name,memory.total,memory.used,memory.free",
+                "--format=csv,noheader,nounits",
+            ],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except (FileNotFoundError, OSError, subprocess.SubprocessError) as exc:
+        logger.debug("nvidia-smi unavailable (%s)", exc)
+        return []
+    if proc.returncode != 0:
+        return []
+    return _parse_nvidia_smi(proc.stdout)
+
+
+def _same_model(a: str, b: str) -> bool:
+    """Loose tag equality: an untagged name matches any tag of the same repo."""
+    if a == b:
+        return True
+    a_repo, _, a_tag = a.partition(":")
+    b_repo, _, b_tag = b.partition(":")
+    if a_repo != b_repo:
+        return False
+    return not a_tag or not b_tag or a_tag == b_tag
+
+
+async def ollama_loaded(base_url: str) -> dict[str, Any]:
+    """Residents on the Ollama engine (`/api/ps`): name + VRAM + expiry.
+
+    Feeds the Settings loaded-model KPI and the llm_ops `loaded` op.
+    Never raises: engine down means engine=False with an empty list.
+    """
+    result: dict[str, Any] = {"engine": False, "models": []}
+    base = (base_url or "").rstrip("/") or "http://localhost:11434"
+    try:
+        async with httpx.AsyncClient(timeout=15.0) as client:
+            ps = await client.get(base + "/api/ps")
+            if ps.status_code != 200:
+                return result
+            result["engine"] = True
+            try:
+                items = ps.json().get("models") or []
+            except Exception:
+                items = []
+            for m in items:
+                if not isinstance(m, dict) or not m.get("name"):
+                    continue
+                result["models"].append(
+                    {
+                        "name": m["name"],
+                        "size_vram_mb": round((m.get("size_vram") or 0) / 1048576),
+                        "expires_at": m.get("expires_at") or "",
+                    }
+                )
+    except Exception as exc:
+        logger.debug("ollama loaded probe failed (%s)", exc)
+    return result
+
+
+async def switch_ollama_model(keep: str, base_url: str) -> dict[str, Any]:
+    """Make `keep` the only loaded Ollama model: evict the rest, warm `keep`.
+
+    Empty `keep` evicts everything and warms nothing (full VRAM release).
+    Pure HTTP against the engine (no ollama CLI needed). Selecting a model in
+    Settings must switch VRAM, not just write config — otherwise a 20 GB hog
+    keeps squatting while the new choice can't fit. All failures are
+    non-fatal; the caller reports what happened.
+    """
+    result: dict[str, Any] = {"evicted": [], "warmed": False, "engine": False}
+    keep = (keep or "").strip()
+    base = (base_url or "").rstrip("/") or "http://localhost:11434"
+    try:
+        async with httpx.AsyncClient(timeout=15.0) as client:
+            ps = await client.get(base + "/api/ps")
+            if ps.status_code != 200:
+                return result
+            result["engine"] = True
+            try:
+                loaded = [
+                    m.get("name", "")
+                    for m in (ps.json().get("models") or [])
+                    if isinstance(m, dict) and m.get("name")
+                ]
+            except Exception:
+                loaded = []
+            if keep and any(_same_model(keep, name) for name in loaded):
+                result["warmed"] = True
+            for name in loaded:
+                if keep and _same_model(keep, name):
+                    continue
+                try:
+                    await client.post(base + "/api/generate", json={"model": name, "keep_alive": 0})
+                    result["evicted"].append(name)
+                except Exception as exc:
+                    logger.warning("ollama evict %s failed (%s)", name, exc)
+            if keep and not result["warmed"]:
+                try:
+                    async with httpx.AsyncClient(timeout=180.0) as warm_client:
+                        warm = await warm_client.post(
+                            base + "/api/generate",
+                            json={
+                                "model": keep,
+                                "prompt": " ",
+                                "keep_alive": "10m",
+                                "options": {"num_predict": 1},
+                            },
+                        )
+                        result["warmed"] = warm.status_code == 200
+                except Exception as exc:
+                    logger.warning("ollama warm %s failed (%s)", keep, exc)
+    except Exception as exc:
+        logger.warning("ollama switch failed (%s)", exc)
+    return result
+
+
+INSTALL_ALLOWLIST = ("ollama",)
+INSTALL_TIMEOUT = 600.0
+
+_install_jobs: dict[str, dict[str, Any]] = {}
+_install_lock = threading.Lock()
+
+
+def _set_install_state(engine: str, **fields: Any) -> None:
+    with _install_lock:
+        job = _install_jobs.setdefault(engine, {"engine": engine, "state": "idle"})
+        job.update(fields)
+
+
+def _run_winget_ollama() -> None:
+    import subprocess
+
+    _set_install_state("ollama", state="running", output="")
+    try:
+        proc = subprocess.run(
+            [
+                "winget",
+                "install",
+                "-e",
+                "--id",
+                "Ollama.Ollama",
+                "--accept-package-agreements",
+                "--accept-source-agreements",
+                "--silent",
+            ],
+            capture_output=True,
+            text=True,
+            timeout=INSTALL_TIMEOUT,
+        )
+        tail = (proc.stdout + proc.stderr)[-2000:]
+        if proc.returncode == 0:
+            _set_install_state("ollama", state="done", output=tail)
+        else:
+            _set_install_state("ollama", state="error", output=tail or f"exit {proc.returncode}")
+    except FileNotFoundError:
+        _set_install_state("ollama", state="error", output="winget not found on PATH")
+    except Exception as exc:
+        _set_install_state("ollama", state="error", output=str(exc)[:500])
+
+
+def start_install(engine: str) -> dict[str, Any]:
+    """Start a fixed-command engine install in the background (allowlisted only)."""
+    if engine not in INSTALL_ALLOWLIST:
+        allowed = ", ".join(INSTALL_ALLOWLIST)
+        raise ValueError(f"Install not supported for '{engine}'. Allowed: {allowed}")
+    if sys.platform != "win32":
+        raise RuntimeError("One-click install is Windows-only")
+    with _install_lock:
+        if _install_jobs.get(engine, {}).get("state") == "running":
+            return {"engine": engine, "started": False, "reason": "already running"}
+    thread = threading.Thread(target=_run_winget_ollama, name="ollama-install", daemon=True)
+    thread.start()
+    return {"engine": engine, "started": True}
+
+
+def install_status(engine: str) -> dict[str, Any]:
+    if engine not in INSTALL_ALLOWLIST:
+        raise ValueError(f"Unknown install engine '{engine}'")
+    with _install_lock:
+        job = dict(_install_jobs.get(engine, {"engine": engine, "state": "idle"}))
+    return job
+
+
+def onboarding_state(settings=None) -> dict[str, Any]:
+    """Fresh-install starter facts: what exists, what can be installed, best path."""
+    clouds = {r["id"]: is_configured(r["id"], settings) for r in PROVIDERS if r["kind"] == "cloud"}
+    return {
+        "locals": [
+            {"id": r["id"], "label": r["label"], "port": _port_hint(r["base_url"])}
+            for r in PROVIDERS
+            if r["kind"] == "local"
+        ],
+        "clouds_configured": [pid for pid, ok in clouds.items() if ok],
+        "recommendation": _recommend_path(clouds),
+    }
+
+
+def _port_hint(base_url: str) -> int | None:
+    try:
+        return int(base_url.rsplit(":", 1)[1])
+    except (ValueError, IndexError):
+        return None
+
+
+def _recommend_path(clouds: dict[str, bool]) -> dict[str, str]:
+    if any(clouds.values()):
+        first = next(pid for pid, ok in clouds.items() if ok)
+        return {
+            "path": f"cloud:{first}",
+            "reason": f"{first} key already configured — chat works immediately.",
+        }
+    return {
+        "path": "cloud:meta",
+        "reason": "Cheapest instant path: paste a Meta key (Contributor $0.20/M out). "
+        "Free path: install Ollama (section 3 of the llm-guide skill) and come back.",
+    }

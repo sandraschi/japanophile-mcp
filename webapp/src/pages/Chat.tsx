@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { api } from "../lib/api";
-import { chatComplete, useLlm } from "../store/llm";
+import {
+	type ChatMessage,
+	chatComplete,
+	fetchLlmSettings,
+	loadSelection,
+	resolveDefaultModel,
+	subscribeSelection,
+} from "../lib/llm";
 
 interface Msg {
 	role: "user" | "assistant";
@@ -8,12 +16,35 @@ interface Msg {
 }
 
 export default function Chat() {
-	const { endpoint, model } = useLlm();
+	const [provider, setProvider] = useState(loadSelection().provider);
+	const [model, setModel] = useState(loadSelection().model);
 	const [skill, setSkill] = useState("Loading japanophile-expert skill…");
 	const [input, setInput] = useState("Am I ready for N4?");
 	const [log, setLog] = useState<Msg[]>([]);
 	const [busy, setBusy] = useState(false);
 	const [error, setError] = useState("");
+
+	useEffect(() => {
+		const apply = () => {
+			const sel = loadSelection();
+			setProvider(sel.provider);
+			setModel(sel.model);
+		};
+		apply();
+		return subscribeSelection(apply);
+	}, []);
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const s = await fetchLlmSettings();
+				if (s.provider) setProvider(s.provider);
+				if (s.model?.trim()) setModel(s.model);
+			} catch {
+				/* local mirror */
+			}
+		})();
+	}, []);
 
 	useEffect(() => {
 		api
@@ -29,13 +60,34 @@ export default function Chat() {
 	const send = async () => {
 		const text = input.trim();
 		if (!text || busy) return;
+		let useModel = model.trim();
+		if (!useModel) {
+			try {
+				useModel = await resolveDefaultModel(provider);
+				if (useModel) setModel(useModel);
+			} catch (e) {
+				setError(e instanceof Error ? e.message : String(e));
+				return;
+			}
+		}
+		if (!useModel) {
+			setError("Pick a model in Settings first.");
+			return;
+		}
 		setBusy(true);
 		setError("");
 		const next = [...log, { role: "user", content: text } as Msg];
 		setLog(next);
 		setInput("");
 		try {
-			const reply = await chatComplete(endpoint, model, skill, next);
+			const messages: ChatMessage[] = next.map((m) => ({
+				role: m.role,
+				content: m.content,
+			}));
+			const reply = await chatComplete(provider, useModel, [
+				{ role: "system", content: skill },
+				...messages,
+			]);
 			setLog([...next, { role: "assistant", content: reply }]);
 		} catch (e) {
 			setError(e instanceof Error ? e.message : String(e));
@@ -49,17 +101,22 @@ export default function Chat() {
 			<h2 className="mb-4 text-2xl font-bold">
 				Chat{" "}
 				<span className="text-sm font-normal text-zinc-500">
-					skill-aware, local LLM
+					skill-aware · backend proxy
 				</span>
 			</h2>
+			<p className="mb-3 text-xs text-zinc-500">
+				{provider} / {model || "(no model)"} ·{" "}
+				<Link to="/settings" className="text-violet-400 hover:underline">
+					Change in Settings
+				</Link>
+			</p>
 			<div
 				data-testid="chat-log"
 				className="mb-3 h-[50vh] space-y-3 overflow-y-auto rounded border border-zinc-800 p-4"
 			>
 				{log.length === 0 && (
 					<p className="text-sm text-zinc-500">
-						Ask about kanji, JLPT prep, or Japanese culture. Answers route
-						through the repo tools.
+						Ask about kanji, JLPT prep, or Japanese culture.
 					</p>
 				)}
 				{log.map((m) => (
@@ -74,7 +131,7 @@ export default function Chat() {
 			</div>
 			{error && (
 				<p className="mb-2 text-sm text-red-400" data-testid="chat-error">
-					{error} (Ollama needs OLLAMA_ORIGINS=* for browser calls)
+					{error}
 				</p>
 			)}
 			<div className="flex gap-2">

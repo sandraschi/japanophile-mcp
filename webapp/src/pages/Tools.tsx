@@ -1,14 +1,14 @@
-import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { PageLoading } from "@/components/PageLoading";
+import { ToolsHarnessExplainer } from "@/components/tools-harness-explainer";
 import { API_BASE } from "@/lib/api";
 import {
 	CATEGORY_ORDER,
+	type ToolMeta,
 	relatedPage,
 	toolCategory,
-	type ToolMeta,
 } from "@/lib/tool-schema";
-import { PageLoading } from "@/components/PageLoading";
-import { ToolsHarnessExplainer } from "@/components/tools-harness-explainer";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
 function normalizeTools(raw: unknown): ToolMeta[] {
 	if (!Array.isArray(raw)) return [];
@@ -88,7 +88,11 @@ export default function Tools() {
 			<ToolsHarnessExplainer variant="full" />
 
 			{loading ? (
-				<PageLoading variant="row" testId="tools-loading" label="Loading tool catalog…" />
+				<PageLoading
+					variant="row"
+					testId="tools-loading"
+					label="Loading tool catalog…"
+				/>
 			) : (
 				groups.map(([category, items]) => (
 					<div key={category} className="space-y-3">

@@ -1,8 +1,13 @@
-const API = "";
-export const API_BASE = API;
 // Static assets live on the backend origin (CORS open). Never relative:
 // /games, /know, /skills are frontend ROUTES - relative fetches would hit the SPA.
-const BACKEND = "http://127.0.0.1:11193";
+export const BACKEND = "http://127.0.0.1:11193";
+/** Direct backend URL — empty only works under Vite dev /api proxy. */
+export const API_BASE =
+	(typeof import.meta.env.VITE_API_BASE === "string" &&
+		import.meta.env.VITE_API_BASE.length > 0 &&
+		import.meta.env.VITE_API_BASE) ||
+	BACKEND;
+const API = API_BASE;
 
 async function get<T>(path: string): Promise<T> {
 	const res = await fetch(`${API}${path}`);
