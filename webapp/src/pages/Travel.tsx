@@ -1,3 +1,8 @@
+import {
+	KyotoPhotoGallery,
+	NikkoPhotoGallery,
+	TokyoPhotoGallery,
+} from "@/components/TravelPhotoGallery";
 import { KnowledgeArticleView } from "@/components/KnowledgeArticleView";
 import { PageTabs } from "@/components/PageTabs";
 import { type ReactNode, useEffect, useMemo, useState } from "react";
@@ -9,6 +14,9 @@ const TABS = [
 	{ id: "trains", label: "Shinkansen & passes" },
 	{ id: "buses", label: "Highway & night buses" },
 	{ id: "places", label: "Where to go" },
+	{ id: "tokyo", label: "Tokyo" },
+	{ id: "kansai", label: "Kyoto & Osaka" },
+	{ id: "nikko", label: "Nikko" },
 	{ id: "hazards", label: "Hazards & seasons" },
 	{ id: "housing", label: "Sharehouses & stays" },
 	{ id: "legal", label: "Visas & stay length" },
@@ -619,8 +627,8 @@ export default function Travel() {
 						<ul className="grid gap-3 sm:grid-cols-2">
 							<PlaceCard
 								name="Nikko (日光)"
-								what="Mountain town north of Tokyo, UNESCO shrines and temples — lavish Tokugawa shogun mausoleum at Toshogu, red lacquer bridges, cedar avenue. Spirituality meets theme-park ornament."
-								trip="Day or overnight from Tokyo (JR/Tobu). Pair with Lake Chuzenji in autumn."
+								what="UNESCO shrine mountains north of Tokyo. Memorial shrine of Tokugawa Ieyasu (first shogun) at Nikko Toshogu — gold, lacquer, famous carvings."
+								trip="Day or overnight from Tokyo. Open the Nikko tab for Toshogu, trains, and Lake Chuzenji."
 							/>
 							<PlaceCard
 								name="Nara (奈良) — the deer"
@@ -639,7 +647,7 @@ export default function Travel() {
 							/>
 							<PlaceCard
 								name="Kyoto (京都)"
-								what="Former imperial capital: thousands of temples, geiko district (Gion), Fushimi Inari’s orange torii tunnels, bamboo grove in Arashiyama."
+								what="Former imperial capital: thousands of temples, geiko district (Gion), Fushimi Inari’s orange torii tunnels (best at nightfall), bamboo grove in Arashiyama."
 								trip="Packed year-round; spring/autumn crush. Stay multiple nights if possible."
 							/>
 							<PlaceCard
@@ -659,6 +667,35 @@ export default function Travel() {
 							/>
 						</ul>
 					</Section>
+					<Section title="City & region guides">
+						<p>
+							Deep dives:{" "}
+							<button
+								type="button"
+								className="text-violet-400 underline"
+								onClick={() => selectTab("tokyo")}
+							>
+								Tokyo
+							</button>
+							,{" "}
+							<button
+								type="button"
+								className="text-violet-400 underline"
+								onClick={() => selectTab("kansai")}
+							>
+								Kyoto & Osaka
+							</button>
+							,{" "}
+							<button
+								type="button"
+								className="text-violet-400 underline"
+								onClick={() => selectTab("nikko")}
+							>
+								Nikko
+							</button>
+							.
+						</p>
+					</Section>
 					<Section title="More in Know">
 						<p>
 							Culture deep dives live under{" "}
@@ -667,6 +704,424 @@ export default function Travel() {
 							</Link>{" "}
 							(history, cuisine, geography…). This tab is the “what should I put
 							on the map?” layer.
+						</p>
+					</Section>
+				</div>
+			)}
+
+			{tab === "tokyo" && (
+				<div data-testid="travel-panel-tokyo">
+					<Section title="Tokyo (東京) — first-time base camp">
+						<p>
+							Mega-region of ~14 million people in the core wards, ~37M in
+							Greater Tokyo — yet it runs on trains that mostly arrive on time.
+							You will not “see all of Tokyo”; pick <b>2–3 hubs</b> plus one day
+							trip.
+						</p>
+					</Section>
+					<Section title="Tokyo landmarks (photos)">
+						<p className="text-xs text-zinc-500">
+							Skytree, scramble, Senso-ji, and Shinjuku&apos;s alley grills —
+							anchors for a first visit.
+						</p>
+						<TokyoPhotoGallery />
+					</Section>
+					<Section title="Arriving">
+						<p>
+							<b>Haneda</b> (Tokyo International, 羽田) is inside the city —
+							monorail from Hamamatsuchō or Keikyu from Shinagawa. <b>Narita</b>{" "}
+							(成田) is farther; use N&apos;EX or Skyliner (see{" "}
+							<button
+								type="button"
+								className="text-violet-400 underline"
+								onClick={() => selectTab("flights")}
+							>
+								Flights tab
+							</button>
+							). Buy a <b>Suica/Pasmo</b> IC card at the airport and tap
+							everywhere.
+						</p>
+					</Section>
+					<Section title="Neighborhoods worth your time">
+						<ul className="list-disc space-y-2 pl-5">
+							<li>
+								<b>Shinjuku</b> — skyscrapers, Kabukicho neon, Tokyo
+								Metropolitan Government free observatories, gateway to west
+								Japan trains.
+							</li>
+							<li>
+								<b>Shibuya</b> — scramble crossing, youth fashion, easy Yamanote
+								hub.
+							</li>
+							<li>
+								<b>Asakusa</b> — Senso-ji temple and old-town street food vibe.
+							</li>
+							<li>
+								<b>Ueno</b> — museums, park, cheaper hotels, Skyliner/N&apos;EX
+								friend if you use Narita.
+							</li>
+							<li>
+								<b>Akihabara</b> — electronics, anime/games culture (otaku
+								ground zero).
+							</li>
+							<li>
+								<b>Odaiba</b> — bay views, teamLab-style digital art, Rainbow
+								Bridge photos.
+							</li>
+						</ul>
+					</Section>
+					<Section title="Getting around">
+						<p>
+							The <b>Yamanote Line</b> loop ties most tourist hubs. Google Maps
+							works well for train routing; last trains are ~midnight — miss one
+							and it is taxi or wait. Taxis are clean but expensive; subway
+							beats car every time.
+						</p>
+					</Section>
+					<Section title="Day trips from Tokyo">
+						<ul className="list-disc space-y-1 pl-5">
+							<li>
+								<b>Kamakura</b> — Great Buddha, Enoden coastal tram (~1 hr).
+							</li>
+							<li>
+								<b>Nikko</b> — UNESCO shrine district and{" "}
+								<b>Toshogu</b>, memorial to Tokugawa Ieyasu (first shogun): gold,
+								carved gates, cedar approach (see{" "}
+								<button
+									type="button"
+									className="text-violet-400 underline"
+									onClick={() => selectTab("nikko")}
+								>
+									Nikko tab
+								</button>
+								). JR or Tobu from Tokyo; overnight unlocks Lake Chuzenji.
+							</li>
+							<li>
+								<b>Hakone</b> — onsen, ropeway, Fuji views if weather
+								cooperates.
+							</li>
+						</ul>
+					</Section>
+					<Section title="When to visit">
+						<p>
+							Spring (sakura) and autumn (maple) are peak beauty and crowds.{" "}
+							<b>Avoid July–August</b> unless you accept humid heat — see{" "}
+							<button
+								type="button"
+								className="text-violet-400 underline"
+								onClick={() => selectTab("hazards")}
+							>
+								Hazards
+							</button>
+							.
+						</p>
+					</Section>
+					<Section title="Know articles">
+						<p>
+							<Link
+								to="/know?page=dailylife"
+								className="text-violet-400 hover:underline"
+							>
+								Daily life
+							</Link>
+							,{" "}
+							<Link
+								to="/know?page=kombini"
+								className="text-violet-400 hover:underline"
+							>
+								Kombini
+							</Link>
+							,{" "}
+							<Link
+								to="/know?page=modern"
+								className="text-violet-400 hover:underline"
+							>
+								Modern Japan
+							</Link>
+							.
+						</p>
+					</Section>
+				</div>
+			)}
+
+			{tab === "kansai" && (
+				<div data-testid="travel-panel-kansai">
+					<Section title="Kyoto & Osaka (関西) — temple gravity vs kitchen energy">
+						<p>
+							<b>Kyoto</b> (京都) was the imperial capital for a millennium —
+							temples, gardens, geiko culture, strict etiquette. <b>Osaka</b>{" "}
+							(大阪) is the merchant city: louder, funnier, obsessed with food.
+							Most visitors do
+							<b> both</b> with a base in one and day trips to the other (~30–60
+							min by train).
+						</p>
+					</Section>
+					<Section title="Kyoto landmarks (photos)">
+						<p className="text-xs text-zinc-500">
+							Main temples and the bamboo grove — spread across days, not one
+							marathon.
+						</p>
+						<KyotoPhotoGallery />
+					</Section>
+					<Section title="Arriving in Kansai">
+						<p>
+							<b>Kansai International Airport (関西国際空港, KIX)</b> sits on an
+							artificial island south of Osaka. <b>Haruka</b> limited express to
+							Shin-Osaka or Kyoto Station; buses to Osaka hotels. If you land in
+							Tokyo first, Shinkansen Tokaido line reaches Kyoto in ~2h15
+							(Hikari) or Osaka in ~2h30.
+						</p>
+					</Section>
+					<Section title="Kyoto — what to prioritize">
+						<ul className="list-disc space-y-2 pl-5">
+							<li>
+								<b>Fushimi Inari</b> — torii tunnels up the mountain. Skip the
+								“must arrive at dawn” crowd advice: at <b>nightfall</b> the gates
+								glow, the forest goes quiet, and the mood is indescribably
+								romantic (bring a light for steps, check closing times on busy
+								holidays).
+							</li>
+							<li>
+								<b>Kiyomizu-dera</b> — hillside temple over the old Higashiyama
+								lanes.
+							</li>
+							<li>
+								<b>Arashiyama</b> — bamboo grove (crowded midday), river, monkey
+								park optional.
+							</li>
+							<li>
+								<b>Gion</b> — geiko district; quiet respect, no paparazzi on
+								people.
+							</li>
+							<li>
+								<b>Nijo Castle, Ryoan-ji, Golden Pavilion</b> — classic circuit;
+								spread across days.
+							</li>
+						</ul>
+						<p className="text-xs text-zinc-500">
+							Kyoto accommodation fills months ahead for cherry season and
+							autumn — book early or stay in Osaka and commute.
+						</p>
+					</Section>
+					<Section title="Osaka — eat and laugh">
+						<ul className="list-disc space-y-2 pl-5">
+							<li>
+								<b>Dotonbori</b> — neon, takoyaki, okonomiyaki, crab sign
+								landmarks.
+							</li>
+							<li>
+								<b>Shinsekai</b> — retro tower vibe, kushikatsu (no double-dip
+								sauce rule).
+							</li>
+							<li>
+								<b>Osaka Castle</b> — museum inside reconstructed keep; park
+								runs are popular.
+							</li>
+							<li>
+								<b>Universal Studios Japan</b> — block a day if theme parks
+								matter to you.
+							</li>
+						</ul>
+					</Section>
+					<Section title="Nara day trip (both bases)">
+						<p>
+							<b>Nara</b> — Todaiji giant Buddha and deer park — ~45 min from
+							Kyoto or Osaka. Half day minimum; combine with early Kyoto
+							checkout or Osaka dinner return.
+						</p>
+					</Section>
+					<Section title="Where to sleep">
+						<p>
+							<b>Stay in Kyoto</b> if temples and dawn walks are the point.{" "}
+							<b>Stay in Osaka</b> if you want cheaper hotels, nightlife, and
+							food — still easy to reach Kyoto. Avoid ping-ponging hotels
+							nightly; Shinkansen pass math lives on the{" "}
+							<button
+								type="button"
+								className="text-violet-400 underline"
+								onClick={() => selectTab("trains")}
+							>
+								Shinkansen tab
+							</button>
+							.
+						</p>
+					</Section>
+					<Section title="Know articles">
+						<p>
+							<Link
+								to="/know?page=cuisine"
+								className="text-violet-400 hover:underline"
+							>
+								Cuisine
+							</Link>
+							,{" "}
+							<Link
+								to="/know?page=history"
+								className="text-violet-400 hover:underline"
+							>
+								History
+							</Link>
+							,{" "}
+							<Link
+								to="/know?page=travel"
+								className="text-violet-400 hover:underline"
+							>
+								Travel guide
+							</Link>
+							.
+						</p>
+					</Section>
+				</div>
+			)}
+
+			{tab === "nikko" && (
+				<div data-testid="travel-panel-nikko">
+					<Section title="Nikko (日光) — mountains and the first Tokugawa shogun">
+						<p>
+							<b>Nikko</b> sits in the mountains of Tochigi Prefecture, roughly
+							2 hours north of Tokyo. The town is famous for a cluster of
+							shrines and temples registered as a{" "}
+							<b>UNESCO World Heritage</b> site — not one building but a sacred
+							landscape of cedars, rivers, and lacquer. Most visitors come for{" "}
+							<b>Nikko Toshogu (日光東照宮)</b>, the memorial shrine of{" "}
+							<b>Tokugawa Ieyasu</b>, founder of the Edo shogunate.
+						</p>
+						<NikkoPhotoGallery />
+					</Section>
+					<Section title="Tokugawa Ieyasu and why the shrine looks like this">
+						<p>
+							<b>Ieyasu</b> (1543–1616) survived the Warring States period,
+							won the Battle of Sekigahara (1600), and became the first{" "}
+							<b>Tokugawa shogun</b> in 1603, ruling from Edo (today&apos;s
+							Tokyo). His line held power until 1868. In his will he asked to
+							be enshrined in Nikko as a <b>kami</b> (Shinto deity). His
+							grandson <b>Tokugawa Iemitsu</b> rebuilt Toshogu in the 1630s
+							into the lavish complex you see now — gold leaf, vivid color, and
+							countless carvings. The message was political: no regional{" "}
+							<b>daimyo</b> should outshine the Tokugawa, even in death.
+						</p>
+						<p className="text-xs text-zinc-500">
+							Today Toshogu is active worship (Shinto-Buddhist syncretism), not
+							a museum. Dress and behavior accordingly.
+						</p>
+					</Section>
+					<Section title="What to see on the ground">
+						<ul className="list-disc space-y-2 pl-5">
+							<li>
+								<b>Shinkyo bridge (神橋)</b> — vermilion sacred arch over the
+								Daiya River; symbolic gateway to the whole sanctuary.
+							</li>
+							<li>
+								<b>Rinno-ji (輪王寺)</b> and <b>Futarasan (二荒山神社)</b> —
+								part of the World Heritage ensemble; often visited before
+								Toshogu on the same walk.
+							</li>
+							<li>
+								<b>Cedar avenue (杉並木)</b> — towering cryptomeria lining the
+								approach; iconic even in rain or snow.
+							</li>
+							<li>
+								<b>Yomeimon gate (陽明門)</b> — the “sunlight gate”; dense
+								carving and gold on the upper tier — no two panels alike on the
+								famous row.
+							</li>
+							<li>
+								<b>Three wise monkeys</b> — see no evil, hear no evil, speak no
+								evil on the sacred stable (Mizaru, Kikazaru, Iwazaru).
+							</li>
+							<li>
+								<b>Nemuri-neko (sleeping cat)</b> — tiny carving above the gate
+								to the tomb path; national craft icon.
+							</li>
+							<li>
+								<b>Okusha (奥社)</b> — Ieyasu&apos;s mausoleum path uphill
+								through cedars; bronze urn holds the shogun. The quietest,
+								most restrained part of the site.
+							</li>
+						</ul>
+						<p className="text-xs text-zinc-500">
+							Admission is split (Toshogu inner precinct vs other halls). Budget
+							at least a half day for the shrine district alone.
+						</p>
+					</Section>
+					<Section title="Getting there from Tokyo">
+						<ul className="list-disc space-y-2 pl-5">
+							<li>
+								<b>Tobu Railway</b> — frequent service from Asakusa or
+								Skytree area to Tobu-Nikko; World Heritage passes sometimes
+								bundle train plus local buses (check current Tobu offers before
+								you buy).
+							</li>
+							<li>
+								<b>JR</b> — Tohoku Shinkansen to Utsunomiya, then JR Nikko Line
+								to JR Nikko; useful if you already hold a JR Pass segment.
+							</li>
+							<li>
+								<b>Day trip</b> — doable if you leave early and accept a tight
+								schedule. <b>Overnight</b> is better if you add the lakes and
+								falls below.
+							</li>
+						</ul>
+						<p>
+							Base in{" "}
+							<button
+								type="button"
+								className="text-violet-400 underline"
+								onClick={() => selectTab("tokyo")}
+							>
+								Tokyo
+							</button>{" "}
+							and treat Nikko as the classic counterweight to neon and density.
+						</p>
+					</Section>
+					<Section title="If you stay overnight — lakes and onsen">
+						<p>
+							Above the town, <b>Lake Chuzenji (中禅寺湖)</b> and{" "}
+							<b>Kegon Falls (華厳の滝)</b> sit on the old Nikko mountain road
+							(Irohazaka switchbacks). Autumn foliage here is spectacular;
+							summer is cooler than Tokyo. <b>Yumoto Onsen</b> offers hot-spring
+							stays at the lake&apos;s north end. Winter can be snowy and
+							beautiful but check road and bus schedules.
+						</p>
+					</Section>
+					<Section title="When to go">
+						<p>
+							Autumn (maple) and spring cherry at lower elevations draw crowds.
+							Winter shrine visits in snow are memorable but cold. Summer in
+							Nikko is milder than Tokyo but still busy on weekends — see{" "}
+							<button
+								type="button"
+								className="text-violet-400 underline"
+								onClick={() => selectTab("hazards")}
+							>
+								Hazards
+							</button>{" "}
+							for typhoon season buffer days if you travel August–October.
+						</p>
+					</Section>
+					<Section title="Know articles">
+						<p>
+							<Link
+								to="/know?page=history"
+								className="text-violet-400 hover:underline"
+							>
+								History
+							</Link>
+							,{" "}
+							<Link
+								to="/know?page=travel"
+								className="text-violet-400 hover:underline"
+							>
+								Travel guide
+							</Link>
+							,{" "}
+							<Link
+								to="/know?page=geography"
+								className="text-violet-400 hover:underline"
+							>
+								Geography
+							</Link>
+							.
 						</p>
 					</Section>
 				</div>
@@ -930,6 +1385,39 @@ export default function Travel() {
 						<p>
 							Overstay and working illegally have serious consequences (fines,
 							deportation, re-entry bans).
+						</p>
+					</Section>
+					<Section title="Police & criminal justice (context)">
+						<p>
+							Japan is safe and koban boxes are everywhere, but the justice system is
+							not like Western TV court drama. Prosecutors only indict when they
+							expect conviction; confessions historically dominated trials; the death
+							penalty is hanging, still used for the worst murders, with long isolated
+							waits on death row — and late exonerations after decades do happen.
+						</p>
+						<ul className="list-disc space-y-2 pl-5 text-sm">
+							<li>
+								<b>Koban (交番)</b> — neighborhood police box; bike patrols with the
+								white <b>keibo (警棒)</b> baton.
+							</li>
+							<li>
+								<b>110</b> police / <b>119</b> ambulance. Carry passport or residence
+								card; ask for embassy if arrested.
+							</li>
+							<li>
+								<b>Drugs & knives</b> — harsh; do not assume a warning for tourists.
+							</li>
+						</ul>
+						<p>
+							Full write-up:{" "}
+							<Link
+								to="/know?page=police-justice"
+								className="text-violet-400 hover:underline"
+								data-testid="travel-link-police-justice"
+							>
+								Know → Police &amp; justice
+							</Link>
+							. Not legal advice.
 						</p>
 					</Section>
 					<Section title="Useful official links">

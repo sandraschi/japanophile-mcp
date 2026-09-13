@@ -4,31 +4,50 @@
 	--gh-green: 142 71% 45%;
 }
 
+html.dark {
+	color-scheme: dark;
+	--app-bg: #0c0c0f;
+	--app-fg: #fafafa;
+	--app-surface: #18181b;
+	--app-border: #52525b;
+	--app-muted: #27272a;
+	--app-muted-fg: #a1a1aa;
+}
+
+html.theme-light {
+	color-scheme: light;
+	--app-bg: #f4f4f5;
+	--app-fg: #18181b;
+	--app-surface: #ffffff;
+	--app-border: #d4d4d8;
+	--app-muted: #e4e4e7;
+	--app-muted-fg: #52525b;
+}
+
 @theme {
 	--color-gh-green: hsl(142 71% 45%);
-	--color-background: #0c0c0f;
-	--color-foreground: #fafafa;
-	--color-card: #18181b;
-	--color-border: #3f3f46;
-	--color-muted: #27272a;
-	--color-muted-foreground: #a1a1aa;
+	--color-background: var(--app-bg);
+	--color-foreground: var(--app-fg);
+	--color-card: var(--app-surface);
+	--color-border: var(--app-border);
+	--color-muted: var(--app-muted);
+	--color-muted-foreground: var(--app-muted-fg);
 }
 
 body {
-	background-color: #0c0c0f;
-	color: #fafafa;
+	background-color: var(--app-bg);
+	color: var(--app-fg);
 	font-size: 17px;
 	line-height: 1.55;
 }
 
-/* Demo-readable chrome (screenshots + demo-vid capture) */
 header h1 {
 	font-size: 1.5rem;
-	color: #fafafa;
+	color: var(--app-fg);
 }
 
 header h1 span {
-	color: #d4d4d8 !important;
+	color: var(--app-muted-fg) !important;
 	font-size: 0.95rem !important;
 }
 
@@ -39,20 +58,20 @@ nav a {
 main h2 {
 	font-size: 1.75rem;
 	font-weight: 700;
-	color: #fafafa;
+	color: var(--app-fg);
 	margin-bottom: 1rem;
 }
 
 main h2 span {
 	font-size: 1rem !important;
 	font-weight: 400 !important;
-	color: #d4d4d8 !important;
+	color: var(--app-muted-fg) !important;
 }
 
 main pre,
 main code {
 	font-size: 0.9rem;
-	color: #f4f4f5;
+	color: var(--app-fg);
 }
 
 main .text-xs {
@@ -66,4 +85,24 @@ main .text-sm {
 main input,
 main button {
 	font-size: 0.95rem;
+}
+
+html.theme-light main .text-zinc-100,
+html.theme-light main .text-zinc-50 {
+	color: var(--app-fg);
+}
+
+html.theme-light main .text-zinc-300,
+html.theme-light main .text-zinc-400 {
+	color: var(--app-muted-fg);
+}
+
+html.theme-light main .border-zinc-800,
+html.theme-light main .border-zinc-600 {
+	border-color: var(--app-border);
+}
+
+html.theme-light main .bg-zinc-900,
+html.theme-light main .bg-zinc-900\/60 {
+	background-color: var(--app-surface);
 }

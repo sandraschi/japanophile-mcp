@@ -7,6 +7,7 @@ import { api } from "../lib/api";
 export function pageLabel(stem: string): string {
 	if (stem === "20thcentury") return "20th century";
 	if (stem === "travel") return "Travel guide";
+	if (stem === "police-justice") return "Police & justice";
 	return stem.replace(/([a-z])([0-9])/g, "$1 $2").replace(/-/g, " ");
 }
 

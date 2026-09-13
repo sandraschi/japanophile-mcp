@@ -77,4 +77,4 @@ Learn tools (~15 html/js games), 29 knowledge pages, kanji/JLPT seeds vendored f
 - Plan + Remember: travel planner APIs, diary, SRS.
 - **austrophile-mcp** as second -phile template.
 
-Docs: [TOOLS](docs/TOOLS.md) - [CONFIGURATION](docs/CONFIGURATION.md) - [INSTALL](INSTALL.md)
+Docs: [TOOLS](docs/TOOLS.md) - [CONFIGURATION](docs/CONFIGURATION.md) - [INSTALL](INSTALL.md) - [CONTRIBUTORS](CONTRIBUTORS.md)

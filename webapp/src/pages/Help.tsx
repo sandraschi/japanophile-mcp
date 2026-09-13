@@ -1,4 +1,12 @@
 import { PageTabs } from "@/components/PageTabs";
+import {
+	CONTRIBUTORS,
+	LICENSE_SUMMARY,
+	PROJECT_LICENSE,
+	REPO_CONTRIBUTORS_URL,
+	REPO_LICENSE_URL,
+	VENDORED_CREDIT,
+} from "@/content/legal";
 import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
@@ -7,6 +15,7 @@ const TABS = [
 	{ id: "learn-japanese", label: "So you want to learn Japanese?" },
 	{ id: "app", label: "Using the app" },
 	{ id: "technical", label: "Technical" },
+	{ id: "license", label: "License & contributors" },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
@@ -197,7 +206,21 @@ export default function Help() {
 					</Section>
 					<Section title="Travel">
 						Planning hub: flights, housing, visas, insurance — plus the budget
-						travel guide article.
+						travel guide article. City guides:{" "}
+						<Link
+							to="/travel?tab=tokyo"
+							className="text-violet-400 hover:underline"
+						>
+							Tokyo
+						</Link>
+						,{" "}
+						<Link
+							to="/travel?tab=kansai"
+							className="text-violet-400 hover:underline"
+						>
+							Kyoto & Osaka
+						</Link>
+						.
 					</Section>
 					<Section title="Games">
 						Vendored drills (kanji table, JLPT tests, flashcards…) served from
@@ -248,6 +271,44 @@ export default function Help() {
 							scripts/vendor_from_donor.ps1
 						</code>{" "}
 						for asset refresh.
+					</Section>
+				</div>
+			)}
+
+			{tab === "license" && (
+				<div data-testid="help-panel-license">
+					<Section title={`${PROJECT_LICENSE} License`}>
+						<p>{LICENSE_SUMMARY}</p>
+						<p>
+							Full text:{" "}
+							<ExtLink href={REPO_LICENSE_URL}>LICENSE on GitHub</ExtLink> (or{" "}
+							<code className="rounded bg-zinc-800 px-1">LICENSE</code> in the
+							repo root).
+						</p>
+					</Section>
+					<Section title="Contributors">
+						<ul className="space-y-3">
+							{CONTRIBUTORS.map((c) => (
+								<li
+									key={c.name}
+									className="rounded-lg border border-zinc-800 bg-zinc-900/60 p-3"
+								>
+									{c.href ? (
+										<ExtLink href={c.href}>{c.name}</ExtLink>
+									) : (
+										<span className="font-medium text-zinc-100">{c.name}</span>
+									)}
+									<p className="mt-1 text-xs text-zinc-400">{c.role}</p>
+								</li>
+							))}
+						</ul>
+						<p className="text-xs text-zinc-500">
+							<ExtLink href={REPO_CONTRIBUTORS_URL}>CONTRIBUTORS.md</ExtLink> —
+							PRs welcome; contributions are under MIT.
+						</p>
+					</Section>
+					<Section title="Vendored assets">
+						<p className="text-sm text-zinc-400">{VENDORED_CREDIT}</p>
 					</Section>
 				</div>
 			)}
