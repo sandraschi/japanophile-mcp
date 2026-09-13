@@ -17,6 +17,7 @@ const TABS = [
 	{ id: "tokyo", label: "Tokyo" },
 	{ id: "kansai", label: "Kyoto & Osaka" },
 	{ id: "nikko", label: "Nikko" },
+	{ id: "shopping", label: "Shopping" },
 	{ id: "hazards", label: "Hazards & seasons" },
 	{ id: "housing", label: "Sharehouses & stays" },
 	{ id: "legal", label: "Visas & stay length" },
@@ -693,6 +694,14 @@ export default function Travel() {
 							>
 								Nikko
 							</button>
+							,{" "}
+							<button
+								type="button"
+								className="text-violet-400 underline"
+								onClick={() => selectTab("shopping")}
+							>
+								Shopping
+							</button>
 							.
 						</p>
 					</Section>
@@ -1120,6 +1129,92 @@ export default function Travel() {
 								className="text-violet-400 hover:underline"
 							>
 								Geography
+							</Link>
+							.
+						</p>
+					</Section>
+				</div>
+			)}
+
+			{tab === "shopping" && (
+				<div data-testid="travel-panel-shopping">
+					<Section title="Shopping & vending — a Japan specialty">
+						<p>
+							Retail here is layered: <b>vending machines</b> on every block,
+							<b> konbini</b> for meals, <b>depachika</b> basements for gifts,
+							<b> shotengai</b> arcades for locals, and whole streets that sell one
+							category (books, electronics, figures). Budget weirdness lives at{" "}
+							<b>Don Quijote</b>; collectors haunt <b>Book Off</b> and music shops
+							that still feel alive.
+						</p>
+					</Section>
+					<Section title="Vending machines (自動販売機)">
+						<ul className="list-disc space-y-2 pl-5">
+							<li>
+								<b>Jidōhanbaiki</b> — hot and cold drinks, snacks, ice cream, sometimes
+								umbrellas, eggs, or regional one-offs; trust and restocking make density absurd vs the West.
+							</li>
+							<li>
+								Photo-worthy but functional — mountaintops, shrines, suburban bus stops.
+							</li>
+							<li>
+								Pair with{" "}
+								<Link
+									to="/know?page=kombini"
+									className="text-violet-400 hover:underline"
+								>
+									Know → Kombini
+								</Link>{" "}
+								for full meals and services machines do not offer.
+							</li>
+						</ul>
+					</Section>
+					<Section title="Department stores & shotengai">
+						<ul className="list-disc space-y-2 pl-5">
+							<li>
+								<b>Depachika (デパ地下)</b> — Mitsukoshi, Isetan, Takashimaya basement food halls; omiyage packaging as art.
+							</li>
+							<li>
+								<b>Shotengai (商店街)</b> — roofed shopping streets, mom-and-pop mix; Yanaka Ginza, Kawagoe, your neighborhood arcade.
+							</li>
+						</ul>
+					</Section>
+					<Section title="Don Quijote, Book Off, music">
+						<ul className="list-disc space-y-2 pl-5">
+							<li>
+								<b>Don Quijote (Donki)</b> — late-night discount maze; tax-free, snacks, kitsch, luggage in tourist zones.
+							</li>
+							<li>
+								<b>Book Off / Hard Off</b> — used books, manga, games, cameras, instruments; resale culture is serious.
+							</li>
+							<li>
+								<b>Tower Records, Disk Union, HMV</b> — physical music still thrives; genre floors and vinyl dives.
+							</li>
+						</ul>
+					</Section>
+					<Section title="Specialist neighborhoods">
+						<ul className="list-disc space-y-2 pl-5">
+							<li>
+								<b>Jimbocho</b> — book row (Tokyo).
+							</li>
+							<li>
+								<b>Akihabara / Nakano Broadway</b> — electronics, retro games, figures.
+							</li>
+							<li>
+								<b>Nipponbashi (Osaka)</b> — Den Den Town.
+							</li>
+							<li>
+								<b>Kappabashi</b> — kitchen and fake-food sample street (Tokyo).
+							</li>
+						</ul>
+						<p className="mt-3 text-xs text-zinc-500">
+							Full write-up:{" "}
+							<Link
+								to="/know?page=shopping"
+								className="text-violet-400 hover:underline"
+								data-testid="travel-link-shopping-know"
+							>
+								Know → Shopping &amp; Vending
 							</Link>
 							.
 						</p>

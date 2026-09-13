@@ -42,6 +42,7 @@ const PAGE_LABELS: Record<string, string> = {
 	samurai: "Samurai",
 	strengths: "Strengths",
 	timeline: "Timeline",
+	shopping: "Shopping & Vending",
 	travel: "Travel Guide",
 	yakuza: "Yakuza (Organized Crime)",
 };
