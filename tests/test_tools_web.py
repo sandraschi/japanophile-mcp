@@ -26,3 +26,17 @@ def test_invoke_kanji_lookup():
     assert payload["success"] is True
     result = payload["result"]
     assert result.get("success") is True or "水" in str(result)
+
+
+def test_api_help_returns_data_status():
+    client = TestClient(build_app())
+    res = client.get("/api/help")
+    assert res.status_code == 200, res.text
+    body = res.json()
+    assert body["success"] is True
+    inner = body["data"]
+    assert "data" in inner
+    assert "kanji_database.db" in inner["data"]
+    assert isinstance(inner.get("knowledge_pages"), int)
+    assert "metrics" in inner
+    assert inner["metrics"].get("kanji_entries", 0) or inner["metrics"]["kanji_entries"] is None

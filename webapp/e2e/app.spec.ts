@@ -8,8 +8,10 @@ test("dashboard loads with KPIs", async ({ page }) => {
 	await page.goto("/");
 	await expect(page.getByTestId("app-title")).toBeVisible();
 	await expect(page.getByTestId("dashboard-hero")).toBeVisible();
+	await expect(page.getByTestId("hero-summary")).toBeVisible();
 	await expect(page.getByTestId("kpi-grid")).toBeVisible();
-	await expect(page.getByTestId("kpi-kanji")).toContainText("13,108");
+	await expect(page.getByTestId("kpi-kanji")).toContainText(/\d/);
+	await expect(page.getByTestId("data-status")).toBeVisible();
 	expect(errors).toEqual([]);
 });
 

@@ -21,6 +21,7 @@ from .db import (
     missing_db_message,
     open_ro,
     progress_db,
+    resolve_data_file,
     resolve_db,
 )
 
@@ -88,6 +89,21 @@ def ok(message: str, data: object = None) -> dict:
 
 def fail(message: str) -> dict:
     return {"success": False, "message": message, "data": None}
+
+
+def _count_table(db_name: str, table: str) -> int | None:
+    path = resolve_db(db_name)
+    if not path:
+        return None
+    try:
+        conn = open_ro(path)
+        try:
+            row = conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()
+            return int(row[0]) if row else None
+        finally:
+            conn.close()
+    except sqlite3.Error:
+        return None
 
 
 class _TextDump(HTMLParser):
@@ -387,12 +403,22 @@ def japanophile_help() -> dict:
         f"ready ({wakan.as_posix()})" if wakan else "MISSING — restore data/wakan_vocab.json from git"
     )
     pages = len(list(KNOWLEDGE_DIR.glob("*.html"))) if KNOWLEDGE_DIR.is_dir() else 0
+    metrics = {
+        "kanji_entries": _count_table("kanji_database.db", "kanji"),
+        "jlpt_questions": _count_table("jlpt_questions.db", "questions"),
+        "knowledge_pages": pages,
+        "vocabulary_rows": _count_table("kanji.db", "vocabulary"),
+        "example_rows": _count_table("kanji.db", "examples"),
+        "jmdict_rows": _count_table("kanji.db", "jmdict"),
+        "mcp_tools": 5,
+    }
     return ok(
         "japanophile-mcp: Learn (kanji, jlpt, vocab) + Know (knowledge box)."
         " Travel planner + diary are roadmap, not tools yet.",
         {
             "tools": ["kanji", "jlpt", "vocab", "knowledge", "japanophile_help"],
             "data": status,
+            "metrics": metrics,
             "knowledge_pages": pages,
             "ports": {"backend": 11193, "frontend": 11194},
         },
