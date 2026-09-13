@@ -26,3 +26,14 @@ Running record for every NSIS build attempt (gate rule: no build without a log).
   (health OK, window "Japanophile MCP" with handle, 29 pages from installed
   layout), silent uninstall removed dir with no orphan processes/ports.
 - Placeholder-grade icons (PIL hinomaru) still to replace with designed icon.
+
+## 2026-09-14 - NSIS 0.3.1: PASS
+
+- `just build-native` via `native/build.ps1` (fleet docker-mcp pattern): webapp
+  tsc+vite, PyInstaller spec (~80 MB sidecar), health poll on port 11999,
+  Tauri NSIS with `CARGO_TARGET_DIR` cleared so artifacts land under
+  `native/target/` (Cursor sandbox env otherwise redirects cargo output).
+- Ship: `native/target/release/bundle/nsis/Japanophile MCP_0.3.1_x64-setup.exe`
+  (copy in `dist/`). Includes shopping Know + Travel tab from 0e9e4f5.
+- Build script fixes: PS native-command stderr, pre-PyInstaller process kill,
+  40s health retry loop.

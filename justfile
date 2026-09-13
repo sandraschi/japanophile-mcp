@@ -41,9 +41,6 @@ fetch-data:
 mcpb-pack:
     powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/mcpb-pack.ps1
 
-# --- Tauri NSIS (Stage 3: needs PyInstaller sidecar + makensis; see BUILD_LOG.md) ---
-build-sidecar:
-    uv run pyinstaller --onefile --name japanophile-mcp-backend --distpath native/binaries src/japanophile_mcp/http.py
-
-build-native: build-sidecar
-    npx @tauri-apps/cli build --bundles nsis
+# --- Tauri NSIS (PyInstaller spec + makensis; see BUILD_LOG.md) ---
+build-native:
+    powershell.exe -NoProfile -File native/build.ps1

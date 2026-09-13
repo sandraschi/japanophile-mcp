@@ -1,4 +1,5 @@
 $ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $false
 $Root = Split-Path -Parent $PSScriptRoot
 $RepoName = Split-Path -Leaf $Root
 $Triple = "x86_64-pc-windows-msvc"
@@ -18,11 +19,8 @@ Push-Location $frontend
 npm install --silent 2>$null
 
 Write-Host "  tsc --noEmit..." -ForegroundColor Gray
-$tscOut = npx tsc --noEmit 2>&1
-$tscExit = $LASTEXITCODE
-if ($tscExit -ne 0) {
-    Write-Host "  TypeScript compilation FAILED - fix errors before building NSIS" -ForegroundColor Red
-    Write-Host $tscOut
+npx tsc --noEmit
+if ($LASTEXITCODE -ne 0) {
     throw "TypeScript compilation failed - fix all errors before building NSIS installer"
 }
 
@@ -37,6 +35,7 @@ if (-not (Test-Path $specFile)) {
     throw "Spec file not found at $specFile"
 }
 Push-Location $Root
+Get-Process -Name "japanophile-mcp-backend" -ErrorAction SilentlyContinue | Stop-Process -Force
 $fm = "$Root\.venv\Lib\site-packages\fastmcp\__init__.py"
 if (Test-Path $fm) {
     $c = Get-Content $fm -Raw
@@ -67,19 +66,29 @@ Write-Host "  Backend exe: $([math]::Round($sizeMB, 1)) MB"
 Write-Host "  Smoke-testing frozen binary..." -ForegroundColor Yellow
 $testPort = 11999
 $testProc = Start-Process -FilePath $src -ArgumentList @("--port", "$testPort", "--host", "127.0.0.1") -NoNewWindow -PassThru -RedirectStandardError "$Root\dist\pyi-crash.log"
-Start-Sleep -Seconds 6
+$healthOk = $false
+for ($i = 0; $i -lt 20; $i++) {
+    Start-Sleep -Seconds 2
+    if ($testProc.HasExited) {
+        break
+    }
+    try {
+        $resp = Invoke-WebRequest -Uri "http://127.0.0.1:${testPort}/health" -UseBasicParsing -TimeoutSec 3
+        if ($resp.StatusCode -eq 200) {
+            $healthOk = $true
+            break
+        }
+    } catch {
+        # still booting
+    }
+}
 if ($testProc.HasExited) {
-    $crash = Get-Content "$Root\dist\pyi-crash.log" -Raw
+    $crash = Get-Content "$Root\dist\pyi-crash.log" -Raw -ErrorAction SilentlyContinue
     throw "Frozen binary crashed on launch (exit $($testProc.ExitCode)):`n$crash"
 }
-try {
-    $resp = Invoke-WebRequest -Uri "http://127.0.0.1:${testPort}/health" -UseBasicParsing -TimeoutSec 5
-    if ($resp.StatusCode -ne 200) {
-        throw "Health returned $($resp.StatusCode)"
-    }
-} catch {
+if (-not $healthOk) {
     $testProc | Stop-Process -Force -ErrorAction SilentlyContinue
-    throw "Health check failed on port ${testPort}: $_"
+    throw "Health check failed on port ${testPort} after 40s"
 }
 $testProc | Stop-Process -Force -ErrorAction SilentlyContinue
 Remove-Item "$Root\dist\pyi-crash.log" -Force -ErrorAction SilentlyContinue
@@ -92,6 +101,7 @@ Copy-Item $src "$DevDir\${RepoName}-backend-$Triple.exe" -Force
 Write-Host "-> [4/4] Tauri NSIS bundle..." -ForegroundColor Yellow
 Push-Location $PSScriptRoot
 $env:Path = "$env:USERPROFILE\.cargo\bin;$env:Path"
+Remove-Item Env:CARGO_TARGET_DIR -ErrorAction SilentlyContinue
 npx @tauri-apps/cli build --bundles nsis
 if ($LASTEXITCODE -ne 0) { throw "Tauri build failed with exit code $LASTEXITCODE" }
 Pop-Location
