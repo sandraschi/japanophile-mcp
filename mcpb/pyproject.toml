@@ -1,6 +1,6 @@
 [project]
 name = "japanophile-mcp"
-version = "0.3.0"
+version = "0.1.0"
 description = "Japanophile wiadomo - kanji/JLPT learning tools, Japanese culture knowledge box, travel and diary roadmap. First -phile repo."
 readme = "README.md"
 license = { text = "MIT" }

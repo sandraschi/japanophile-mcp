@@ -4,11 +4,21 @@ from __future__ import annotations
 
 import shutil
 import sqlite3
+import sys
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-DATA_DIR = REPO_ROOT / "data"
-SEED_DIR = REPO_ROOT / "assets" / "seed"
+if getattr(sys, "frozen", False):
+    # PyInstaller sidecar: assets bundled under japanophile_assets/, user data
+    # next to the executable (Tauri resources dir).
+    _BASE = Path(sys.executable).resolve().parent
+    REPO_ROOT = Path(getattr(sys, "_MEIPASS", str(_BASE)))
+    ASSET_ROOT = REPO_ROOT / "japanophile_assets"
+    DATA_DIR = _BASE / "data"
+else:
+    REPO_ROOT = Path(__file__).resolve().parents[2]
+    ASSET_ROOT = REPO_ROOT / "assets"
+    DATA_DIR = REPO_ROOT / "data"
+SEED_DIR = ASSET_ROOT / "seed"
 
 # Small DBs ship in assets/seed and are readable in place.
 SEED_DBS = ("kanji_database.db", "jlpt_questions.db")

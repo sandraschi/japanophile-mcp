@@ -1,0 +1,23 @@
+# .mcpbignore - pack exclusions (read from pack root mcpb/ by `mcpb pack`)
+.venv/
+node_modules/
+**/node_modules/
+webapp/
+src-tauri/
+native/
+tests/
+data/
+target/
+dist/
+build/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.git/
+.env
+.coverage
+*.bak
+*.bak.*
+playwright-report/
+test-results/

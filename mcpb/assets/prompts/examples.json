@@ -1,0 +1,2383 @@
+[
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "日"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "日",
+    "onyomi": "[\"\\u306b\\u3061\", \"\\u3058\\u3064\"]",
+    "kunyomi": "[\"\\u3072\", \"-\\u3073\", \"-\\u304b\"]",
+    "meanings": "[\"Day\", \"Sun\", \"Japan\", \"Counter For Days\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 4,
+    "categories": null,
+    "frequency": 1,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "本"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "本",
+    "onyomi": "[\"\\u307b\\u3093\"]",
+    "kunyomi": "[\"\\u3082\\u3068\"]",
+    "meanings": "[\"Book\", \"Present\", \"Main\", \"Origin\", \"True\", \"Real\", \"Counter For Long Cylindrical Things\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 5,
+    "categories": null,
+    "frequency": 10,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "語"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "語",
+    "onyomi": "[\"\\u3054\"]",
+    "kunyomi": "[\"\\u304b\\u305f.\\u308b\", \"\\u304b\\u305f.\\u3089\\u3046\"]",
+    "meanings": "[\"Word\", \"Speech\", \"Language\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 14,
+    "categories": null,
+    "frequency": 301,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "水"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "水",
+    "onyomi": "[\"\\u3059\\u3044\"]",
+    "kunyomi": "[\"\\u307f\\u305a\", \"\\u307f\\u305a-\"]",
+    "meanings": "[\"Water\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 4,
+    "categories": null,
+    "frequency": 223,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "火"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "火",
+    "onyomi": "[\"\\u304b\"]",
+    "kunyomi": "[\"\\u3072\", \"-\\u3073\", \"\\u307b-\"]",
+    "meanings": "[\"Fire\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 4,
+    "categories": null,
+    "frequency": 574,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "木"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "木",
+    "onyomi": "[\"\\u307c\\u304f\", \"\\u3082\\u304f\"]",
+    "kunyomi": "[\"\\u304d\", \"\\u3053-\"]",
+    "meanings": "[\"Tree\", \"Wood\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 4,
+    "categories": null,
+    "frequency": 317,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "金"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "金",
+    "onyomi": "[\"\\u304d\\u3093\", \"\\u3053\\u3093\", \"\\u3054\\u3093\"]",
+    "kunyomi": "[\"\\u304b\\u306d\", \"\\u304b\\u306a-\", \"-\\u304c\\u306d\"]",
+    "meanings": "[\"Gold\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 8,
+    "categories": null,
+    "frequency": 53,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "土"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "土",
+    "onyomi": "[\"\\u3069\", \"\\u3068\"]",
+    "kunyomi": "[\"\\u3064\\u3061\"]",
+    "meanings": "[\"Soil\", \"Earth\", \"Ground\", \"Turkey\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 3,
+    "categories": null,
+    "frequency": 307,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "曜"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "曜",
+    "onyomi": "[\"\\u3088\\u3046\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Weekday\"]",
+    "jlpt": "N4",
+    "grade": "2",
+    "strokes": 18,
+    "categories": null,
+    "frequency": 940,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "毎"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "毎",
+    "onyomi": "[\"\\u307e\\u3044\"]",
+    "kunyomi": "[\"\\u3054\\u3068\", \"-\\u3054\\u3068.\\u306b\"]",
+    "meanings": "[\"Every\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 6,
+    "categories": null,
+    "frequency": 436,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "食"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "食",
+    "onyomi": "[\"\\u3057\\u3087\\u304f\", \"\\u3058\\u304d\"]",
+    "kunyomi": "[\"\\u304f.\\u3046\", \"\\u304f.\\u3089\\u3046\", \"\\u305f.\\u3079\\u308b\", \"\\u306f.\\u3080\"]",
+    "meanings": "[\"Eat\", \"Food\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 9,
+    "categories": null,
+    "frequency": 328,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "飲"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "飲",
+    "onyomi": "[\"\\u3044\\u3093\", \"\\u304a\\u3093\"]",
+    "kunyomi": "[\"\\u306e.\\u3080\", \"-\\u306e.\\u307f\"]",
+    "meanings": "[\"Drink\", \"Smoke\", \"Take\"]",
+    "jlpt": "N4",
+    "grade": "3",
+    "strokes": 12,
+    "categories": null,
+    "frequency": 969,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "見"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "見",
+    "onyomi": "[\"\\u3051\\u3093\"]",
+    "kunyomi": "[\"\\u307f.\\u308b\", \"\\u307f.\\u3048\\u308b\", \"\\u307f.\\u305b\\u308b\"]",
+    "meanings": "[\"See\", \"Hopes\", \"Chances\", \"Idea\", \"Opinion\", \"Look At\", \"Visible\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 7,
+    "categories": null,
+    "frequency": 22,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "聞"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "聞",
+    "onyomi": "[\"\\u3076\\u3093\", \"\\u3082\\u3093\"]",
+    "kunyomi": "[\"\\u304d.\\u304f\", \"\\u304d.\\u3053\\u3048\\u308b\"]",
+    "meanings": "[\"Hear\", \"Ask\", \"Listen\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 14,
+    "categories": null,
+    "frequency": 319,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "読"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "読",
+    "onyomi": "[\"\\u3069\\u304f\", \"\\u3068\\u304f\", \"\\u3068\\u3046\"]",
+    "kunyomi": "[\"\\u3088.\\u3080\", \"-\\u3088.\\u307f\"]",
+    "meanings": "[\"Read\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 14,
+    "categories": null,
+    "frequency": 618,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "書"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "書",
+    "onyomi": "[\"\\u3057\\u3087\"]",
+    "kunyomi": "[\"\\u304b.\\u304f\", \"-\\u304c.\\u304d\", \"-\\u304c\\u304d\"]",
+    "meanings": "[\"Write\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 10,
+    "categories": null,
+    "frequency": 169,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "語"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "語",
+    "onyomi": "[\"\\u3054\"]",
+    "kunyomi": "[\"\\u304b\\u305f.\\u308b\", \"\\u304b\\u305f.\\u3089\\u3046\"]",
+    "meanings": "[\"Word\", \"Speech\", \"Language\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 14,
+    "categories": null,
+    "frequency": 301,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "電"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "電",
+    "onyomi": "[\"\\u3067\\u3093\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Electricity\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 13,
+    "categories": null,
+    "frequency": 268,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "車"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "車",
+    "onyomi": "[\"\\u3057\\u3083\"]",
+    "kunyomi": "[\"\\u304f\\u308b\\u307e\"]",
+    "meanings": "[\"Car\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 7,
+    "categories": null,
+    "frequency": 333,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "国"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "国",
+    "onyomi": "[\"\\u3053\\u304f\"]",
+    "kunyomi": "[\"\\u304f\\u306b\"]",
+    "meanings": "[\"Country\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 8,
+    "categories": null,
+    "frequency": 3,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "時"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "時",
+    "onyomi": "[\"\\u3058\"]",
+    "kunyomi": "[\"\\u3068\\u304d\", \"-\\u3069\\u304d\"]",
+    "meanings": "[\"Time\", \"Hour\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 10,
+    "categories": null,
+    "frequency": 16,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "年"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "年",
+    "onyomi": "[\"\\u306d\\u3093\"]",
+    "kunyomi": "[\"\\u3068\\u3057\"]",
+    "meanings": "[\"Year\", \"Counter For Years\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 6,
+    "categories": null,
+    "frequency": 6,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "気"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "気",
+    "onyomi": "[\"\\u304d\", \"\\u3051\"]",
+    "kunyomi": "[\"\\u3044\\u304d\"]",
+    "meanings": "[\"Spirit\", \"Mind\", \"Air\", \"Atmosphere\", \"Mood\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 6,
+    "categories": null,
+    "frequency": 113,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "大"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "大",
+    "onyomi": "[\"\\u3060\\u3044\", \"\\u305f\\u3044\"]",
+    "kunyomi": "[\"\\u304a\\u304a-\", \"\\u304a\\u304a.\\u304d\\u3044\", \"-\\u304a\\u304a.\\u3044\\u306b\"]",
+    "meanings": "[\"Large\", \"Big\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 3,
+    "categories": null,
+    "frequency": 7,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "小"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "小",
+    "onyomi": "[\"\\u3057\\u3087\\u3046\"]",
+    "kunyomi": "[\"\\u3061\\u3044.\\u3055\\u3044\", \"\\u3053-\", \"\\u304a-\", \"\\u3055-\"]",
+    "meanings": "[\"Little\", \"Small\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 3,
+    "categories": null,
+    "frequency": 114,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "高"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "高",
+    "onyomi": "[\"\\u3053\\u3046\"]",
+    "kunyomi": "[\"\\u305f\\u304b.\\u3044\", \"\\u305f\\u304b\", \"-\\u3060\\u304b\", \"\\u305f\\u304b.\\u307e\\u308b\", \"\\u305f\\u304b.\\u3081\\u308b\"]",
+    "meanings": "[\"Tall\", \"High\", \"Expensive\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 10,
+    "categories": null,
+    "frequency": 65,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "手"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "手",
+    "onyomi": "[\"\\u3057\\u3085\", \"\\u305a\"]",
+    "kunyomi": "[\"\\u3066\", \"\\u3066-\", \"-\\u3066\", \"\\u305f-\"]",
+    "meanings": "[\"Hand\"]",
+    "jlpt": "N4",
+    "grade": "1",
+    "strokes": 4,
+    "categories": null,
+    "frequency": 60,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "長"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "長",
+    "onyomi": "[\"\\u3061\\u3087\\u3046\"]",
+    "kunyomi": "[\"\\u306a\\u304c.\\u3044\", \"\\u304a\\u3055\"]",
+    "meanings": "[\"Long\", \"Leader\", \"Superior\", \"Senior\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 8,
+    "categories": null,
+    "frequency": 12,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "間"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "間",
+    "onyomi": "[\"\\u304b\\u3093\", \"\\u3051\\u3093\"]",
+    "kunyomi": "[\"\\u3042\\u3044\\u3060\", \"\\u307e\", \"\\u3042\\u3044\"]",
+    "meanings": "[\"Interval\", \"Space\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 12,
+    "categories": null,
+    "frequency": 33,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "lookup",
+  "input": {
+   "query": "本"
+  },
+  "success": true,
+  "output_summary": "1 result(s) for kanji/lookup",
+  "output_preview": [
+   {
+    "kanji": "本",
+    "onyomi": "[\"\\u307b\\u3093\"]",
+    "kunyomi": "[\"\\u3082\\u3068\"]",
+    "meanings": "[\"Book\", \"Present\", \"Main\", \"Origin\", \"True\", \"Real\", \"Counter For Long Cylindrical Things\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 5,
+    "categories": null,
+    "frequency": 10,
+    "radical": null,
+    "is_jouyou": 1
+   }
+  ],
+  "note": "Single-char dictionary detail."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "water",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "水",
+    "onyomi": "[\"\\u3059\\u3044\"]",
+    "kunyomi": "[\"\\u307f\\u305a\", \"\\u307f\\u305a-\"]",
+    "meanings": "[\"Water\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 4,
+    "radical": null
+   },
+   {
+    "kanji": "湯",
+    "onyomi": "[\"\\u3068\\u3046\"]",
+    "kunyomi": "[\"\\u3086\"]",
+    "meanings": "[\"Hot Water\", \"Bath\", \"Hot Spring\"]",
+    "jlpt": "N2",
+    "grade": "3",
+    "strokes": 12,
+    "radical": null
+   },
+   {
+    "kanji": "潮",
+    "onyomi": "[\"\\u3061\\u3087\\u3046\"]",
+    "kunyomi": "[\"\\u3057\\u304a\", \"\\u3046\\u3057\\u304a\"]",
+    "meanings": "[\"Tide\", \"Salt Water\", \"Opportunity\"]",
+    "jlpt": "N1",
+    "grade": "6",
+    "strokes": 15,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "fire",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "火",
+    "onyomi": "[\"\\u304b\"]",
+    "kunyomi": "[\"\\u3072\", \"-\\u3073\", \"\\u307b-\"]",
+    "meanings": "[\"Fire\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 4,
+    "radical": null
+   },
+   {
+    "kanji": "放",
+    "onyomi": "[\"\\u307b\\u3046\"]",
+    "kunyomi": "[\"\\u306f\\u306a.\\u3059\", \"-\\u3063\\u3071\\u306a.\\u3057\", \"\\u306f\\u306a.\\u3064\", \"\\u306f\\u306a.\\u308c\\u308b\", \"\\u3053.\\u304f\", \"\\u307b\\u3046.\\u308b\"]",
+    "meanings": "[\"Set Free\", \"Release\", \"Fire\", \"Shoot\", \"Emit\", \"Banish\", \"Liberate\"]",
+    "jlpt": "N3",
+    "grade": "3",
+    "strokes": 8,
+    "radical": null
+   },
+   {
+    "kanji": "移",
+    "onyomi": "[\"\\u3044\"]",
+    "kunyomi": "[\"\\u3046\\u3064.\\u308b\", \"\\u3046\\u3064.\\u3059\"]",
+    "meanings": "[\"Shift\", \"Move\", \"Change\", \"Drift\", \"Catch (cold, Fire)\", \"Pass Into\"]",
+    "jlpt": "N2",
+    "grade": "5",
+    "strokes": 11,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "school",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "校",
+    "onyomi": "[\"\\u3053\\u3046\", \"\\u304d\\u3087\\u3046\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Exam\", \"School\", \"Printing\", \"Proof\", \"Correction\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 10,
+    "radical": null
+   },
+   {
+    "kanji": "院",
+    "onyomi": "[\"\\u3044\\u3093\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Inst.\", \"Institution\", \"Temple\", \"Mansion\", \"School\"]",
+    "jlpt": "N4",
+    "grade": "3",
+    "strokes": 10,
+    "radical": null
+   },
+   {
+    "kanji": "派",
+    "onyomi": "[\"\\u306f\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Faction\", \"Group\", \"Party\", \"Clique\", \"Sect\", \"School\"]",
+    "jlpt": "N1",
+    "grade": "6",
+    "strokes": 9,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "time",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "久",
+    "onyomi": "[\"\\u304d\\u3085\\u3046\", \"\\u304f\"]",
+    "kunyomi": "[\"\\u3072\\u3055.\\u3057\\u3044\"]",
+    "meanings": "[\"Long Time\", \"Old Story\"]",
+    "jlpt": "N2",
+    "grade": "5",
+    "strokes": 3,
+    "radical": null
+   },
+   {
+    "kanji": "元",
+    "onyomi": "[\"\\u3052\\u3093\", \"\\u304c\\u3093\"]",
+    "kunyomi": "[\"\\u3082\\u3068\"]",
+    "meanings": "[\"Beginning\", \"Former Time\", \"Origin\"]",
+    "jlpt": "N4",
+    "grade": "2",
+    "strokes": 4,
+    "radical": null
+   },
+   {
+    "kanji": "分",
+    "onyomi": "[\"\\u3076\\u3093\", \"\\u3075\\u3093\", \"\\u3076\"]",
+    "kunyomi": "[\"\\u308f.\\u3051\\u308b\", \"\\u308f.\\u3051\", \"\\u308f.\\u304b\\u308c\\u308b\", \"\\u308f.\\u304b\\u308b\", \"\\u308f.\\u304b\\u3064\"]",
+    "meanings": "[\"Part\", \"Minute Of Time\", \"Segment\", \"Share\", \"Degree\", \"One's Lot\", \"Duty\", \"Understand\", \"Know\", \"Rate\", \"1%\", \"Chances\", \"Shaku/100\"]",
+    "jlpt": null,
+    "grade": "2",
+    "strokes": 4,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "mountain",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "山",
+    "onyomi": "[\"\\u3055\\u3093\", \"\\u305b\\u3093\"]",
+    "kunyomi": "[\"\\u3084\\u307e\"]",
+    "meanings": "[\"Mountain\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 3,
+    "radical": null
+   },
+   {
+    "kanji": "尾",
+    "onyomi": "[\"\\u3073\"]",
+    "kunyomi": "[\"\\u304a\"]",
+    "meanings": "[\"Tail\", \"End\", \"Counter For Fish\", \"Lower Slope Of Mountain\"]",
+    "jlpt": "N1",
+    "grade": "8",
+    "strokes": 7,
+    "radical": null
+   },
+   {
+    "kanji": "岳",
+    "onyomi": "[\"\\u304c\\u304f\"]",
+    "kunyomi": "[\"\\u305f\\u3051\"]",
+    "meanings": "[\"Point\", \"Peak\", \"Mountain\"]",
+    "jlpt": "N1",
+    "grade": "8",
+    "strokes": 8,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "heart",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "心",
+    "onyomi": "[\"\\u3057\\u3093\"]",
+    "kunyomi": "[\"\\u3053\\u3053\\u308d\", \"-\\u3054\\u3053\\u308d\"]",
+    "meanings": "[\"Heart\", \"Mind\", \"Spirit\", \"Heart Radical (no. 61)\"]",
+    "jlpt": "N4",
+    "grade": "2",
+    "strokes": 4,
+    "radical": null
+   },
+   {
+    "kanji": "意",
+    "onyomi": "[\"\\u3044\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Idea\", \"Mind\", \"Heart\", \"Taste\", \"Thought\", \"Desire\", \"Care\", \"Liking\"]",
+    "jlpt": "N4",
+    "grade": "3",
+    "strokes": 13,
+    "radical": null
+   },
+   {
+    "kanji": "胸",
+    "onyomi": "[\"\\u304d\\u3087\\u3046\"]",
+    "kunyomi": "[\"\\u3080\\u306d\", \"\\u3080\\u306a-\"]",
+    "meanings": "[\"Bosom\", \"Breast\", \"Chest\", \"Heart\", \"Feelings\"]",
+    "jlpt": "N2",
+    "grade": "6",
+    "strokes": 10,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "moon",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "月",
+    "onyomi": "[\"\\u3052\\u3064\", \"\\u304c\\u3064\"]",
+    "kunyomi": "[\"\\u3064\\u304d\"]",
+    "meanings": "[\"Month\", \"Moon\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 4,
+    "radical": null
+   },
+   {
+    "kanji": "望",
+    "onyomi": "[\"\\u307c\\u3046\", \"\\u3082\\u3046\"]",
+    "kunyomi": "[\"\\u306e\\u305e.\\u3080\", \"\\u3082\\u3061\"]",
+    "meanings": "[\"Ambition\", \"Full Moon\", \"Hope\", \"Desire\", \"Aspire To\", \"Expect\"]",
+    "jlpt": "N3",
+    "grade": "4",
+    "strokes": 11,
+    "radical": null
+   },
+   {
+    "kanji": "朏",
+    "onyomi": "[\"\\u3072\", \"\\u306f\\u3044\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"New Moon\", \"Crescent Moon\"]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 9,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "gold",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "金",
+    "onyomi": "[\"\\u304d\\u3093\", \"\\u3053\\u3093\", \"\\u3054\\u3093\"]",
+    "kunyomi": "[\"\\u304b\\u306d\", \"\\u304b\\u306a-\", \"-\\u304c\\u306d\"]",
+    "meanings": "[\"Gold\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 8,
+    "radical": null
+   },
+   {
+    "kanji": "釛",
+    "onyomi": "[\"\\u3053\\u304f\"]",
+    "kunyomi": "[\"\\u304b\\u306d\"]",
+    "meanings": "[\"Gold\"]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 10,
+    "radical": null
+   },
+   {
+    "kanji": "鉚",
+    "onyomi": "[\"\\u308a\\u3085\"]",
+    "kunyomi": "[\"\\u3088\\u3044\\u304b\\u306d\"]",
+    "meanings": "[\"Gold\"]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 13,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "tree",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "丁",
+    "onyomi": "[\"\\u3061\\u3087\\u3046\", \"\\u3066\\u3044\", \"\\u3061\\u3093\", \"\\u3068\\u3046\", \"\\u3061\"]",
+    "kunyomi": "[\"\\u3072\\u306e\\u3068\"]",
+    "meanings": "[\"Street\", \"Ward\", \"Town\", \"Counter For Guns, Tools, Leaves Or Cakes Of Something\", \"Even Number\", \"4th Calendar Sign\"]",
+    "jlpt": "N1",
+    "grade": "3",
+    "strokes": 2,
+    "radical": null
+   },
+   {
+    "kanji": "木",
+    "onyomi": "[\"\\u307c\\u304f\", \"\\u3082\\u304f\"]",
+    "kunyomi": "[\"\\u304d\", \"\\u3053-\"]",
+    "meanings": "[\"Tree\", \"Wood\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 4,
+    "radical": null
+   },
+   {
+    "kanji": "町",
+    "onyomi": "[\"\\u3061\\u3087\\u3046\"]",
+    "kunyomi": "[\"\\u307e\\u3061\"]",
+    "meanings": "[\"Town\", \"Village\", \"Block\", \"Street\"]",
+    "jlpt": "N4",
+    "grade": "1",
+    "strokes": 7,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "book",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "本",
+    "onyomi": "[\"\\u307b\\u3093\"]",
+    "kunyomi": "[\"\\u3082\\u3068\"]",
+    "meanings": "[\"Book\", \"Present\", \"Main\", \"Origin\", \"True\", \"Real\", \"Counter For Long Cylindrical Things\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 5,
+    "radical": null
+   },
+   {
+    "kanji": "課",
+    "onyomi": "[\"\\u304b\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Chapter\", \"Lesson\", \"Section\", \"Department\", \"Division\", \"Counter For Chapters (of A Book)\"]",
+    "jlpt": "N2",
+    "grade": "4",
+    "strokes": 15,
+    "radical": null
+   },
+   {
+    "kanji": "冊",
+    "onyomi": "[\"\\u3055\\u3064\", \"\\u3055\\u304f\"]",
+    "kunyomi": "[\"\\u3075\\u307f\"]",
+    "meanings": "[\"Tome\", \"Counter For Books\", \"Volume\"]",
+    "jlpt": "N2",
+    "grade": "6",
+    "strokes": 5,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "study",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "学",
+    "onyomi": "[\"\\u304c\\u304f\"]",
+    "kunyomi": "[\"\\u307e\\u306a.\\u3076\"]",
+    "meanings": "[\"Study\", \"Learning\", \"Science\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 8,
+    "radical": null
+   },
+   {
+    "kanji": "究",
+    "onyomi": "[\"\\u304d\\u3085\\u3046\", \"\\u304f\"]",
+    "kunyomi": "[\"\\u304d\\u308f.\\u3081\\u308b\"]",
+    "meanings": "[\"Research\", \"Study\"]",
+    "jlpt": "N4",
+    "grade": "3",
+    "strokes": 7,
+    "radical": null
+   },
+   {
+    "kanji": "研",
+    "onyomi": "[\"\\u3051\\u3093\"]",
+    "kunyomi": "[\"\\u3068.\\u3050\"]",
+    "meanings": "[\"Polish\", \"Study Of\", \"Sharpen\"]",
+    "jlpt": "N4",
+    "grade": "3",
+    "strokes": 9,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "electric",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "2 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "電",
+    "onyomi": "[\"\\u3067\\u3093\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Electricity\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 13,
+    "radical": null
+   },
+   {
+    "kanji": "極",
+    "onyomi": "[\"\\u304d\\u3087\\u304f\", \"\\u3054\\u304f\"]",
+    "kunyomi": "[\"\\u304d\\u308f.\\u3081\\u308b\", \"\\u304d\\u308f.\\u307e\\u308b\", \"\\u304d\\u308f.\\u307e\\u308a\", \"\\u304d\\u308f.\\u307f\", \"\\u304d.\\u3081\\u308b\", \"-\\u304e.\\u3081\", \"\\u304d.\\u307e\\u308b\"]",
+    "meanings": "[\"Poles\", \"Settlement\", \"Conclusion\", \"End\", \"Highest Rank\", \"Electric Poles\", \"Very\", \"Extremely\", \"Most\", \"Highly\", \"10**48\"]",
+    "jlpt": "N2",
+    "grade": "4",
+    "strokes": 12,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "country",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "国",
+    "onyomi": "[\"\\u3053\\u304f\"]",
+    "kunyomi": "[\"\\u304f\\u306b\"]",
+    "meanings": "[\"Country\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 8,
+    "radical": null
+   },
+   {
+    "kanji": "邦",
+    "onyomi": "[\"\\u307b\\u3046\"]",
+    "kunyomi": "[\"\\u304f\\u306b\"]",
+    "meanings": "[\"Home Country\", \"Country\", \"Japan\"]",
+    "jlpt": "N1",
+    "grade": "8",
+    "strokes": 7,
+    "radical": null
+   },
+   {
+    "kanji": "庄",
+    "onyomi": "[\"\\u3057\\u3087\\u3046\", \"\\u305d\", \"\\u305d\\u3046\", \"\\u307b\\u3046\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Level\", \"In The Country\", \"Manor\", \"Village\", \"Hamlet\"]",
+    "jlpt": "N1",
+    "grade": "9",
+    "strokes": 6,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "big",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "大",
+    "onyomi": "[\"\\u3060\\u3044\", \"\\u305f\\u3044\"]",
+    "kunyomi": "[\"\\u304a\\u304a-\", \"\\u304a\\u304a.\\u304d\\u3044\", \"-\\u304a\\u304a.\\u3044\\u306b\"]",
+    "meanings": "[\"Large\", \"Big\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 3,
+    "radical": null
+   },
+   {
+    "kanji": "太",
+    "onyomi": "[\"\\u305f\\u3044\", \"\\u305f\"]",
+    "kunyomi": "[\"\\u3075\\u3068.\\u3044\", \"\\u3075\\u3068.\\u308b\"]",
+    "meanings": "[\"Plump\", \"Thick\", \"Big Around\"]",
+    "jlpt": "N3",
+    "grade": "2",
+    "strokes": 4,
+    "radical": null
+   },
+   {
+    "kanji": "兄",
+    "onyomi": "[\"\\u3051\\u3044\", \"\\u304d\\u3087\\u3046\"]",
+    "kunyomi": "[\"\\u3042\\u306b\"]",
+    "meanings": "[\"Elder Brother\", \"Big Brother\"]",
+    "jlpt": "N4",
+    "grade": "2",
+    "strokes": 5,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "search",
+  "input": {
+   "query": "long",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/search",
+  "output_preview": [
+   {
+    "kanji": "本",
+    "onyomi": "[\"\\u307b\\u3093\"]",
+    "kunyomi": "[\"\\u3082\\u3068\"]",
+    "meanings": "[\"Book\", \"Present\", \"Main\", \"Origin\", \"True\", \"Real\", \"Counter For Long Cylindrical Things\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 5,
+    "radical": null
+   },
+   {
+    "kanji": "久",
+    "onyomi": "[\"\\u304d\\u3085\\u3046\", \"\\u304f\"]",
+    "kunyomi": "[\"\\u3072\\u3055.\\u3057\\u3044\"]",
+    "meanings": "[\"Long Time\", \"Old Story\"]",
+    "jlpt": "N2",
+    "grade": "5",
+    "strokes": 3,
+    "radical": null
+   },
+   {
+    "kanji": "長",
+    "onyomi": "[\"\\u3061\\u3087\\u3046\"]",
+    "kunyomi": "[\"\\u306a\\u304c.\\u3044\", \"\\u304a\\u3055\"]",
+    "meanings": "[\"Long\", \"Leader\", \"Superior\", \"Senior\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 8,
+    "radical": null
+   }
+  ],
+  "note": "English-meaning fragment search."
+ },
+ {
+  "tool": "kanji",
+  "operation": "by_jlpt",
+  "input": {
+   "level": "N5",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/by_jlpt",
+  "output_preview": [
+   {
+    "kanji": "日",
+    "onyomi": "[\"\\u306b\\u3061\", \"\\u3058\\u3064\"]",
+    "kunyomi": "[\"\\u3072\", \"-\\u3073\", \"-\\u304b\"]",
+    "meanings": "[\"Day\", \"Sun\", \"Japan\", \"Counter For Days\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 4
+   },
+   {
+    "kanji": "一",
+    "onyomi": "[\"\\u3044\\u3061\", \"\\u3044\\u3064\"]",
+    "kunyomi": "[\"\\u3072\\u3068-\", \"\\u3072\\u3068.\\u3064\"]",
+    "meanings": "[\"One\", \"One Radical (no.1)\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 1
+   },
+   {
+    "kanji": "国",
+    "onyomi": "[\"\\u3053\\u304f\"]",
+    "kunyomi": "[\"\\u304f\\u306b\"]",
+    "meanings": "[\"Country\"]",
+    "jlpt": "N5",
+    "grade": "2",
+    "strokes": 8
+   }
+  ],
+  "note": "Frequency-ordered level set for drills."
+ },
+ {
+  "tool": "kanji",
+  "operation": "by_jlpt",
+  "input": {
+   "level": "N4",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/by_jlpt",
+  "output_preview": [
+   {
+    "kanji": "会",
+    "onyomi": "[\"\\u304b\\u3044\", \"\\u3048\"]",
+    "kunyomi": "[\"\\u3042.\\u3046\", \"\\u3042.\\u308f\\u305b\\u308b\", \"\\u3042\\u3064.\\u307e\\u308b\"]",
+    "meanings": "[\"Meeting\", \"Meet\", \"Party\", \"Association\", \"Interview\", \"Join\"]",
+    "jlpt": "N4",
+    "grade": "2",
+    "strokes": 6
+   },
+   {
+    "kanji": "同",
+    "onyomi": "[\"\\u3069\\u3046\"]",
+    "kunyomi": "[\"\\u304a\\u306a.\\u3058\"]",
+    "meanings": "[\"Same\", \"Agree\", \"Equal\"]",
+    "jlpt": "N4",
+    "grade": "2",
+    "strokes": 6
+   },
+   {
+    "kanji": "事",
+    "onyomi": "[\"\\u3058\", \"\\u305a\"]",
+    "kunyomi": "[\"\\u3053\\u3068\", \"\\u3064\\u304b.\\u3046\", \"\\u3064\\u304b.\\u3048\\u308b\"]",
+    "meanings": "[\"Matter\", \"Thing\", \"Fact\", \"Business\", \"Reason\", \"Possibly\"]",
+    "jlpt": "N4",
+    "grade": "3",
+    "strokes": 8
+   }
+  ],
+  "note": "Frequency-ordered level set for drills."
+ },
+ {
+  "tool": "kanji",
+  "operation": "by_jlpt",
+  "input": {
+   "level": "N3",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/by_jlpt",
+  "output_preview": [
+   {
+    "kanji": "政",
+    "onyomi": "[\"\\u305b\\u3044\", \"\\u3057\\u3087\\u3046\"]",
+    "kunyomi": "[\"\\u307e\\u3064\\u308a\\u3054\\u3068\", \"\\u307e\\u3093\"]",
+    "meanings": "[\"Politics\", \"Government\"]",
+    "jlpt": "N3",
+    "grade": "5",
+    "strokes": 9
+   },
+   {
+    "kanji": "議",
+    "onyomi": "[\"\\u304e\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Deliberation\", \"Consultation\", \"Debate\", \"Consideration\"]",
+    "jlpt": "N3",
+    "grade": "4",
+    "strokes": 20
+   },
+   {
+    "kanji": "民",
+    "onyomi": "[\"\\u307f\\u3093\"]",
+    "kunyomi": "[\"\\u305f\\u307f\"]",
+    "meanings": "[\"People\", \"Nation\", \"Subjects\"]",
+    "jlpt": "N3",
+    "grade": "4",
+    "strokes": 5
+   }
+  ],
+  "note": "Frequency-ordered level set for drills."
+ },
+ {
+  "tool": "kanji",
+  "operation": "by_jlpt",
+  "input": {
+   "level": "N2",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/by_jlpt",
+  "output_preview": [
+   {
+    "kanji": "党",
+    "onyomi": "[\"\\u3068\\u3046\"]",
+    "kunyomi": "[\"\\u306a\\u304b\\u307e\", \"\\u3080\\u3089\"]",
+    "meanings": "[\"Party\", \"Faction\", \"Clique\"]",
+    "jlpt": "N2",
+    "grade": "6",
+    "strokes": 10
+   },
+   {
+    "kanji": "協",
+    "onyomi": "[\"\\u304d\\u3087\\u3046\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Co-\", \"Cooperation\"]",
+    "jlpt": "N2",
+    "grade": "4",
+    "strokes": 8
+   },
+   {
+    "kanji": "総",
+    "onyomi": "[\"\\u305d\\u3046\"]",
+    "kunyomi": "[\"\\u3059.\\u3079\\u3066\", \"\\u3059\\u3079.\\u3066\", \"\\u3075\\u3055\"]",
+    "meanings": "[\"General\", \"Whole\", \"All\", \"Full\", \"Total\"]",
+    "jlpt": "N2",
+    "grade": "5",
+    "strokes": 14
+   }
+  ],
+  "note": "Frequency-ordered level set for drills."
+ },
+ {
+  "tool": "kanji",
+  "operation": "by_jlpt",
+  "input": {
+   "level": "N1",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/by_jlpt",
+  "output_preview": [
+   {
+    "kanji": "伎",
+    "onyomi": "[\"\\u304e\", \"\\u304d\"]",
+    "kunyomi": "[\"\\u308f\\u3056\", \"\\u308f\\u3056\\u304a\\u304e\"]",
+    "meanings": "[\"Deed\", \"Skill\"]",
+    "jlpt": "N1",
+    "grade": "8",
+    "strokes": 6
+   },
+   {
+    "kanji": "瞭",
+    "onyomi": "[\"\\u308a\\u3087\\u3046\"]",
+    "kunyomi": "[\"\\u3042\\u304d\\u3089\\u304b\"]",
+    "meanings": "[\"Clear\"]",
+    "jlpt": "N1",
+    "grade": "8",
+    "strokes": 17
+   },
+   {
+    "kanji": "颯",
+    "onyomi": "[\"\\u3055\\u3064\", \"\\u305d\\u3046\"]",
+    "kunyomi": "[\"\\u3055\\u3063.\\u3068\"]",
+    "meanings": "[\"Sudden\", \"Quick\", \"Sound Of The Wind\"]",
+    "jlpt": "N1",
+    "grade": "9",
+    "strokes": 14
+   }
+  ],
+  "note": "Frequency-ordered level set for drills."
+ },
+ {
+  "tool": "kanji",
+  "operation": "by_grade",
+  "input": {
+   "grade": 1,
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/by_grade",
+  "output_preview": [
+   {
+    "kanji": "一",
+    "onyomi": "[\"\\u3044\\u3061\", \"\\u3044\\u3064\"]",
+    "kunyomi": "[\"\\u3072\\u3068-\", \"\\u3072\\u3068.\\u3064\"]",
+    "meanings": "[\"One\", \"One Radical (no.1)\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 1
+   },
+   {
+    "kanji": "二",
+    "onyomi": "[\"\\u306b\", \"\\u3058\"]",
+    "kunyomi": "[\"\\u3075\\u305f\", \"\\u3075\\u305f.\\u3064\", \"\\u3075\\u305f\\u305f\\u3073\"]",
+    "meanings": "[\"Two\", \"Two Radical (no. 7)\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 2
+   },
+   {
+    "kanji": "九",
+    "onyomi": "[\"\\u304d\\u3085\\u3046\", \"\\u304f\"]",
+    "kunyomi": "[\"\\u3053\\u3053\\u306e\", \"\\u3053\\u3053\\u306e.\\u3064\"]",
+    "meanings": "[\"Nine\"]",
+    "jlpt": "N5",
+    "grade": "1",
+    "strokes": 2
+   }
+  ],
+  "note": "School-grade set."
+ },
+ {
+  "tool": "kanji",
+  "operation": "by_grade",
+  "input": {
+   "grade": 2,
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/by_grade",
+  "output_preview": [
+   {
+    "kanji": "工",
+    "onyomi": "[\"\\u3053\\u3046\", \"\\u304f\", \"\\u3050\"]",
+    "kunyomi": "[]",
+    "meanings": "[\"Craft\", \"Construction\", \"Katakana E Radical (no. 48)\"]",
+    "jlpt": "N4",
+    "grade": "2",
+    "strokes": 3
+   },
+   {
+    "kanji": "刀",
+    "onyomi": "[\"\\u3068\\u3046\"]",
+    "kunyomi": "[\"\\u304b\\u305f\\u306a\", \"\\u305d\\u308a\"]",
+    "meanings": "[\"Sword\", \"Saber\", \"Knife\"]",
+    "jlpt": "N1",
+    "grade": "2",
+    "strokes": 2
+   },
+   {
+    "kanji": "丸",
+    "onyomi": "[\"\\u304c\\u3093\"]",
+    "kunyomi": "[\"\\u307e\\u308b\", \"\\u307e\\u308b.\\u3081\\u308b\", \"\\u307e\\u308b.\\u3044\"]",
+    "meanings": "[\"Round\", \"Full (month)\", \"Perfection\", \"-ship\", \"Pills\", \"Make Round\", \"Roll Up\", \"Curl Up\", \"Seduce\", \"Explain Away\"]",
+    "jlpt": "N2",
+    "grade": "2",
+    "strokes": 3
+   }
+  ],
+  "note": "School-grade set."
+ },
+ {
+  "tool": "kanji",
+  "operation": "by_grade",
+  "input": {
+   "grade": 3,
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "3 result(s) for kanji/by_grade",
+  "output_preview": [
+   {
+    "kanji": "丁",
+    "onyomi": "[\"\\u3061\\u3087\\u3046\", \"\\u3066\\u3044\", \"\\u3061\\u3093\", \"\\u3068\\u3046\", \"\\u3061\"]",
+    "kunyomi": "[\"\\u3072\\u306e\\u3068\"]",
+    "meanings": "[\"Street\", \"Ward\", \"Town\", \"Counter For Guns, Tools, Leaves Or Cakes Of Something\", \"Even Number\", \"4th Calendar Sign\"]",
+    "jlpt": "N1",
+    "grade": "3",
+    "strokes": 2
+   },
+   {
+    "kanji": "世",
+    "onyomi": "[\"\\u305b\\u3044\", \"\\u305b\", \"\\u305d\\u3046\"]",
+    "kunyomi": "[\"\\u3088\"]",
+    "meanings": "[\"Generation\", \"World\", \"Society\", \"Public\"]",
+    "jlpt": "N4",
+    "grade": "3",
+    "strokes": 5
+   },
+   {
+    "kanji": "主",
+    "onyomi": "[\"\\u3057\\u3085\", \"\\u3059\", \"\\u3057\\u3085\\u3046\"]",
+    "kunyomi": "[\"\\u306c\\u3057\", \"\\u304a\\u3082\", \"\\u3042\\u308b\\u3058\"]",
+    "meanings": "[\"Lord\", \"Chief\", \"Master\", \"Main Thing\", \"Principal\"]",
+    "jlpt": "N4",
+    "grade": "3",
+    "strokes": 5
+   }
+  ],
+  "note": "School-grade set."
+ },
+ {
+  "tool": "kanji",
+  "operation": "by_radical",
+  "input": {
+   "radical": "水",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "0 result(s) for kanji/by_radical",
+  "output_preview": [],
+  "note": "Shared-radical family."
+ },
+ {
+  "tool": "kanji",
+  "operation": "by_radical",
+  "input": {
+   "radical": "木",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "0 result(s) for kanji/by_radical",
+  "output_preview": [],
+  "note": "Shared-radical family."
+ },
+ {
+  "tool": "kanji",
+  "operation": "by_radical",
+  "input": {
+   "radical": "日",
+   "limit": 3
+  },
+  "success": true,
+  "output_summary": "0 result(s) for kanji/by_radical",
+  "output_preview": [],
+  "note": "Shared-radical family."
+ },
+ {
+  "tool": "kanji",
+  "operation": "random",
+  "input": {
+   "limit": 2
+  },
+  "success": true,
+  "output_summary": "2 result(s) for kanji/random",
+  "output_preview": [
+   {
+    "kanji": "𥿠",
+    "onyomi": "[]",
+    "kunyomi": "[]",
+    "meanings": "[]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 11
+   },
+   {
+    "kanji": "檥",
+    "onyomi": "[\"\\u304e\", \"\\u304c\"]",
+    "kunyomi": "[]",
+    "meanings": "[]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 17
+   }
+  ],
+  "note": "Drill draw #1."
+ },
+ {
+  "tool": "kanji",
+  "operation": "random",
+  "input": {
+   "limit": 2
+  },
+  "success": true,
+  "output_summary": "2 result(s) for kanji/random",
+  "output_preview": [
+   {
+    "kanji": "艎",
+    "onyomi": "[\"\\u3053\\u3046\", \"\\u304a\\u3046\"]",
+    "kunyomi": "[\"\\u3075\\u306d\"]",
+    "meanings": "[\"Fast Boat\"]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 15
+   },
+   {
+    "kanji": "凭",
+    "onyomi": "[\"\\u3072\\u3087\\u3046\", \"\\u3078\\u3044\"]",
+    "kunyomi": "[\"\\u3082\\u305f.\\u308c\\u308b\", \"\\u3088.\\u308b\"]",
+    "meanings": "[\"Lean On\", \"Recline On\", \"Lie Heavy\"]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 8
+   }
+  ],
+  "note": "Drill draw #2."
+ },
+ {
+  "tool": "kanji",
+  "operation": "random",
+  "input": {
+   "limit": 2
+  },
+  "success": true,
+  "output_summary": "2 result(s) for kanji/random",
+  "output_preview": [
+   {
+    "kanji": "貋",
+    "onyomi": "[\"\\u304b\\u3093\"]",
+    "kunyomi": "[]",
+    "meanings": "[]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 14
+   },
+   {
+    "kanji": "圬",
+    "onyomi": "[\"\\u304a\", \"\\u3046\", \"\\u3053\"]",
+    "kunyomi": "[\"\\u3053\\u3066\", \"\\u306c.\\u308b\"]",
+    "meanings": "[\"Plaster Over With Layer Of Mud\"]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 6
+   }
+  ],
+  "note": "Drill draw #3."
+ },
+ {
+  "tool": "kanji",
+  "operation": "random",
+  "input": {
+   "limit": 2
+  },
+  "success": true,
+  "output_summary": "2 result(s) for kanji/random",
+  "output_preview": [
+   {
+    "kanji": "實",
+    "onyomi": "[\"\\u3058\\u3064\", \"\\u3057\\u3064\"]",
+    "kunyomi": "[\"\\u307f\", \"\\u307f\\u306e.\\u308b\", \"\\u307e\\u3053\\u3068.\\u306b\", \"\\u307f\\u306e.\\u308a\", \"\\u307f\\u3061.\\u308b\"]",
+    "meanings": "[\"Truth\", \"Reality\"]",
+    "jlpt": null,
+    "grade": "10",
+    "strokes": 14
+   },
+   {
+    "kanji": "堧",
+    "onyomi": "[\"\\u305c\\u3093\", \"\\u306d\\u3093\", \"\\u3060\", \"\\u306a\", \"\\u3060\\u3093\", \"\\u306a\\u3093\"]",
+    "kunyomi": "[\"\\u3059\\u306a\\u3064\\u3061\"]",
+    "meanings": "[\"Adjoin\"]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 12
+   }
+  ],
+  "note": "Drill draw #4."
+ },
+ {
+  "tool": "kanji",
+  "operation": "random",
+  "input": {
+   "limit": 2
+  },
+  "success": true,
+  "output_summary": "2 result(s) for kanji/random",
+  "output_preview": [
+   {
+    "kanji": "圛",
+    "onyomi": "[\"\\u3048\\u304d\", \"\\u3084\\u304f\"]",
+    "kunyomi": "[\"\\u3081\\u3050\\u308a\\u3086.\\u304f\"]",
+    "meanings": "[\"Used In Place Names\", \"Stratus\"]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 16
+   },
+   {
+    "kanji": "縕",
+    "onyomi": "[\"\\u3046\\u3093\", \"\\u304a\\u3093\"]",
+    "kunyomi": "[\"\\u3075\\u308b.\\u3044\"]",
+    "meanings": "[\"Old Cotton\", \"Tangled Hemp\", \"Raveled Silk\", \"Vague\", \"Confused\"]",
+    "jlpt": null,
+    "grade": null,
+    "strokes": 16
+   }
+  ],
+  "note": "Drill draw #5."
+ },
+ {
+  "tool": "jlpt",
+  "operation": "next",
+  "input": {
+   "level": "N5"
+  },
+  "success": true,
+  "output_summary": "Question 735 (N5 vocabulary)",
+  "output_preview": {
+   "id": 735,
+   "level": "N5",
+   "question_type": "vocabulary",
+   "question_text": "「有る」の意味は次のうちどれですか。"
+  },
+  "note": "Quiz draw; answer key withheld, options included."
+ },
+ {
+  "tool": "jlpt",
+  "operation": "next",
+  "input": {
+   "level": "N4"
+  },
+  "success": true,
+  "output_summary": "Question 839 (N4 vocabulary)",
+  "output_preview": {
+   "id": 839,
+   "level": "N4",
+   "question_type": "vocabulary",
+   "question_text": "「研究」の意味は次のうちどれですか。"
+  },
+  "note": "Quiz draw; answer key withheld, options included."
+ },
+ {
+  "tool": "jlpt",
+  "operation": "next",
+  "input": {
+   "level": "N3"
+  },
+  "success": true,
+  "output_summary": "Question 1006 (N3 vocabulary)",
+  "output_preview": {
+   "id": 1006,
+   "level": "N3",
+   "question_type": "vocabulary",
+   "question_text": "「パイプ」の意味は次のうちどれですか。"
+  },
+  "note": "Quiz draw; answer key withheld, options included."
+ },
+ {
+  "tool": "jlpt",
+  "operation": "next",
+  "input": {
+   "level": "N2"
+  },
+  "success": true,
+  "output_summary": "Question 1080 (N2 vocabulary)",
+  "output_preview": {
+   "id": 1080,
+   "level": "N2",
+   "question_type": "vocabulary",
+   "question_text": "「刺身」の意味は次のうちどれですか。"
+  },
+  "note": "Quiz draw; answer key withheld, options included."
+ },
+ {
+  "tool": "jlpt",
+  "operation": "next",
+  "input": {
+   "level": "N1"
+  },
+  "success": true,
+  "output_summary": "Question 1152 (N1 vocabulary)",
+  "output_preview": {
+   "id": 1152,
+   "level": "N1",
+   "question_type": "vocabulary",
+   "question_text": "「タイムリー」の意味は次のうちどれですか。"
+  },
+  "note": "Quiz draw; answer key withheld, options included."
+ },
+ {
+  "tool": "jlpt",
+  "operation": "answer",
+  "input": {
+   "question_id": 742,
+   "answer": "Z",
+   "session_id": "examples-gen"
+  },
+  "success": true,
+  "output_summary": "Answer recorded: not correct.",
+  "output_preview": {
+   "question_id": 742,
+   "given": "Z",
+   "correct": "ア",
+   "is_correct": false
+  },
+  "note": "Grading records to the progress store."
+ },
+ {
+  "tool": "jlpt",
+  "operation": "progress",
+  "input": {
+   "session_id": "examples-gen"
+  },
+  "success": true,
+  "output_summary": "Session 'examples-gen': 0/1 correct.",
+  "output_preview": {
+   "session_id": "examples-gen",
+   "answered": 1,
+   "correct": 0
+  },
+  "note": "Session score summary."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "list",
+  "input": {},
+  "success": true,
+  "output_summary": "29 knowledge page(s).",
+  "output_preview": [
+   "2026-snapshot",
+   "20thcentury",
+   "anime"
+  ],
+  "note": "Knowledge box index."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "2026-snapshot"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: 2026-snapshot.",
+  "output_preview": "Japan Now - September 2026 Snapshot\nJapan Now - September 2026 Snapshot\nDated snapshot for the knowledge box. Re-check quarterly; politics and\nprices rot fastest. Sources: Wikipedia 2026-in-Japan reco",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "20thcentury"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: 20thcentury.",
+  "output_preview": "﻿\n20th Century History - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "anime"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: anime.",
+  "output_preview": "﻿\nAnime Industry - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n       ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "art"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: art.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "bakumatsu"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: bakumatsu.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "battles"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: battles.",
+  "output_preview": "﻿\nFamous Battles - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n       ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "cuisine"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: cuisine.",
+  "output_preview": "﻿\nCuisine & Food Culture - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "culture"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: culture.",
+  "output_preview": "﻿\nCultural Concepts - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n    ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "dailylife"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: dailylife.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "economy"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: economy.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "education"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: education.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "emperors"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: emperors.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "geography"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: geography.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "history"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: history.",
+  "output_preview": "﻿\nHistory - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n            pa",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "japanese-knowledge-tree"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: japanese-knowledge-tree.",
+  "output_preview": "Japanese Knowledge Tree - 知識の木\n.knowledge-tree-container {\n            max-width: 1200px;\n            margin: 0 auto;\n            padding: 20px;\n        }\n\n        .tree-header {\n            text-alig",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "kanji-table"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: kanji-table.",
+  "output_preview": "漢字表 - Kanji Table\n.kanji-table-container {\n            width: 90%;\n            max-width: 1400px;\n            margin: 0 auto;\n            padding: 20px;\n        }\n\n        .kanji-table-header {\n      ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "kombini"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: kombini.",
+  "output_preview": "﻿\nConvenience Stores & Supermarkets - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            co",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "language"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: language.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "literature"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: literature.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "manga"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: manga.",
+  "output_preview": "﻿\nManga Culture - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "modern"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: modern.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "personages"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: personages.",
+  "output_preview": "Historical Figures - Japanese Knowledge Tree\n← Back to Knowledge Tree\n👥 Historical Figures by Era - Japan's Timeline of Greatness\nJapanese history spans over 2,000 years of continuous civilization. He",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "problems"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: problems.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "religion"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: religion.",
+  "output_preview": "﻿\nReligion & Belief - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n    ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "samurai"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: samurai.",
+  "output_preview": "Samurai - The Way of the Warrior\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n            paddi",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "samurai-era"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: samurai-era.",
+  "output_preview": "Samurai Era - Rise & Fall of the Shoguns\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n         ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "strengths"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: strengths.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "timeline"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: timeline.",
+  "output_preview": "﻿\nHistorical Timeline - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n  ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "travel"
+  },
+  "success": true,
+  "output_summary": "Knowledge page: travel.",
+  "output_preview": "﻿\nTravel Japan - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n         ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "vocab",
+  "operation": "search",
+  "input": {
+   "query": "water"
+  },
+  "success": false,
+  "output_summary": "kanji.db is not present (135MB kanji + 400k vocab + 278k examples + jmdict (ai-games-collection)). Run scripts/fetch_data.ps1 to fetch it, or copy it from an ai-games-collection checkout into data/.",
+  "output_preview": null,
+  "note": "Big-DB search or the friendly fetch hint when kanji.db is absent."
+ },
+ {
+  "tool": "kanji",
+  "operation": "nope",
+  "input": {},
+  "success": false,
+  "output_summary": "Unknown kanji operation 'nope'. Valid: lookup, search, by_jlpt, by_grade, by_radical, random.",
+  "output_preview": null,
+  "note": "Unknown operation returns guidance, not a traceback."
+ },
+ {
+  "tool": "japanophile_help",
+  "operation": "-",
+  "input": {},
+  "success": true,
+  "output_summary": "japanophile-mcp: Learn (kanji, jlpt, vocab) + Know (knowledge box). Travel planner + diary are roadmap, not tools yet.",
+  "output_preview": {
+   "tools": [
+    "kanji",
+    "jlpt",
+    "vocab"
+   ],
+   "data": {
+    "kanji_database.db": "D:/Dev/repos/japanophile-mcp/assets/seed/kanji_database.db",
+    "jlpt_questions.db": "D:/Dev/repos/japanophile-mcp/data/jlpt_questions.db",
+    "kanji.db": "MISSING - run scripts/fetch_data.ps1"
+   },
+   "knowledge_pages": 29,
+   "ports": {
+    "backend": 11193,
+    "frontend": 11194
+   }
+  },
+  "note": "Agents call this first: tools plus data status."
+ }
+]

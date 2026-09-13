@@ -22,13 +22,18 @@
 - [x] Playwright e2e 8/8 (dev-stack webServer owns backend+vite; proxy-shadowing lesson recorded)
 - [x] Ports moved 11191/11192 -> 11193/11194 (open-webui Docker squat, registry-marked)
 - [x] Tauri scaffold (native/: sidecar spawn, capabilities, icons, just recipes, BUILD_LOG.md); cargo check green
-- [ ] Tauri NSIS build (needs makensis + PyInstaller sidecar) -> Stage 3
-- [ ] .mcpb bundle (prompts 3-4-100) + Glama publish -> Stage 3
+- [x] Tauri NSIS build 0.3.0 (31.2MB): silent install, boot with live data, silent uninstall, no orphans
+- [x] .mcpb bundle 0.3.0 (7.8MB, 44 files): prompts 3043/4000/101, seeds + 29 knowledge pages, bundle-tested standalone
 
-## Later (faces 3-4: Plan + Remember)
+## Next (Stage 4: Plan + Remember)
 
 - [ ] Travel planner tools (JR transit pattern, bookings, itineraries)
 - [ ] Diary tools (daily log, streaks, SRS scheduler: SM-2 vs FSRS decision)
+- [ ] Glama publish (listing live review)
+- [ ] Designed icon replacing the hinomaru placeholder
+
+## Later
+
 - [ ] SRS review scheduler linked to jlpt progress
 - [ ] JP/EN parallel knowledge pages
 - [ ] sinophile-mcp scaffold (pattern proof #2)

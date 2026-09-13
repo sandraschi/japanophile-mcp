@@ -15,7 +15,7 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from . import server
-from .db import REPO_ROOT
+from .db import ASSET_ROOT, REPO_ROOT
 
 
 def build_app() -> FastAPI:
@@ -97,13 +97,15 @@ def build_app() -> FastAPI:
     def api_knowledge_get(page: str) -> JSONResponse:
         return JSONResponse(_call(server.knowledge, "get", page=page))
 
-    games = REPO_ROOT / "assets" / "games" / "japanese-language"
+    games = ASSET_ROOT / "games" / "japanese-language"
     if games.is_dir():
         app.mount("/games", StaticFiles(directory=str(games), html=True), name="games")
-    know = REPO_ROOT / "assets" / "knowledge" / "japan"
+    know = ASSET_ROOT / "knowledge" / "japan"
     if know.is_dir():
         app.mount("/know", StaticFiles(directory=str(know), html=True), name="know")
-    skills = REPO_ROOT / "skills"
+    skills = ASSET_ROOT / "skills"
+    if not skills.is_dir():
+        skills = REPO_ROOT / "skills"
     if skills.is_dir():
         app.mount("/skills", StaticFiles(directory=str(skills), html=False), name="skills")
 

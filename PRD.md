@@ -1,6 +1,6 @@
 # PRD: japanophile-mcp (and the -phile pattern)
 
-**Version:** 0.1.0 (Stage 1) | **Status:** accepted | **Owner:** sandraschi
+**Version:** 0.3.0 (Stage 3 shipped) | **Status:** accepted, Stages 1-3 done | **Owner:** sandraschi
 
 ## 1. Problem
 
@@ -30,11 +30,11 @@ solicited contributors. Concept page: sandraschi/PHILE_FLEET.md.
 - **Agents**: tool-callable kanji/JLPT/vocab/knowledge for tutoring flows.
 - **Future learners**: anyone who wants a culture in a box, local-first, EUR 0.
 
-## 4. Non-goals (v0.1)
+## 4. Non-goals (v0.3)
 
-Webapp, Tauri winapp, .mcpb bundle (Stage 2). Travel planner + diary (new
-builds, not ports). Hanafuda/cho-han gameplay (stays canonical in
-ai-games-collection, crosslinked both ways).
+Travel planner + diary (new builds, not ports - Stage 4). Hanafuda/cho-han
+gameplay (stays canonical in ai-games-collection, crosslinked both ways).
+Shipped since v0.1: webapp (Stage 2), Tauri winapp + .mcpb bundle (Stage 3).
 
 ## 5. Data strategy
 
@@ -44,14 +44,18 @@ kanji.db 135MB (400k vocab + 278k examples + jmdict), wakan 33MB, edict2.gz.
 Graceful degradation everywhere: missing big DB answers with the fetch hint,
 never a traceback. Canonical-home rule: new JP-learning work lands here.
 
-## 6. Acceptance (Stage 1)
+## 6. Acceptance (Stages 1-3, all met 2026-09-13)
 
-- `uv run pytest -q` green on seeds alone (no big DB, no network).
-- `ruff check + format --check` clean, CI file present.
-- MCP tools callable over stdio: kanji lookup 水, jlpt next/answer/progress
-  round-trip, knowledge list contains manga, vocab degrades with fetch hint.
-- .gitignore exists before first git add; no *.db, .venv, *.bak committed.
-- Ports 11191/11192 registered in WEBAPP_PORTS.md.
+- Stage 1: `uv run pytest -q` green on seeds alone; ruff + format clean; MCP
+  tools over stdio (kanji 水, jlpt round-trip, manga in knowledge list, vocab
+  fetch hint); .gitignore before first add; ports registered.
+- Stage 2: FastAPI bridge + compat shim (vendored games unmodified); 10-page
+  webapp (tsc + Biome + build green); chat wired to local LLM + skill;
+  Playwright 13/13 (8 audit + 5 screenshots); README Preview; ports moved to
+  11193/11194 (open-webui squat documented).
+- Stage 3: PyInstaller sidecar verified frozen with real data; NSIS installer
+  with install/boot/uninstall smoke and no orphans; .mcpb 7.8MB 44 files,
+  prompts 3043/4000 + 101 real examples, bundle-tested standalone.
 
 ## 7. Open questions
 

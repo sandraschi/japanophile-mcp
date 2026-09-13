@@ -1,0 +1,26 @@
+{
+  "manifest_version": "0.2",
+  "name": "japanophile-mcp",
+  "version": "0.3.0",
+  "description": "Japanophile workstation: kanji/JLPT/vocab learning tools plus Japanese culture knowledge box. First -phile repo.",
+  "author": { "name": "sandraschi" },
+  "server": {
+    "type": "python",
+    "entry_point": "run_server.py",
+    "mcp_config": {
+      "command": "uv",
+      "args": ["run", "--directory", "${PWD}", "run_server.py"],
+      "env": {
+        "PYTHONPATH": "${PWD}/src",
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  },
+  "tools": [
+    { "name": "kanji", "description": "Kanji dictionary: lookup, search, by_jlpt, by_grade, by_radical, random over 13,108 entries." },
+    { "name": "jlpt", "description": "JLPT quiz: next question, answer grading with progress store, session summaries." },
+    { "name": "vocab", "description": "Vocabulary search over 400k entries plus jmdict; JLPT-graded lists. Needs fetched kanji.db." },
+    { "name": "knowledge", "description": "Culture knowledge box: list and read 30 Japan pages (history, culture, econ, travel, 2026 snapshot)." },
+    { "name": "japanophile_help", "description": "Tool list, per-DB status, ports. Agents call this first." }
+  ]
+}

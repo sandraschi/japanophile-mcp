@@ -16,7 +16,7 @@ from pathlib import Path
 from fastmcp import FastMCP
 
 from .db import (
-    REPO_ROOT,
+    ASSET_ROOT,
     ensure_data_from_seed,
     missing_db_message,
     open_ro,
@@ -26,7 +26,7 @@ from .db import (
 
 mcp = FastMCP("japanophile-mcp")
 
-KNOWLEDGE_DIR = REPO_ROOT / "assets" / "knowledge" / "japan"
+KNOWLEDGE_DIR = ASSET_ROOT / "knowledge" / "japan"
 
 
 def ok(message: str, data: object = None) -> dict:

@@ -1,6 +1,6 @@
 [package]
 name = "japanophile-mcp-app"
-version = "0.2.0"
+version = "0.3.0"
 description = "Tauri desktop shell for japanophile-mcp"
 edition = "2021"
 

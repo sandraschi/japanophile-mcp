@@ -1,5 +1,19 @@
 # CHANGELOG - japanophile-mcp
 
+## 0.3.0 (2026-09-13) - Stage 3: installer + bundle shipped
+
+- NSIS installer (Japanophile MCP_0.3.0_x64-setup.exe, 31.2MB): makensis via
+  winget, PyInstaller sidecar 28.9MB verified frozen (health, kanji, 29
+  knowledge pages, compat shim live from the exe), Tauri sidecar spawn with
+  port-clear + health-poll + kill-on-exit. Smoke: silent install, app boot
+  with window + live data from installed layout, silent uninstall, no orphans.
+  Frozen-path support in db.py (sys._MEIPASS roots, exe-side data dir).
+- .mcpb bundle (japanophile-mcp.mcpb, 7.8MB, 44 files): manifest 0.3.0,
+  fresh-copy src, seeds + 29 knowledge pages + skill bundled, prompts
+  3043/4000 words + 101 real tool-run examples (gen_examples.py), zero
+  forbidden content, bundle-tested standalone (extract + kanji/knowledge live).
+- Version unified at 0.3.0 (pyproject, webapp, Tauri, manifest, __init__).
+
 ## 0.2.0 (2026-09-13) - Stage 2: webapp + Tauri scaffold
 
 - FastAPI HTTP bridge (11193): REST for kanji/jlpt/vocab/knowledge/help,
