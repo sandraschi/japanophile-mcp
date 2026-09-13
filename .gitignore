@@ -1,0 +1,51 @@
+# japanophile-mcp .gitignore - created BEFORE first git add (gate rule)
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Data - runtime/writable DBs NEVER committed (fetch via scripts/fetch_data.ps1)
+data/*.db
+data/*.db-*
+data/*.json
+data/*.gz
+data/*.zip
+!data/.gitkeep
+
+# Vendored seeds live in assets/seed/ (committed, small only: <=10MB each)
+# kanji.db (135MB) and wakan_vocab.json (33MB) are NEVER vendored - see scripts/fetch_data.ps1
+
+# Node / webapp (stage 2)
+node_modules/
+**/node_modules/
+webapp/dist/
+
+# Tauri (stage 2)
+target/
+**/target/
+src-tauri/binaries/
+
+# MCPB pack staging
+mcpb/src/
+*.mcpb
+
+# Sneak-in specialist backups
+*.bak
+*.bak.*
+
+# Env and coverage
+.env
+.coverage
+htmlcov/
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
