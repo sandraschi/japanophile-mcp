@@ -9,19 +9,21 @@
 - [x] Tests green on seeds, ruff clean, CI file
 - [x] Docs: README, INSTALL, TOOLS, CONFIGURATION, INHERITANCE, SKILL.md
 - [x] PRD/TODO/CHANGELOG seed, glama.json, llms.txt
-- [ ] Register ports 11191/11192 in WEBAPP_PORTS.md
+- [ ] Register ports 11191/11194 in WEBAPP_PORTS.md
 - [ ] git init + initial commit, create GitHub repo, push
 - [ ] Verify MCP registration in Claude Desktop (stdio smoke)
 
-## Next (Stage 2: human faces)
+## Done (Stage 2: human faces, 2026-09-13)
 
-- [ ] React webapp catch-them-all (11192): Dashboard, Learn, Know, Quiz, Chat + skill, Settings (LLM), Help, Logs
-- [ ] skills/japanophile-expert wired into chat page
-- [ ] Vendored html/js games surfaced as Learn tabs (iframe or port)
-- [ ] Screenshots spec (docs/screenshots + README Preview)
-- [ ] Playwright e2e (Fleet Audit minimum)
-- [ ] Tauri NSIS winapp (pitfalls audit A-J first, BUILD_LOG.md)
-- [ ] .mcpb bundle (prompts 3-4-100) + Glama publish
+- [x] React webapp catch-them-all (11194): Dashboard, Learn, Know, Games, Chat, Skills, Tools, Settings, Help, Logs
+- [x] skills/japanophile-expert wired into chat page (local LLM, system prompt)
+- [x] Vendored html/js games as Games tabs (backend-origin iframe + compat shim, no fork)
+- [x] Screenshots (docs/screenshots x5) + README Preview
+- [x] Playwright e2e 8/8 (dev-stack webServer owns backend+vite; proxy-shadowing lesson recorded)
+- [x] Ports moved 11191/11192 -> 11193/11194 (open-webui Docker squat, registry-marked)
+- [x] Tauri scaffold (native/: sidecar spawn, capabilities, icons, just recipes, BUILD_LOG.md); cargo check green
+- [ ] Tauri NSIS build (needs makensis + PyInstaller sidecar) -> Stage 3
+- [ ] .mcpb bundle (prompts 3-4-100) + Glama publish -> Stage 3
 
 ## Later (faces 3-4: Plan + Remember)
 

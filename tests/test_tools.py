@@ -4,7 +4,12 @@ Big-DB tools (vocab over kanji.db) are tested for graceful degradation only -
 kanji.db is never vendored, so CI asserts the friendly missing message.
 """
 
+from fastapi.testclient import TestClient
+
 from japanophile_mcp import server
+from japanophile_mcp.http import build_app
+
+client = TestClient(build_app())
 
 
 def test_kanji_lookup():
@@ -64,3 +69,45 @@ def test_vocab_degrades_gracefully():
 def _call(tool, *args, **kwargs):
     fn = getattr(tool, "fn", tool)
     return fn(*args, **kwargs)
+
+
+def test_compat_kanji_search_shape():
+    r = client.get("/api/kanji/search", params={"jlpt": "N5", "limit": 5})
+    assert r.status_code == 200
+    body = r.json()
+    assert body["success"], body
+    assert len(body["kanji"]) >= 1
+    first = body["kanji"][0]
+    assert isinstance(first["meanings"], list)
+
+
+def test_compat_kanji_all_shape():
+    r = client.get("/api/kanji/all", params={"limit": 10})
+    body = r.json()
+    assert body["success"] and len(body["kanji"]) == 10
+
+
+def test_compat_jlpt_questions_shape():
+    r = client.get("/api/jlpt/questions", params={"level": "N5", "limit": 3})
+    body = r.json()
+    assert body["success"], body
+    assert len(body["questions"]) >= 1
+    q = body["questions"][0]
+    assert set(q) >= {"id", "question", "options", "correct", "explanations", "type", "level"}
+
+
+def test_compat_submit_answers_roundtrip():
+    r = client.post("/api/jlpt/submit-answers", json={"session_id": "pytest-compat", "answers": []})
+    assert r.json()["success"]
+
+
+def test_compat_bigdb_endpoints_degrade():
+    for path in [
+        "/api/vocab/jlpt?level=N5",
+        "/api/vocabulary?jlpt=N5",
+        "/api/examples/search?word=x",
+        "/api/kanji/compounds?kanji=x",
+    ]:
+        body = client.get(path).json()
+        # Fetched big DB -> success; otherwise friendly failure (both declared).
+        assert "success" in body, path

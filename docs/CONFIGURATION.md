@@ -4,7 +4,7 @@
 
 | Var | Default | Notes |
 |---|---|---|
-| JPN_MCP_BACKEND_PORT | 11191 | Stage 2 HTTP surface |
+| JPN_MCP_BACKEND_PORT | 11193 | Stage 2 HTTP surface |
 | JPN_MCP_DATA_DIR | data | runtime DBs + progress.db |
 
 DB resolution order: `data/<name>` then `assets/seed/<name>`, read-only URIs.

@@ -322,7 +322,7 @@ def japanophile_help() -> dict:
             "tools": ["kanji", "jlpt", "vocab", "knowledge", "japanophile_help"],
             "data": status,
             "knowledge_pages": pages,
-            "ports": {"backend": 11191, "frontend": 11192},
+            "ports": {"backend": 11193, "frontend": 11194},
         },
     )
 

@@ -32,5 +32,5 @@ from committed seeds.
 
 ## Ports
 
-Backend 11191 (Stage 2 HTTP), frontend 11192 (Stage 2 webapp). Registered in
+Backend 11193 (Stage 2 HTTP), frontend 11194 (Stage 2 webapp). Registered in
 mcp-central-docs/operations/WEBAPP_PORTS.md.

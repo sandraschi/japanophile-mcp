@@ -1,5 +1,26 @@
 # CHANGELOG - japanophile-mcp
 
+## 0.2.0 (2026-09-13) - Stage 2: webapp + Tauri scaffold
+
+- FastAPI HTTP bridge (11193): REST for kanji/jlpt/vocab/knowledge/help,
+  static /games /know /skills, /mcp mount, open CORS. Compat shim
+  (compat.py) serving old games-backend shapes so vendored games run
+  unmodified (kanji/search, kanji/all, kanji/compounds, vocabulary,
+  vocab/jlpt, examples/search, jlpt/questions + submit-answers).
+- React 19 + Vite + TS + Tailwind webapp (11194): Dashboard KPIs + data
+  status, Learn (kanji/quiz/vocab), Know (29 pages), Games (iframe tabs),
+  Chat (local LLM + japanophile-expert system prompt), Skills, Tools,
+  Settings (LLM endpoint/model), Help, Logs. tsc + Biome + vite build green.
+- Playwright e2e 8/8 + 5 screenshots (docs/screenshots + README Preview).
+  Lessons: dev-stack webServer owns backend+vite (tool shells reap orphans);
+  never proxy frontend route prefixes (/games /know /skills shadowed the SPA).
+- Ports moved 11191/11192 -> 11193/11194: open-webui Docker container
+  squats 11191 on this box (registry-marked, do not assign).
+- Tauri scaffold (native/): sidecar spawn/kill/health-poll, capabilities,
+  hinomaru placeholder icons, just build-sidecar/build-native, BUILD_LOG.md.
+  cargo check green (2 real E0308s fixed). NSIS build needs makensis +
+  sidecar exe -> Stage 3. .mcpb (prompts 3-4-100) -> Stage 3.
+
 ## 0.1.0 (2026-09-13) - Stage 1: MCP server + inheritance
 
 - Scaffold to fleet gate: .gitignore-first, pyproject (fastmcp>=3.4.4), justfile

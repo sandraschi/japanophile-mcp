@@ -2,7 +2,7 @@
 
 Your Japanophile workstation: kanji/JLPT learning tools, Japanese culture knowledge box, travel and diary on the roadmap. First **-phile repo** ([concept](https://github.com/sandraschi/sandraschi/blob/main/PHILE_FLEET.md)). Polite name on listings; working title was weeaboo, retired to joke status.
 
-Ports: backend **11191**, frontend **11192** (Stage 2). Registered in `mcp-central-docs/operations/WEBAPP_PORTS.md`.
+Ports: backend **11193**, frontend **11194** (Stage 2). Registered in `mcp-central-docs/operations/WEBAPP_PORTS.md`.
 
 ## Stage 1 (shipped): MCP server
 
@@ -24,6 +24,14 @@ Five tools, seeds vendored, big DBs fetched:
 ```
 
 Big DBs: `pwsh -File scripts/fetch_data.ps1` copies kanji.db + wakan_vocab.json from an ai-games-collection checkout into data/ (gitignored). Tools degrade gracefully without them.
+
+## Preview
+
+![Dashboard](docs/screenshots/dashboard.png)
+![Learn](docs/screenshots/learn.png)
+![Know](docs/screenshots/know.png)
+![Games](docs/screenshots/games.png)
+![Chat](docs/screenshots/chat.png)
 
 ## Inheritance
 

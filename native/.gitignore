@@ -1,0 +1,6 @@
+# Tauri build outputs - never commit
+target/
+gen/
+binaries/*.exe
+resources/*.exe
+!.gitkeep

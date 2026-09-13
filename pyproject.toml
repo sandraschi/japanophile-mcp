@@ -21,6 +21,7 @@ dev = [
     "pytest-cov>=5.0",
     "ruff>=0.5",
     "pyright>=1.1.370",
+    "pyinstaller>=6.10",
 ]
 
 [build-system]

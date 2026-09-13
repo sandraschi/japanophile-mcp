@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Japanophile MCP",
+  "version": "0.2.0",
+  "identifier": "com.sandraschi.japanophile-mcp",
+  "build": {
+    "frontendDist": "../webapp/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Japanophile MCP",
+        "width": 1280,
+        "height": 860,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/icon.png",
+      "icons/icon.ico"
+    ],
+    "resources": [
+      "resources/japanophile-mcp-backend.exe",
+      "resources/.env.example"
+    ],
+    "windows": {
+      "webviewInstallMode": {
+        "type": "skip"
+      },
+      "nsis": {}
+    }
+  },
+  "plugins": {}
+}
