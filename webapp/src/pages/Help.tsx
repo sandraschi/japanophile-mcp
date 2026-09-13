@@ -232,8 +232,11 @@ export default function Help() {
 						llama-server, not just the tags API.
 					</Section>
 					<Section title="Diary · Skills · Tools · Apps">
-						Diary is local notes; Skills shows the expert prompt; Tools runs MCP
-						tools in the browser; Apps lists related fleet webapps.
+						<p className="mb-4 text-sm text-zinc-500">
+							Diary: travel log + Immich photos; Skills shows the expert prompt;
+							Tools runs MCP tools in the browser; Apps lists related fleet
+							webapps.
+						</p>
 					</Section>
 				</div>
 			)}
