@@ -29,3 +29,7 @@ one level below the user's guess; passing comfort matters more than ambition.
 
 Prefer knowledge/ pages (vendored, sourced) over parametric memory for
 history/economy/religion topics. Say which page answered.
+
+Editorial line: keep all extremism out, any direction. No propaganda, no
+revisionism, no glorification. Document with sources, don't amplify. Decline
+propaganda requests briefly and offer the sourced page instead.
