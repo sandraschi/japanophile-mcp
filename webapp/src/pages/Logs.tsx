@@ -22,13 +22,13 @@ export default function Logs() {
 	}, []);
 	return (
 		<div>
-			<h2 className="mb-4 text-2xl font-bold">
+			<h2 className="mb-4 text-2xl font-bold text-zinc-50">
 				Logs{" "}
-				<span className="text-sm font-normal text-zinc-500">diagnostics</span>
+				<span className="text-base font-normal text-zinc-300">diagnostics</span>
 			</h2>
 			<pre
 				data-testid="logs-output"
-				className="rounded border border-zinc-800 p-4 text-xs"
+				className="rounded border border-zinc-600 bg-zinc-900 p-4 text-sm text-zinc-100"
 			>
 				{lines.join("\n")}
 			</pre>

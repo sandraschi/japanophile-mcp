@@ -131,7 +131,7 @@ def mount_compat(app: FastAPI) -> None:
     def examples_search(word: str = "", limit: int = 4) -> JSONResponse:
         db = resolve_db("kanji.db")
         if db is None:
-            return JSONResponse({"success": False, "error": "kanji.db not fetched"})
+            return JSONResponse({"success": False, "error": "kanji.db missing — restore data/kanji.db from git"})
         conn = open_ro(db)
         try:
             rows = conn.execute(
@@ -228,7 +228,7 @@ def mount_compat(app: FastAPI) -> None:
 def _vocab_list(level: str, limit: int):
     db = resolve_db("kanji.db")
     if db is None:
-        return JSONResponse({"success": False, "error": "kanji.db not fetched"})
+        return JSONResponse({"success": False, "error": "kanji.db missing — restore data/kanji.db from git"})
     conn = open_ro(db)
     try:
         lvl = (level or "all").strip().upper()

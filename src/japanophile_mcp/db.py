@@ -23,17 +23,34 @@ SEED_DIR = ASSET_ROOT / "seed"
 # Small DBs ship in assets/seed and are readable in place.
 SEED_DBS = ("kanji_database.db", "jlpt_questions.db")
 
-# Big DBs live in data/ only (see scripts/fetch_data.ps1). Never vendored.
-BIG_DBS = {
-    "kanji.db": "135MB kanji + 400k vocab + 278k examples + jmdict (ai-games-collection)",
-    "wakan_vocab.json": "33MB extended vocab JSON",
-    "edict2.gz": "7MB EDICT dictionary (upstream)",
+# Vendored learning corpora under data/ (see data/README.md).
+REQUIRED_DATA_FILES = (
+    "kanji.db",
+    "wakan_vocab.json",
+)
+
+DATA_FILE_HINTS = {
+    "kanji.db": "vocab + jmdict + examples + jlpt_vocabulary (~135MB)",
+    "wakan_vocab.json": "extended vocab JSON (~33MB)",
+    "edict2.gz": "optional upstream EDICT (not wired yet)",
 }
 
 
+BUNDLED_DATA_DIR = ASSET_ROOT / "data"
+
+
 def resolve_db(name: str) -> Path | None:
-    """Return a readable DB path: data/ first, then assets/seed. None if absent."""
-    for base in (DATA_DIR, SEED_DIR):
+    """Return a readable DB path: data/, bundled data/, then assets/seed."""
+    for base in (DATA_DIR, BUNDLED_DATA_DIR, SEED_DIR):
+        candidate = base / name
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def resolve_data_file(name: str) -> Path | None:
+    """Readable file under data/ or bundled data/ (e.g. wakan_vocab.json)."""
+    for base in (DATA_DIR, BUNDLED_DATA_DIR):
         candidate = base / name
         if candidate.is_file():
             return candidate
@@ -41,10 +58,10 @@ def resolve_db(name: str) -> Path | None:
 
 
 def missing_db_message(name: str) -> str:
-    hint = BIG_DBS.get(name, "seed database")
+    hint = DATA_FILE_HINTS.get(name, "learning corpus")
     return (
-        f"{name} is not present ({hint}). Run scripts/fetch_data.ps1 to fetch it, "
-        "or copy it from an ai-games-collection checkout into data/."
+        f"{name} is not present ({hint}). Restore data/{name} from git "
+        "(see data/README.md). Maintainers: scripts/vendor_from_donor.ps1 to refresh."
     )
 
 

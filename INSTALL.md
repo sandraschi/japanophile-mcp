@@ -5,21 +5,23 @@
 ```powershell
 cd D:\Dev\repos\japanophile-mcp
 uv sync --group dev
-pwsh -File scripts/fetch_data.ps1   # big DBs from ai-games-collection checkout (optional)
+pwsh -File scripts/ensure_data.ps1
 uv run pytest -q
 ```
 
-## Big data (optional, recommended)
+## Learning corpora (required for full vocab / examples)
 
-kanji.db (135MB, 400k vocab + examples + jmdict) and wakan_vocab.json (33MB) are
-never vendored. Fetch:
+Committed under `data/` (see `data/README.md`):
 
-```powershell
-pwsh -File scripts/fetch_data.ps1
-```
+- `kanji.db` (~135MB) — vocab, jmdict, Tatoeba examples, jlpt_vocabulary
+- `wakan_vocab.json` (~33MB) — extended vocab JSON (future tools)
 
-Without them, `vocab` answers with a friendly fetch hint. Everything else works
-from committed seeds.
+If files are missing after clone, restore from git history or ask a maintainer.
+Maintainers only: `pwsh -File scripts/vendor_from_donor.ps1` to refresh from the
+historical donor checkout, then commit.
+
+Without `kanji.db`, `vocab` and example APIs return a clear missing-data message.
+Kanji lookup, JLPT quiz, and knowledge pages work from `assets/seed/`.
 
 ## Claude Desktop
 
@@ -29,6 +31,8 @@ from committed seeds.
   "args": ["run", "--directory", "D:\\Dev\\repos\\japanophile-mcp",
            "python", "-m", "japanophile_mcp.server"] } } }
 ```
+
+Or install the bundle: `just mcpb-pack`, then drag `dist/japanophile-mcp-v*.mcpb` onto Claude Desktop.
 
 ## Ports
 

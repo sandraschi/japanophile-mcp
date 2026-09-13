@@ -10,16 +10,14 @@ __pycache__/
 dist/
 build/
 
-# Data - runtime/writable DBs NEVER committed (fetch via scripts/fetch_data.ps1)
-data/*.db
-data/*.db-*
-data/*.json
-data/*.gz
-data/*.zip
-!data/.gitkeep
+# Writable / local only
+data/progress.db
+data/progress.db-*
 
-# Vendored seeds live in assets/seed/ (committed, small only: <=10MB each)
-# kanji.db (135MB) and wakan_vocab.json (33MB) are NEVER vendored - see scripts/fetch_data.ps1
+# Vendored corpora (committed): kanji.db, wakan_vocab.json — see data/README.md
+# Ignore other accidental drops under data/
+data/*.zip
+data/edict2.gz
 
 # Node / webapp (stage 2)
 node_modules/

@@ -18,6 +18,8 @@ test("sidebar navigates all catch-them-all pages", async ({ page }) => {
 	for (const route of [
 		"learn",
 		"know",
+		"travel",
+		"diary",
 		"games",
 		"chat",
 		"skills",
@@ -54,7 +56,9 @@ test("learn: quiz round-trip records progress", async ({ page }) => {
 test("know: manga page opens", async ({ page }) => {
 	await page.goto("/know");
 	await page.getByTestId("know-manga").click();
-	await expect(page.getByTestId("know-article")).not.toBeEmpty();
+	await expect(page.getByTestId("know-loading")).toBeHidden({ timeout: 15_000 });
+	const frame = page.frameLocator('[data-testid="know-iframe"]');
+	await expect(frame.locator("h1")).toContainText(/manga/i, { timeout: 15_000 });
 });
 
 test("skills page shows japanophile-expert", async ({ page }) => {
@@ -64,10 +68,15 @@ test("skills page shows japanophile-expert", async ({ page }) => {
 	);
 });
 
-test("tools runner executes kanji lookup", async ({ page }) => {
-	await page.goto("/tools");
-	await page.getByTestId("tool-kanji lookup").click();
-	await expect(page.getByTestId("tools-output")).toContainText("水");
+test("tools harness runs kanji lookup", async ({ page }) => {
+	await page.goto("/tools/kanji?operation=lookup&query=%E6%B0%B4");
+	await expect(page.getByTestId("tool-runner-loading")).toBeHidden({
+		timeout: 15_000,
+	});
+	await page.getByTestId("tool-runner-run").click();
+	await expect(page.getByTestId("tool-runner-result")).toContainText("水", {
+		timeout: 15_000,
+	});
 });
 
 test("logs diagnostics show backend data", async ({ page }) => {

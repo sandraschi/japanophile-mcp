@@ -29,6 +29,59 @@ mcp = FastMCP("japanophile-mcp")
 KNOWLEDGE_DIR = ASSET_ROOT / "knowledge" / "japan"
 
 
+def resolve_knowledge_page(page: str) -> Path | None:
+    """Resolve a knowledge slug to assets/knowledge/japan/{slug}.html."""
+    if not KNOWLEDGE_DIR.is_dir():
+        return None
+    name = "".join(
+        c for c in page.strip().lower().replace(" ", "-") if c.isalnum() or c in "-_"
+    )
+    target = KNOWLEDGE_DIR / (name + ".html")
+    if target.is_file():
+        return target
+    matches = [p for p in KNOWLEDGE_DIR.glob("*.html") if name in p.stem]
+    if matches:
+        return matches[0]
+    return None
+
+
+# Vendored pages link ../../styles.css (ai-games-collection layout). In the
+# webapp iframe (srcDoc) that sheet never loads — inject readable dark-theme defaults.
+KNOW_EMBED_STYLE = """<style id="japanophile-know-embed">
+html, body {
+  background: #18181b !important;
+  color: #e4e4e7 !important;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 1rem 1.25rem 2rem;
+}
+.container, .content-section, .content-text, .section-content,
+.branch-content, p, li, td, dd, dt {
+  color: #e4e4e7 !important;
+}
+h1, h2, h3, h4, .section-title, .store-section h2 {
+  color: #fafafa !important;
+}
+strong, b { color: #f4f4f5 !important; }
+a { color: #60a5fa !important; }
+.back-button { display: none !important; }
+</style>"""
+
+
+def knowledge_html_for_embed(path: Path) -> str:
+    raw = path.read_text(encoding="utf-8-sig")
+    if "japanophile-know-embed" in raw:
+        return raw
+    marker = "<head>"
+    lower = raw.lower()
+    idx = lower.find(marker)
+    if idx >= 0:
+        insert = idx + len(marker)
+        return raw[:insert] + KNOW_EMBED_STYLE + raw[insert:]
+    return KNOW_EMBED_STYLE + raw
+
+
 def ok(message: str, data: object = None) -> dict:
     return {"success": True, "message": message, "data": data}
 
@@ -41,8 +94,19 @@ class _TextDump(HTMLParser):
     def __init__(self) -> None:
         super().__init__()
         self.parts: list[str] = []
+        self._skip_depth = 0
+
+    def handle_starttag(self, tag: str, attrs) -> None:
+        if tag in ("script", "style"):
+            self._skip_depth += 1
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in ("script", "style") and self._skip_depth:
+            self._skip_depth -= 1
 
     def handle_data(self, data: str) -> None:
+        if self._skip_depth:
+            return
         text = data.strip()
         if text:
             self.parts.append(text)
@@ -293,16 +357,9 @@ def knowledge(operation: str, page: str = "") -> dict:
         pages = sorted(p.stem for p in KNOWLEDGE_DIR.glob("*.html"))
         return ok(f"{len(pages)} knowledge page(s).", pages)
     if operation == "get":
-        name = "".join(
-            c for c in page.strip().lower().replace(" ", "-") if c.isalnum() or c in "-_"
-        )
-        target = KNOWLEDGE_DIR / (name + ".html")
-        if not target.is_file():
-            # Fuzzy fallback: substring match on stems.
-            matches = [p for p in KNOWLEDGE_DIR.glob("*.html") if name in p.stem]
-            if not matches:
-                return fail(f"Unknown knowledge page '{page}'. Use knowledge/list first.")
-            target = matches[0]
+        target = resolve_knowledge_page(page)
+        if target is None:
+            return fail(f"Unknown knowledge page '{page}'. Use knowledge/list first.")
         return ok(f"Knowledge page: {target.stem}.", html_to_text(target))
     return fail(f"Unknown knowledge operation '{operation}'. Valid: list, get.")
 
@@ -311,9 +368,24 @@ def knowledge(operation: str, page: str = "") -> dict:
 def japanophile_help() -> dict:
     """List tools, data status, and next steps for agents and IDEs."""
     status = {}
-    for name in ("kanji_database.db", "jlpt_questions.db", "kanji.db"):
+    seed_names = ("kanji_database.db", "jlpt_questions.db")
+    for name in seed_names:
         hit = resolve_db(name)
-        status[name] = hit.as_posix() if hit else "MISSING - run scripts/fetch_data.ps1"
+        if hit:
+            status[name] = f"ready ({hit.as_posix()})"
+        else:
+            status[name] = "MISSING seed — restore assets/seed/ from git"
+    kanji_big = resolve_db("kanji.db")
+    if kanji_big:
+        status["kanji.db"] = f"ready ({kanji_big.as_posix()})"
+    else:
+        status["kanji.db"] = (
+            "MISSING — restore data/kanji.db from git (vocab, jmdict, examples)"
+        )
+    wakan = resolve_data_file("wakan_vocab.json")
+    status["wakan_vocab.json"] = (
+        f"ready ({wakan.as_posix()})" if wakan else "MISSING — restore data/wakan_vocab.json from git"
+    )
     pages = len(list(KNOWLEDGE_DIR.glob("*.html"))) if KNOWLEDGE_DIR.is_dir() else 0
     return ok(
         "japanophile-mcp: Learn (kanji, jlpt, vocab) + Know (knowledge box)."

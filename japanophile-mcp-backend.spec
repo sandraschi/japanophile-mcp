@@ -15,6 +15,9 @@ datas = [
     ("assets/knowledge", "japanophile_assets/knowledge"),
     ("skills", "japanophile_assets/skills"),
 ]
+for _corpus in ("data/kanji.db", "data/wakan_vocab.json"):
+    if os.path.isfile(_corpus):
+        datas.append((_corpus, "japanophile_assets/data"))
 for pkg in ("fastmcp", "fastapi", "uvicorn", "pydantic", "starlette", "httpx"):
     try:
         datas += copy_metadata(pkg)

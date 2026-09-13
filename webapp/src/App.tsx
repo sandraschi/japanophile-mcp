@@ -4,6 +4,8 @@ const links = [
 	["Dashboard", "/"],
 	["Learn", "/learn"],
 	["Know", "/know"],
+	["Travel", "/travel"],
+	["Diary", "/diary"],
 	["Games", "/games"],
 	["Chat", "/chat"],
 	["Skills", "/skills"],
@@ -15,18 +17,18 @@ const links = [
 
 export default function App() {
 	return (
-		<div className="min-h-screen bg-zinc-950 text-zinc-200">
-			<header className="border-b border-zinc-800 px-6 py-4">
+		<div className="min-h-screen bg-[#0c0c0f] text-zinc-50">
+			<header className="border-b border-zinc-600 bg-zinc-900 px-6 py-4">
 				<h1 className="text-xl font-bold" data-testid="app-title">
 					japanophile-mcp{" "}
-					<span className="text-sm font-normal text-zinc-500">
+					<span className="text-sm font-normal text-zinc-300">
 						Learn · Know · Plan · Remember
 					</span>
 				</h1>
 			</header>
 			<div className="flex">
 				<nav
-					className="w-44 shrink-0 border-r border-zinc-800 p-3"
+					className="w-48 shrink-0 border-r border-zinc-600 bg-zinc-900 p-3"
 					data-testid="sidebar"
 				>
 					{links.map(([label, to]) => (
@@ -35,14 +37,14 @@ export default function App() {
 							to={to}
 							end={to === "/"}
 							className={({ isActive }) =>
-								`block rounded px-3 py-2 text-sm ${isActive ? "bg-zinc-800 text-white" : "text-zinc-400 hover:bg-zinc-900"}`
+								`mb-1 block rounded px-3 py-2.5 text-base ${isActive ? "bg-zinc-600 font-semibold text-white" : "text-zinc-200 hover:bg-zinc-800"}`
 							}
 						>
 							{label}
 						</NavLink>
 					))}
 				</nav>
-				<main className="flex-1 p-6">
+				<main className="flex-1 bg-[#0c0c0f] p-6 text-zinc-100">
 					<Outlet />
 				</main>
 			</div>

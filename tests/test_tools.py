@@ -50,6 +50,18 @@ def test_jlpt_next_answer_progress():
     assert prog["success"] and prog["data"]["answered"] >= 1
 
 
+def test_knowledge_html_route():
+    res = client.get("/api/knowledge/html/20thcentury")
+    assert res.status_code == 200
+    assert "text/html" in res.headers.get("content-type", "")
+    disp = res.headers.get("content-disposition", "")
+    assert "attachment" not in disp.lower()
+    assert "japanophile-know-embed" in res.text
+    assert "20th Century" in res.text or "20th century" in res.text.lower()
+    bad = client.get("/api/knowledge/html/no-such-page-xyz")
+    assert bad.status_code == 404
+
+
 def test_knowledge_list_get():
     lst = _call(server.knowledge, "list")
     assert lst["success"], lst
@@ -57,13 +69,18 @@ def test_knowledge_list_get():
     got = _call(server.knowledge, "get", page="manga")
     assert got["success"], got
     assert len(got["data"]) > 100
+    assert ".back-button" not in got["data"]
+    got20 = _call(server.knowledge, "get", page="20thcentury")
+    assert got20["success"], got20
+    assert "20th Century" in got20["data"] or "20th century" in got20["data"].lower()
+    assert "position: fixed" not in got20["data"]
 
 
 def test_vocab_degrades_gracefully():
     res = _call(server.vocab, "search", query="\u6c34")
     # Either the big DB was fetched (success) or the friendly missing message.
     if not res["success"]:
-        assert "fetch_data" in res["message"]
+        assert "data/kanji.db" in res["message"] or "kanji.db" in res["message"]
 
 
 def _call(tool, *args, **kwargs):

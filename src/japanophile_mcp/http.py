@@ -9,9 +9,9 @@ from __future__ import annotations
 import argparse
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from . import server
@@ -32,6 +32,10 @@ def build_app() -> FastAPI:
     from .compat import mount_compat
 
     mount_compat(app)
+
+    from .tools_web import mount_tools_routes
+
+    mount_tools_routes(app, server.mcp)
 
     @app.get("/health")
     def health() -> dict:
@@ -92,6 +96,18 @@ def build_app() -> FastAPI:
     @app.get("/api/knowledge")
     def api_knowledge_list() -> JSONResponse:
         return JSONResponse(_call(server.knowledge, "list"))
+
+    @app.get("/api/knowledge/html/{page}")
+    def api_knowledge_html(page: str):
+        target = server.resolve_knowledge_page(page)
+        if target is None:
+            raise HTTPException(status_code=404, detail="Not Found")
+        body = server.knowledge_html_for_embed(target)
+        return HTMLResponse(
+            content=body,
+            media_type="text/html; charset=utf-8",
+            headers={"Content-Disposition": "inline"},
+        )
 
     @app.get("/api/knowledge/{page}")
     def api_knowledge_get(page: str) -> JSONResponse:

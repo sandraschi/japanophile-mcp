@@ -3,6 +3,7 @@ import { create } from "zustand";
 interface LlmState {
 	endpoint: string;
 	model: string;
+	hydrated: boolean;
 	setEndpoint: (v: string) => void;
 	setModel: (v: string) => void;
 }
@@ -26,6 +27,7 @@ function save(key: string, value: string): void {
 export const useLlm = create<LlmState>((set) => ({
 	endpoint: stored("jpn.llm.endpoint", "http://127.0.0.1:11434"),
 	model: stored("jpn.llm.model", "muse-glimmer"),
+	hydrated: true,
 	setEndpoint: (v) => {
 		save("jpn.llm.endpoint", v);
 		set({ endpoint: v });

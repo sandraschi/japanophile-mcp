@@ -1,0 +1,147 @@
+# Japanophile MCP - demo-vid narration (user-facing)
+# Loaded automatically by demo_vid_generate when script_yaml is omitted.
+# Pattern: up to two short say lines per page, 3s on-screen pause (action: hold) between them.
+
+title: "Japanophile MCP - tour"
+duration_target: 120
+voice: "heart"
+aspect_ratio: "16:9"
+resolution: "720p"
+bg_music: false
+
+steps:
+  - action: text_overlay
+    text: "Japanophile MCP\n\nLearn · Know · Play · Chat"
+    wait: 5
+    say: "Japanophile MCP is a local app for studying Japanese and exploring Japan, without juggling a dozen browser tabs."
+
+  - action: hold
+    wait: 3
+
+  - action: hold
+    say: "Everything runs on your machine. Agents can use the same tools through MCP while you use this dashboard."
+    wait: 8
+
+  - action: goto
+    url: /
+    say: "The Dashboard is your health check. It shows kanji counts, quiz size, and how many culture articles are installed."
+    wait: 10
+
+  - action: hold
+    wait: 3
+
+  - action: hold
+    say: "If a large vocabulary database is missing, the banner tells you how to fetch it. Nothing crashes silently."
+    wait: 10
+
+  - action: goto
+    url: /learn
+    say: "Learn is where you drill. Look up kanji, run JLPT-style quizzes, and search vocabulary when the big dictionary is present."
+    wait: 10
+
+  - action: hold
+    wait: 3
+
+  - action: hold
+    say: "Each tab talks to the same backend tools an AI tutor would call, so what you see matches what agents get."
+    wait: 10
+
+  - action: goto
+    url: /know
+    say: "Know is a curated culture library, not a random wiki crawl. Pick a topic like history, food, travel, or manga."
+    wait: 10
+
+  - action: hold
+    wait: 3
+
+  - action: hold
+    say: "Articles are stored in the repo as sourced pages. The app strips them to readable text for quick reference."
+    wait: 10
+
+  - action: goto
+    url: /games
+    say: "Games opens the vendored practice tools: flashcards, stroke order, JLPT drills, and listening exercises."
+    wait: 10
+
+  - action: hold
+    wait: 3
+
+  - action: hold
+    say: "They are the same HTML trainers inherited from the games collection, embedded here so learning stays in one place."
+    wait: 10
+
+  - action: goto
+    url: /chat
+    say: "Chat connects to your local LLM for tutoring. You can pick the model in Settings and ask about JLPT prep or culture."
+    wait: 10
+
+  - action: hold
+    wait: 3
+
+  - action: hold
+    say: "The japanophile-expert skill is loaded into the prompt so answers route to kanji, quiz, and knowledge tools instead of guessing. Text chat works in the browser today; pair with speech-mcp when you want voice in or out."
+    wait: 14
+
+  - action: goto
+    url: /skills
+    say: "Skills shows the expert prompt the chat uses: how to teach, which tools to call, and when to open a knowledge page."
+    wait: 10
+
+  - action: hold
+    wait: 3
+
+  - action: hold
+    say: "You can read it here to see exactly what the bot is allowed to do in this repository."
+    wait: 9
+
+  - action: goto
+    url: /tools
+    say: "Tools is a quick MCP runner. One click runs a sample kanji lookup so you can verify the backend without an IDE."
+    wait: 10
+
+  - action: hold
+    wait: 3
+
+  - action: hold
+    say: "Useful when you are debugging or showing someone how dialogic tool results look."
+    wait: 9
+
+  - action: goto
+    url: /settings
+    say: "Settings holds your LLM endpoint and model name, usually Ollama on port eleven four three four."
+    wait: 10
+
+  - action: hold
+    wait: 3
+
+  - action: hold
+    say: "Point Chat at any OpenAI-compatible local server. Enable CORS or OLLAMA_ORIGINS so the browser can reach it."
+    wait: 11
+
+  - action: goto
+    url: /help
+    say: "Help summarizes ports, tool names, and where to read installation docs."
+    wait: 9
+
+  - action: hold
+    wait: 3
+
+  - action: hold
+    say: "Handy when you forgot whether the backend or the Vite app owns which port."
+    wait: 9
+
+  - action: goto
+    url: /logs
+    say: "The Logs page displays sorted, filtered, and prioritized diagnostic lines from the server backend and the webapp frontend."
+    wait: 11
+
+  - action: hold
+    wait: 3
+
+  - action: hold
+    say: "You see health checks, database paths, and fetch hints in one scrollable view when something fails to load."
+    wait: 11
+
+  - action: end
+    wait: 4
+    say: "That is japanophile MCP. Install with uv, run start dot ps one, and study on port eleven one nine four."

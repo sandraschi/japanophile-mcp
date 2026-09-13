@@ -4,11 +4,12 @@
 	"version": "0.3.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite --port 11194 --host",
+		"dev": "vite --port 11194 --host 127.0.0.1",
 		"build": "tsc --noEmit && vite build",
 		"preview": "vite preview --port 11194",
 		"biome:ci": "biome check .",
-		"e2e": "playwright test"
+		"e2e": "playwright test",
+		"screenshots": "playwright test e2e/screenshots.spec.ts"
 	},
 	"dependencies": {
 		"react": "^19.0.0",

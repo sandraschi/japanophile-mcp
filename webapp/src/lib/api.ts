@@ -1,4 +1,5 @@
 const API = "";
+export const API_BASE = API;
 // Static assets live on the backend origin (CORS open). Never relative:
 // /games, /know, /skills are frontend ROUTES - relative fetches would hit the SPA.
 const BACKEND = "http://127.0.0.1:11193";

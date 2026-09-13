@@ -1,6 +1,55 @@
 @import "tailwindcss";
 
 body {
-	background-color: #09090b;
-	color: #e4e4e7;
+	background-color: #0c0c0f;
+	color: #fafafa;
+	font-size: 17px;
+	line-height: 1.55;
+}
+
+/* Demo-readable chrome (screenshots + demo-vid capture) */
+header h1 {
+	font-size: 1.5rem;
+	color: #fafafa;
+}
+
+header h1 span {
+	color: #d4d4d8 !important;
+	font-size: 0.95rem !important;
+}
+
+nav a {
+	font-size: 1rem;
+}
+
+main h2 {
+	font-size: 1.75rem;
+	font-weight: 700;
+	color: #fafafa;
+	margin-bottom: 1rem;
+}
+
+main h2 span {
+	font-size: 1rem !important;
+	font-weight: 400 !important;
+	color: #d4d4d8 !important;
+}
+
+main pre,
+main code {
+	font-size: 0.9rem;
+	color: #f4f4f5;
+}
+
+main .text-xs {
+	font-size: 0.875rem;
+}
+
+main .text-sm {
+	font-size: 0.95rem;
+}
+
+main input,
+main button {
+	font-size: 0.95rem;
 }

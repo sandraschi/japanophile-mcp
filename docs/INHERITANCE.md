@@ -17,11 +17,20 @@ Gamified frontends are vendored as static assets (self-contained html/js, no
 server logic duplicated). They read the same seeds the MCP tools read.
 No logic fork: if a game grows server needs, it grows here, not there.
 
-## Fetched, never vendored (big)
+## Vendored learning corpora (data/, committed)
 
-kanji.db (135MB), wakan_vocab.json (33MB), edict2.gz (7MB, optional):
-scripts/fetch_data.ps1 copies from an ai-games-collection checkout or prints
-upstream pointers. data/ is gitignored. Tools degrade gracefully without them.
+| File | Size | Used for |
+|---|---|---|
+| data/kanji.db | ~135MB | vocab, jmdict, examples (Tatoeba), jlpt_vocabulary, compounds compat |
+| data/wakan_vocab.json | ~33MB | reserved for extended vocab tools |
+
+Runtime does **not** depend on ai-games-collection. Maintainers refresh corpora
+with `scripts/vendor_from_donor.ps1` when updating from the historical donor,
+then commit. Verify with `scripts/ensure_data.ps1` or `just ensure-data`.
+
+Writable: `data/progress.db` (gitignored).
+
+Optional upstream: `edict2.gz` (not wired yet).
 
 ## Canonical-home rule
 

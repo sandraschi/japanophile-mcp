@@ -34,35 +34,35 @@ export default function Dashboard() {
 				className="grid grid-cols-1 gap-4 md:grid-cols-3"
 				data-testid="kpi-grid"
 			>
-				<div className="rounded border border-zinc-800 p-4">
-					<div className="text-sm text-zinc-500">Kanji seed</div>
-					<div className="text-lg" data-testid="kpi-kanji">
+				<div className="rounded border border-zinc-600 bg-zinc-900 p-4">
+					<div className="text-base text-zinc-300">Kanji seed</div>
+					<div className="text-xl font-semibold text-white" data-testid="kpi-kanji">
 						{status ? "13,108 kanji" : "…"}
 					</div>
 				</div>
-				<div className="rounded border border-zinc-800 p-4">
-					<div className="text-sm text-zinc-500">JLPT questions</div>
-					<div className="text-lg" data-testid="kpi-jlpt">
+				<div className="rounded border border-zinc-600 bg-zinc-900 p-4">
+					<div className="text-base text-zinc-300">JLPT questions</div>
+					<div className="text-xl font-semibold text-white" data-testid="kpi-jlpt">
 						{status ? "600 + options" : "…"}
 					</div>
 				</div>
-				<div className="rounded border border-zinc-800 p-4">
-					<div className="text-sm text-zinc-500">Knowledge pages</div>
-					<div className="text-lg" data-testid="kpi-know">
+				<div className="rounded border border-zinc-600 bg-zinc-900 p-4">
+					<div className="text-base text-zinc-300">Knowledge pages</div>
+					<div className="text-xl font-semibold text-white" data-testid="kpi-know">
 						{pages || "…"}
 					</div>
 				</div>
 			</div>
 			<div
-				className="mt-6 rounded border border-zinc-800 p-4"
+				className="mt-6 rounded border border-zinc-600 bg-zinc-900 p-4"
 				data-testid="data-status"
 			>
-				<h3 className="mb-2 font-semibold">Data status</h3>
+				<h3 className="mb-2 text-lg font-semibold text-zinc-50">Data status</h3>
 				{status ? (
-					<ul className="text-sm">
+					<ul className="text-base">
 						{Object.entries(status).map(([k, v]) => (
 							<li key={k}>
-								<span className="text-zinc-500">{k}:</span>{" "}
+								<span className="text-zinc-300">{k}:</span>{" "}
 								{String(v).includes("MISSING") ? (
 									<span className="text-amber-400">{v}</span>
 								) : (

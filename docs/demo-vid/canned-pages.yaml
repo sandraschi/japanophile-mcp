@@ -1,0 +1,25 @@
+# Canned narration lines for boilerplate webapp pages (demo-vid).
+# Used by docs/demo-vid/narration.yaml and by demo-vid default_script when a repo
+# has this file and no full narration.yaml override.
+#
+# Each page: two short sentences; demo-vid inserts action: hold / wait: 3 between them.
+
+dashboard:
+  - "The Dashboard tells you at a glance whether your study libraries are loaded and how large each one is."
+  - "Missing databases show a plain fetch hint instead of a crash."
+
+logs:
+  - "The Logs page displays sorted, filtered, and prioritized diagnostic messages from the server backend and the webapp frontend."
+  - "Health checks, database paths, and load errors appear in one scrollable view."
+
+help:
+  - "Help lists the MCP tool names, backend and frontend ports, and where to read the install guide."
+  - "Use it when you need a quick reference without opening the repo README."
+
+settings:
+  - "Settings stores your local LLM endpoint and model name for the Chat page."
+  - "Point it at Ollama or any OpenAI-compatible server with browser CORS enabled."
+
+tools:
+  - "Tools runs a sample MCP call so you can see dialogic tool output without an IDE."
+  - "Handy for demos and quick backend checks."

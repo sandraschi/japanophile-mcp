@@ -1,12 +1,18 @@
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import path from "node:path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
 	plugins: [react(), tailwindcss()],
+	resolve: {
+		alias: {
+			"@": path.resolve(__dirname, "src"),
+		},
+	},
 	server: {
 		port: 11194,
-		host: true,
+		host: "127.0.0.1",
 		proxy: {
 			// NOTE: only /api + /health are proxied. /games, /know, /skills are
 			// frontend ROUTES - proxying them shadows the SPA (same bug once shipped
