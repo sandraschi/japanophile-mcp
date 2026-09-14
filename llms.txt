@@ -1,7 +1,11 @@
 # japanophile-mcp - llms.txt
 
 First -phile repo: kanji/JLPT/vocab learning tools + 29-page Japanese culture
-knowledge box. Tools: kanji, jlpt, vocab, knowledge, japanophile_help.
-Seeds vendored (kanji 13k, JLPT 600Q); big DBs fetched (kanji.db 135MB).
-Ports 11191/11192. Docs: README, INSTALL, docs/TOOLS, docs/CONFIGURATION,
-docs/INHERITANCE. Travel planner + diary are roadmap.
+knowledge box + 11-page language study box + JP-locale utilities. Tools:
+kanji, jlpt, vocab (incl. 278k example sentences), knowledge (culture or
+language collection), jp_utils (kana/romaji/era conversion), remember
+(streak/due), japanophile_help. Seeds vendored (kanji 13k, JLPT 600Q); big
+DBs fetched (kanji.db 135MB). Ports 11193/11194. Crossconnects: local-llm-mcp
+(wired), speech-mcp/calibre-mcp/plex-mcp (planned, see PHILE_PATTERN.md).
+Docs: README, INSTALL, docs/TOOLS, docs/CONFIGURATION, docs/INHERITANCE.
+Travel planner + diary + full SRS scheduler are roadmap.

@@ -50,3 +50,6 @@ htmlcov/
 Thumbs.db
 .vscode/
 .idea/
+
+# Quality-check / assfix reports (local only)
+reports/

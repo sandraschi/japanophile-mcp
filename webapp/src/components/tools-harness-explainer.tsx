@@ -29,7 +29,7 @@ export function ToolsHarnessExplainer({
 					Why MCP Tools instead of more pages?
 				</p>
 				<p>
-					japanophile-mcp exposes five portmanteau tools on one server. The
+					japanophile-mcp exposes seven portmanteau tools on one server. The
 					harness introspects them so the webapp never drifts from MCP.
 				</p>
 				<Link to="/tools#why-harness" className="text-blue-400 hover:underline">
@@ -62,8 +62,8 @@ export function ToolsHarnessExplainer({
 				<Link to="/know" className="text-blue-400 hover:underline">
 					Knowledge
 				</Link>
-				, and Practice games are tailored browse UIs. All five portmanteaus also
-				run here with full parameter sets.
+				, and Practice games are tailored browse UIs. All seven portmanteaus
+				also run here with full parameter sets.
 			</p>
 		</section>
 	);

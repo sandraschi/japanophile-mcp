@@ -135,8 +135,8 @@ export default function Help() {
 					<Section title="So you want to learn Japanese?">
 						<p>
 							Start with <b>why</b> you care — anime subtitles, living in Japan,
-							work, family — because that picks your path (casual vs exam track vs
-							business).
+							work, family — because that picks your path (casual vs exam track
+							vs business).
 						</p>
 					</Section>
 					<Section title="Realistic paths">
@@ -197,7 +197,9 @@ export default function Help() {
 					<Section title="What this app does well">
 						<ul className="list-disc space-y-1 pl-5">
 							<li>Kanji lookup and spaced repetition games</li>
-							<li>Culture context (Knowledge box) plus Language curriculum tabs</li>
+							<li>
+								Culture context (Knowledge box) plus Language curriculum tabs
+							</li>
 							<li>Chat with japanophile-expert skill when LLM is configured</li>
 							<li>Travel and daily-life articles when you plan a trip</li>
 						</ul>
@@ -219,8 +221,8 @@ export default function Help() {
 						exams). Separate from society articles in Knowledge.
 					</Section>
 					<Section title="Learn (MCP demo)">
-						Thin UI for kanji / exam quiz / vocab tools — use Practice for drills and
-						MCP Tools for the full five portmanteaus.
+						Thin UI for kanji / exam quiz / vocab tools — use Practice for
+						drills and MCP Tools for the full seven portmanteaus.
 					</Section>
 					<Section title="Knowledge">
 						Culture and society articles (history, economy, daily life, crime…).

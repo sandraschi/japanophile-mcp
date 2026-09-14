@@ -29,15 +29,44 @@ except `jlpt/answer` (writes to data/progress.db, seeds stay pristine).
 ## vocab(operation, query, level, limit)
 
 Needs data/kanji.db (fetched, 135MB). search hits vocabulary (400k) + jmdict
-(214k); by_jlpt hits jlpt_vocabulary (8k). Absent DB returns the fetch hint,
-never a traceback.
+(214k); by_jlpt hits jlpt_vocabulary (8k); examples hits the 278,746-row
+examples table (Japanese sentence, English translation, linked words — same
+DB, previously unqueried). Absent DB returns the fetch hint, never a traceback.
 
-## knowledge(operation, page)
+## knowledge(operation, page, collection)
 
-29 vendored japan/ pages. list returns stems; get accepts exact or substring
-stems, returns plain text (HTML stripped, 6000-char cap).
+collection=culture (default): 29 vendored assets/knowledge/japan/ pages.
+collection=language: 11 vendored assets/language/ study pages (grammar,
+vocabulary, keigo, exams, materials, methods, mobile, overview, phonetics,
+writing, bloopers) — same content the webapp Language tab reads, now
+agent-queryable. list returns stems; get accepts exact or substring stems,
+returns plain text (HTML stripped, 6000-char cap).
+
+No separate structured `grammar` tool — no vendored JLPT-graded grammar-point
+database exists, and Makino/Tsutsui's grammar dictionaries are copyrighted, so
+the honest option is exposing the real grammar.html prose page via
+`knowledge(collection=language)` rather than fabricating structured entries.
+
+## jp_utils(operation, text, target, year, era, era_year)
+
+Pure-Python, no external data or dependency.
+
+| operation | params | behavior |
+|---|---|---|
+| kana_convert | text, target=romaji\|hiragana\|katakana | Hepburn gojuon + digraphs + sokuon doubling + chouonpu vowel repeat. No particle-pronunciation exceptions (は stays "ha") or extended loanword katakana digraphs (ファ/ティ/ウィ-style). |
+| era_to_year | era=meiji\|taisho\|showa\|heisei\|reiwa, era_year | -> Western year |
+| year_to_era | year | -> {era, era_year}, year-granularity (boundary year assigned to the new era) |
+
+## remember(operation, session_id, limit)
+
+Reads data/progress.db `answers` (the table `jlpt/answer` writes to).
+
+| operation | behavior |
+|---|---|
+| streak | consecutive UTC days ending today with >=1 answer logged |
+| due | question_ids answered at least once, never correctly — a missed-question queue, NOT a full SM-2/FSRS scheduler |
 
 ## japanophile_help()
 
-Tool list, per-DB status (path or MISSING + fetch hint), knowledge page count,
-ports. Agents call this first.
+Tool list, per-DB status (path or MISSING + fetch hint), knowledge + language
+page counts, ports. Agents call this first.

@@ -253,7 +253,7 @@ export default function Dashboard() {
 							<StatusDot ok />
 							<span className="font-mono text-xs text-zinc-400">mcp_tools</span>
 							<span className="ml-auto text-zinc-200">
-								{m?.mcp_tools ?? 5} portmanteaus
+								{m?.mcp_tools ?? 7} portmanteaus
 							</span>
 						</li>
 					</ul>

@@ -19,6 +19,7 @@ else:
     ASSET_ROOT = REPO_ROOT / "assets"
     DATA_DIR = REPO_ROOT / "data"
 SEED_DIR = ASSET_ROOT / "seed"
+LANGUAGE_DIR = ASSET_ROOT / "language"
 
 # Small DBs ship in assets/seed and are readable in place.
 SEED_DBS = ("kanji_database.db", "jlpt_questions.db")
