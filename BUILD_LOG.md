@@ -37,3 +37,14 @@ Running record for every NSIS build attempt (gate rule: no build without a log).
   (copy in `dist/`). Includes shopping Know + Travel tab from 0e9e4f5.
 - Build script fixes: PS native-command stderr, pre-PyInstaller process kill,
   40s health retry loop.
+- CUA smoke (`scripts/nsis-smoke.ps1`): silent `/S` install to
+  `%LOCALAPPDATA%\Japanophile MCP`, app launch, `/health` OK, knowledge list
+  31 pages, main window handle, silent uninstall, no orphans, port 11193 free.
+
+## 2026-09-14 - NSIS 0.3.1 rebuild (games in sidecar): PASS
+
+- Root cause: PyInstaller spec omitted `assets/games`; installed sidecar returned
+  404 for all `/games/*` iframe cards while `/health` was OK.
+- Fix: `japanophile-mcp-backend.spec` adds `assets/games` -> `japanophile_assets/games`.
+- Verified frozen exe: `/games/kanji-master.html`, `/styles.css`, `/js/theme-switcher.js` -> 200.
+- Ship: same path `Japanophile MCP_0.3.1_x64-setup.exe` (~82.5 MB in `dist/`).

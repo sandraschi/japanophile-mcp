@@ -13,6 +13,7 @@ datas = [
     ("src/japanophile_mcp", "japanophile_mcp"),
     ("assets/seed", "japanophile_assets/seed"),
     ("assets/knowledge", "japanophile_assets/knowledge"),
+    ("assets/games", "japanophile_assets/games"),
     ("skills", "japanophile_assets/skills"),
 ]
 for _corpus in ("data/kanji.db", "data/wakan_vocab.json"):
