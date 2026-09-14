@@ -238,7 +238,7 @@ export default function Diary() {
 						data-testid="diary-progress"
 					>
 						<h3 className="mb-2 font-semibold text-[var(--app-fg)]">
-							JLPT quiz progress
+							Exam quiz progress
 						</h3>
 						{progress ? (
 							<p className="text-[var(--app-muted-fg)]">

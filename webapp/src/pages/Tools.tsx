@@ -69,12 +69,12 @@ export default function Tools() {
 		<div className="space-y-6" data-testid="tools-page">
 			<div className="flex flex-wrap items-end justify-between gap-4">
 				<div>
-					<h2 className="text-2xl font-bold">MCP tool harness</h2>
+					<h2 className="text-2xl font-bold">MCP Tools</h2>
 					<p className="text-zinc-400 max-w-2xl text-sm">
 						{loading
 							? "Loading…"
 							: `${filtered.length} of ${tools.length} tools`}{" "}
-						from the server — pick a card, fill the form, run.
+						— API playground for agents (same surface as Cursor / Claude Desktop).
 					</p>
 				</div>
 				<input

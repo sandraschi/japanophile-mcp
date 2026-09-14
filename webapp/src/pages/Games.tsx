@@ -6,8 +6,8 @@ const GAMES = [
 	["kanji-master.html", "Kanji master (spaced repetition)"],
 	["kanji-3d-visualizer.html", "Kanji 3D visualizer"],
 	["kanji-stroke.html", "Stroke order"],
-	["jlpt-practice-test.html", "JLPT practice test"],
-	["jlpt-vocabulary.html", "JLPT vocabulary"],
+	["jlpt-practice-test.html", "Exam practice test"],
+	["jlpt-vocabulary.html", "Exam vocabulary"],
 	["japanese-flashcards.html", "Flashcards"],
 	["japanese-grammar.html", "Grammar"],
 	["japanese-listening.html", "Listening"],
@@ -33,9 +33,9 @@ export default function Games() {
 	return (
 		<div>
 			<h2 className="mb-4 text-2xl font-bold">
-				Games{" "}
+				Practice{" "}
 				<span className="text-sm font-normal text-zinc-500">
-					vendored learning tools
+					drills and games
 				</span>
 			</h2>
 			<div className="mb-3 flex flex-wrap gap-2" data-testid="games-list">

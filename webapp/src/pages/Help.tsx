@@ -84,7 +84,7 @@ export default function Help() {
 				<div data-testid="help-panel-start">
 					<Section title="Welcome">
 						<p>
-							<b>japanophile-mcp</b> is your local study desk: kanji and JLPT
+							<b>japanophile-mcp</b> is your local study desk: kanji and exam
 							drills, culture articles, travel planning links, and an optional
 							AI chat tuned for Japanese learners.
 						</p>
@@ -105,22 +105,25 @@ export default function Help() {
 								: pick Ollama or a cloud LLM if you want Chat.
 							</li>
 							<li>
-								<Link to="/learn" className="text-violet-400 hover:underline">
-									Learn
+								<Link
+									to="/language"
+									className="text-violet-400 hover:underline"
+								>
+									Language
 								</Link>
-								: look up one kanji, try one JLPT question.
+								: read one curriculum tab (writing, exams, keigo, methods).
 							</li>
 							<li>
 								<Link to="/games" className="text-violet-400 hover:underline">
-									Games
+									Practice
 								</Link>
-								: flashcards or JLPT vocabulary for five minutes.
+								: flashcards or exam vocabulary for five minutes.
 							</li>
 							<li>
 								<Link to="/know" className="text-violet-400 hover:underline">
-									Know
+									Knowledge
 								</Link>
-								: skim one culture page that interests you.
+								: skim one article (history, daily life, economy…).
 							</li>
 						</ol>
 					</Section>
@@ -132,7 +135,7 @@ export default function Help() {
 					<Section title="So you want to learn Japanese?">
 						<p>
 							Start with <b>why</b> you care — anime subtitles, living in Japan,
-							work, family — because that picks your path (casual vs JLPT vs
+							work, family — because that picks your path (casual vs exam track vs
 							business).
 						</p>
 					</Section>
@@ -145,27 +148,45 @@ export default function Help() {
 							</Link>{" "}
 							and{" "}
 							<Link
-								to="/know?page=language"
+								to="/language?tab=writing"
 								className="text-violet-400 hover:underline"
 							>
-								Know → language
+								Language → writing
 							</Link>
 							.
 						</p>
 						<p>
-							<b>JLPT track:</b> pick a target level (many aim N5 → N4 → N3).
-							Use{" "}
-							<Link to="/learn" className="text-violet-400 hover:underline">
-								Learn → Quiz
+							<b>Exam track (JLPT and others):</b> pick a target band (many aim
+							N5 → N4 → N3). Use{" "}
+							<Link to="/games" className="text-violet-400 hover:underline">
+								Practice
 							</Link>
-							,{" "}
+							(exam mocks, flashcards), and the kanji wall. Curriculum:{" "}
 							<Link
-								to="/games?game=jlpt-practice-test.html"
+								to="/language?tab=exams"
 								className="text-violet-400 hover:underline"
 							>
-								JLPT practice test
+								Language → Exams & benchmarks
 							</Link>
-							, and the kanji wall in Games. Official exam info:{" "}
+							; keigo depth on{" "}
+							<Link
+								to="/language?tab=keigo"
+								className="text-violet-400 hover:underline"
+							>
+								Keigo
+							</Link>
+							; books and exchange on{" "}
+							<Link
+								to="/language?tab=materials"
+								className="text-violet-400 hover:underline"
+							>
+								Materials & exchange
+							</Link>
+							. Optional MCP demo quiz on{" "}
+							<Link to="/learn" className="text-violet-400 hover:underline">
+								Learn
+							</Link>
+							. Official exam info:{" "}
 							<ExtLink href="https://www.jlpt.jp/e/">jlpt.jp</ExtLink>.
 						</p>
 						<p>
@@ -176,7 +197,7 @@ export default function Help() {
 					<Section title="What this app does well">
 						<ul className="list-disc space-y-1 pl-5">
 							<li>Kanji lookup and spaced repetition games</li>
-							<li>Culture context so grammar sticks (Know box)</li>
+							<li>Culture context (Knowledge box) plus Language curriculum tabs</li>
 							<li>Chat with japanophile-expert skill when LLM is configured</li>
 							<li>Travel and daily-life articles when you plan a trip</li>
 						</ul>
@@ -193,16 +214,17 @@ export default function Help() {
 
 			{tab === "app" && (
 				<div data-testid="help-panel-app">
-					<Section title="Learn">
-						Kanji dictionary (~13k seed entries), JLPT quiz with progress in{" "}
-						<code className="rounded bg-zinc-800 px-1">data/</code>, vocab and
-						examples when{" "}
-						<code className="rounded bg-zinc-800 px-1">kanji.db</code> is
-						present.
+					<Section title="Language">
+						Curriculum reference (script, grammar, keigo, phonetics, materials,
+						exams). Separate from society articles in Knowledge.
 					</Section>
-					<Section title="Know">
-						Culture knowledge pages (history, food, anime, language…). Long-form
-						HTML from the vendored knowledge box.
+					<Section title="Learn (MCP demo)">
+						Thin UI for kanji / exam quiz / vocab tools — use Practice for drills and
+						MCP Tools for the full five portmanteaus.
+					</Section>
+					<Section title="Knowledge">
+						Culture and society articles (history, economy, daily life, crime…).
+						Cluster tabs filter the sidebar; HTML unchanged.
 					</Section>
 					<Section title="Travel">
 						Planning hub: flights, housing, visas, insurance — plus the budget
@@ -222,9 +244,8 @@ export default function Help() {
 						</Link>
 						.
 					</Section>
-					<Section title="Games">
-						Vendored drills (kanji table, JLPT tests, flashcards…) served from
-						the backend compat API on port 11193.
+					<Section title="Practice">
+						Drills (kanji table, exam tests, flashcards…) on port 11193.
 					</Section>
 					<Section title="Chat">
 						Backend LLM proxy with japanophile-expert system prompt. Configure

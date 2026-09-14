@@ -24,4 +24,4 @@ export const CONTRIBUTORS: Array<{
 ];
 
 export const VENDORED_CREDIT =
-	"Learning games, JLPT/kanji seeds, and Know articles vendored from ai-games-collection (see docs/INHERITANCE.md).";
+	"Learning games, exam/kanji seeds, and Know articles vendored from ai-games-collection (see docs/INHERITANCE.md).";

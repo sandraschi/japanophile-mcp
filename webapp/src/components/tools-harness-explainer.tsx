@@ -55,15 +55,15 @@ export function ToolsHarnessExplainer({
 				— the same surface agents use.
 			</p>
 			<p className="text-xs text-zinc-500">
-				<Link to="/learn" className="text-blue-400 hover:underline">
-					Learn
+				<Link to="/language" className="text-blue-400 hover:underline">
+					Language
 				</Link>
 				,{" "}
 				<Link to="/know" className="text-blue-400 hover:underline">
-					Know
+					Knowledge
 				</Link>
-				, and Games are tailored browse UIs. Kanji/JLPT/vocab/knowledge
-				portmanteaus also run here with full parameter sets.
+				, and Practice games are tailored browse UIs. All five portmanteaus also
+				run here with full parameter sets.
 			</p>
 		</section>
 	);

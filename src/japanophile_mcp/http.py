@@ -131,6 +131,25 @@ def build_app() -> FastAPI:
     def api_knowledge_get(page: str) -> JSONResponse:
         return JSONResponse(_call(server.knowledge, "get", page=page))
 
+    from . import language_pages
+
+    @app.get("/api/language")
+    def api_language_list() -> JSONResponse:
+        tabs = [{"id": tid, "label": lbl} for tid, lbl in language_pages.LANGUAGE_TABS]
+        return JSONResponse({"success": True, "data": tabs})
+
+    @app.get("/api/language/html/{tab}")
+    def api_language_html(tab: str):
+        target = language_pages.resolve_language_tab(tab)
+        if target is None:
+            raise HTTPException(status_code=404, detail="Not Found")
+        body = language_pages.language_html_for_embed(target)
+        return HTMLResponse(
+            content=body,
+            media_type="text/html; charset=utf-8",
+            headers={"Content-Disposition": "inline"},
+        )
+
     games = ASSET_ROOT / "games" / "japanese-language"
     know_dir = ASSET_ROOT / "knowledge" / "japan"
     kanji_table_html = know_dir / "kanji-table.html"

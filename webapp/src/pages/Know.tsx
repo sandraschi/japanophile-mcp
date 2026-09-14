@@ -1,100 +1,46 @@
 import { KnowledgeArticleView } from "@/components/KnowledgeArticleView";
 import { PageTabs } from "@/components/PageTabs";
+import {
+	KNOWLEDGE_CLUSTERS,
+	type KnowledgeClusterId,
+	pageLabel,
+	pagesInCluster,
+} from "@/lib/knowledgeClusters";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { api } from "../lib/api";
 
-const KNOW_TABS = [
-	{ id: "all", label: "All Topics" },
-	{ id: "games", label: "Games & Gambling" },
-] as const;
+export { pageLabel } from "@/lib/knowledgeClusters";
 
-type KnowTabId = (typeof KNOW_TABS)[number]["id"];
+const KNOW_TABS = KNOWLEDGE_CLUSTERS;
 
-const GAMES_CLUSTER = new Set(["games-gambling", "yakuza"]);
-
-const PAGE_LABELS: Record<string, string> = {
-	"2026-snapshot": "2026 Snapshot",
-	"20thcentury": "20th Century",
-	anime: "Anime",
-	art: "Art",
-	bakumatsu: "Bakumatsu",
-	battles: "Battles",
-	cuisine: "Cuisine",
-	culture: "Culture",
-	dailylife: "Daily Life",
-	economy: "Economy",
-	education: "Education",
-	emperors: "Emperors",
-	"games-gambling": "Games & Gambling",
-	geography: "Geography",
-	history: "History",
-	kombini: "Kombini",
-	language: "Language",
-	literature: "Literature",
-	manga: "Manga",
-	modern: "Modern Japan",
-	personages: "Personages",
-	"police-justice": "Police & Justice",
-	problems: "Societal Problems",
-	religion: "Religion",
-	"samurai-era": "Samurai Era",
-	samurai: "Samurai",
-	strengths: "Strengths",
-	timeline: "Timeline",
-	shopping: "Shopping & Vending",
-	travel: "Travel Guide",
-	yakuza: "Yakuza (Organized Crime)",
-};
-
-function titleCaseWords(raw: string): string {
-	return raw
-		.split(/\s+/)
-		.filter(Boolean)
-		.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-		.join(" ");
-}
-
-/** Human label for Know sidebar and article header. */
-export function pageLabel(stem: string): string {
-	if (PAGE_LABELS[stem]) return PAGE_LABELS[stem];
-	const spaced = stem
-		.replace(/([a-z])([0-9])/g, "$1 $2")
-		.replace(/[-_]/g, " ");
-	return titleCaseWords(spaced);
-}
-
-export default function Know() {
+export default function KnowledgePage() {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [pages, setPages] = useState<string[]>([]);
 	const [current, setCurrent] = useState("");
 	const [error, setError] = useState("");
-	const [cluster, setCluster] = useState<KnowTabId>(() => {
+	const [cluster, setCluster] = useState<KnowledgeClusterId>(() => {
 		const t = searchParams.get("cluster") ?? "all";
-		return t === "games" ? "games" : "all";
+		return KNOW_TABS.some((c) => c.id === t)
+			? (t as KnowledgeClusterId)
+			: "all";
 	});
 
-	const visiblePages = useMemo(() => {
-		if (cluster === "games") {
-			return pages.filter((p) => GAMES_CLUSTER.has(p));
-		}
-		return pages;
-	}, [pages, cluster]);
+	const visiblePages = useMemo(
+		() => pagesInCluster(pages, cluster),
+		[pages, cluster],
+	);
 
 	const selectPage = (stem: string) => {
 		setCurrent(stem);
-		const next: Record<string, string> = {};
-		if (stem) next.page = stem;
+		const next: Record<string, string> = { page: stem };
 		if (cluster !== "all") next.cluster = cluster;
 		setSearchParams(next, { replace: true });
 	};
 
-	const selectCluster = (id: KnowTabId) => {
+	const selectCluster = (id: KnowledgeClusterId) => {
 		setCluster(id);
-		const inCluster =
-			id === "games"
-				? pages.filter((p) => GAMES_CLUSTER.has(p))
-				: pages;
+		const inCluster = pagesInCluster(pages, id);
 		const keep = current && inCluster.includes(current);
 		const nextPage = keep ? current : (inCluster[0] ?? "");
 		setCurrent(nextPage);
@@ -114,8 +60,9 @@ export default function Know() {
 	useEffect(() => {
 		const q = searchParams.get("page")?.trim();
 		const c = searchParams.get("cluster");
-		if (c === "games") setCluster("games");
-		else if (c === "all" || !c) setCluster("all");
+		if (c && KNOW_TABS.some((t) => t.id === c)) {
+			setCluster(c as KnowledgeClusterId);
+		}
 		if (q && pages.includes(q)) {
 			setCurrent(q);
 		}
@@ -124,31 +71,35 @@ export default function Know() {
 	return (
 		<div>
 			<h2 className="mb-4 text-2xl font-bold">
-				Know{" "}
+				Knowledge{" "}
 				<span className="text-sm font-normal text-zinc-500">
-					culture knowledge box
+					Japan in context — history, society, culture
 				</span>
 			</h2>
 			<p className="mb-4 text-sm text-zinc-500">
-				Plan travel:{" "}
-				<Link to="/travel" className="text-blue-400 hover:underline">
-					Travel page
-				</Link>
-				. JLPT drills:{" "}
-				<Link to="/games" className="text-blue-400 hover:underline">
-					Games menu
+				For the{" "}
+				<Link to="/language" className="text-violet-400 hover:underline">
+					Language
 				</Link>{" "}
-				(not Go/shogi engines).
+				curriculum (grammar, keigo, exams, materials), use the Language page. Travel:{" "}
+				<Link to="/travel" className="text-violet-400 hover:underline">
+					Travel
+				</Link>
+				. Drills:{" "}
+				<Link to="/games" className="text-violet-400 hover:underline">
+					Practice games
+				</Link>
+				.
 			</p>
 			<PageTabs
 				tabs={[...KNOW_TABS]}
 				active={cluster}
-				onChange={(id) => selectCluster(id as KnowTabId)}
+				onChange={(id) => selectCluster(id as KnowledgeClusterId)}
 				testId="know-tabs"
 			/>
 			{error && <p className="text-red-400">{error}</p>}
 			<div className="flex gap-6">
-				<ul data-testid="know-list" className="w-52 shrink-0 space-y-1">
+				<ul data-testid="know-list" className="w-56 shrink-0 space-y-1">
 					{visiblePages.map((p) => (
 						<li key={p}>
 							<button
@@ -164,7 +115,7 @@ export default function Know() {
 				</ul>
 				<div className="min-w-0 flex-1" data-testid="know-article">
 					{!current ? (
-						<p className="text-zinc-500">Pick a page.</p>
+						<p className="text-zinc-500">Pick an article.</p>
 					) : (
 						<>
 							<p className="mb-2 text-sm text-zinc-400">{pageLabel(current)}</p>

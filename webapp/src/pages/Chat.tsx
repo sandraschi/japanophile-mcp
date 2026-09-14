@@ -52,7 +52,7 @@ export default function Chat() {
 			.then(setSkill)
 			.catch(() =>
 				setSkill(
-					"japanophile-expert skill (fallback): answer from kanji/JLPT tools; cite knowledge pages.",
+					"japanophile-expert skill (fallback): answer from kanji/exam tools; cite knowledge pages.",
 				),
 			);
 	}, []);
@@ -116,7 +116,7 @@ export default function Chat() {
 			>
 				{log.length === 0 && (
 					<p className="text-sm text-zinc-500">
-						Ask about kanji, JLPT prep, or Japanese culture.
+						Ask about kanji, exam prep (N5–N1), or Japanese culture.
 					</p>
 				)}
 				{log.map((m) => (

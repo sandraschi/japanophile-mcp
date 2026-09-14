@@ -9,14 +9,14 @@ const SIDEBAR_KEY = "jpn.sidebar_collapsed";
 
 const links = [
 	["Dashboard", "/"],
-	["Learn", "/learn"],
-	["Know", "/know"],
+	["Language", "/language"],
+	["Knowledge", "/know"],
 	["Travel", "/travel"],
 	["Diary", "/diary"],
-	["Games", "/games"],
+	["Practice", "/games"],
 	["Chat", "/chat"],
 	["Skills", "/skills"],
-	["Tools", "/tools"],
+	["MCP Tools", "/tools"],
 	["Apps", "/apps"],
 	["Settings", "/settings"],
 	["Help", "/help"],
@@ -54,7 +54,7 @@ export default function App() {
 				<h1 className="text-xl font-bold" data-testid="app-title">
 					japanophile-mcp{" "}
 					<span className="text-sm font-normal text-[var(--app-muted-fg)]">
-						Learn · Know · Plan · Remember
+						Language · Knowledge · Practice
 					</span>
 				</h1>
 			</header>

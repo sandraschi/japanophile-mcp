@@ -119,10 +119,9 @@ export function cleanArgs(
 
 export function toolCategory(name: string): string {
 	const n = name.toLowerCase();
-	if (n.includes("kanji")) return "Learn";
-	if (n.includes("jlpt")) return "Learn";
-	if (n.includes("vocab")) return "Learn";
-	if (n.includes("knowledge")) return "Know";
+	if (n.includes("kanji") || n.includes("jlpt") || n.includes("vocab"))
+		return "Language data";
+	if (n.includes("knowledge")) return "Knowledge";
 	if (n.includes("help")) return "Meta";
 	return "Other";
 }
@@ -130,10 +129,10 @@ export function toolCategory(name: string): string {
 export function relatedPage(name: string): string | null {
 	const n = name.toLowerCase();
 	if (n.includes("kanji") || n.includes("jlpt") || n.includes("vocab"))
-		return "/learn";
+		return "/language";
 	if (n.includes("knowledge")) return "/know";
 	if (n.includes("help")) return "/help";
 	return null;
 }
 
-export const CATEGORY_ORDER = ["Learn", "Know", "Meta", "Other"];
+export const CATEGORY_ORDER = ["Language data", "Knowledge", "Meta", "Other"];

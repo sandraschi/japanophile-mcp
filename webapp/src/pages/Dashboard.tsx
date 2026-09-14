@@ -80,7 +80,7 @@ export default function Dashboard() {
 			? [
 					m.kanji_entries != null && `${formatCount(m.kanji_entries)} kanji`,
 					m.jlpt_questions != null &&
-						`${formatCount(m.jlpt_questions)} JLPT items`,
+						`${formatCount(m.jlpt_questions)} exam quiz items`,
 					m.knowledge_pages > 0 &&
 						`${formatCount(m.knowledge_pages)} culture pages`,
 					corpusReady &&
@@ -108,7 +108,7 @@ export default function Dashboard() {
 					Your Japanophile workstation
 				</h2>
 				<p className="mt-3 max-w-2xl text-base leading-relaxed text-zinc-400">
-					Kanji and JLPT learning, culture knowledge, vocab search, and MCP
+					Kanji and exam-level drills, culture knowledge, vocab search, and MCP
 					tools for agents — one backend, dark web UI, optional Windows app.
 				</p>
 				<p
@@ -185,7 +185,7 @@ export default function Dashboard() {
 						ok={dataReady(d?.["kanji_database.db"])}
 					/>
 					<KpiCard
-						label="JLPT quiz bank"
+						label="Exam quiz bank"
 						testId="kpi-jlpt"
 						value={loading ? "…" : formatCount(m?.jlpt_questions)}
 						sub={

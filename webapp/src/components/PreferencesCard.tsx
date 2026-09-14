@@ -37,7 +37,7 @@ export function PreferencesCard() {
 		try {
 			const { prefs: saved } = await saveUserPrefs(prefs);
 			setPrefs(saved);
-			setMsg("Saved. Learn quiz uses your study level only.");
+			setMsg("Saved. Learn quiz uses your exam level only.");
 		} catch (e) {
 			setErr(e instanceof Error ? e.message : String(e));
 		} finally {
@@ -55,8 +55,9 @@ export function PreferencesCard() {
 					Learning preferences
 				</h3>
 				<p className="mt-1 text-sm text-zinc-500">
-					Your JLPT study level controls which quiz levels appear (e.g. N2 hides
-					N5–N3). Progress is stored under one session id across Learn,
+					Your target exam band (N5–N1, same scale as JLPT) controls which quiz
+					levels appear (e.g. N2 hides N5–N3). See Language → Exams for what
+					those levels mean. Progress uses one session id across Learn,
 					Dashboard, and Diary.
 				</p>
 			</div>
@@ -71,7 +72,7 @@ export function PreferencesCard() {
 				/>
 			</label>
 			<label className="block text-sm">
-				<span className="text-zinc-400">JLPT study level</span>
+				<span className="text-zinc-400">Target exam level (N5–N1)</span>
 				<select
 					data-testid="prefs-jlpt-level"
 					value={prefs.default_jlpt_level}

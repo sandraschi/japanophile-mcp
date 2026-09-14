@@ -14,6 +14,7 @@ import Diary from "./pages/Diary";
 import Games from "./pages/Games";
 import Help from "./pages/Help";
 import Know from "./pages/Know";
+import Language from "./pages/Language";
 import Learn from "./pages/Learn";
 import Logs from "./pages/Logs";
 import Skills from "./pages/Skills";
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
 		children: [
 			{ index: true, element: <Dashboard /> },
 			{ path: "learn", element: <Learn /> },
+			{ path: "language", element: <Language /> },
 			{ path: "know", element: <Know /> },
 			{ path: "travel", element: <Travel /> },
 			{ path: "diary", element: <Diary /> },

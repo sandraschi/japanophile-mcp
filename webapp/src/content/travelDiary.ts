@@ -52,7 +52,7 @@ export const TRAVEL_DIARY_ENTRIES: TravelDiaryEntry[] = [
 		place: "Study",
 		title: "Japanese on the road",
 		body:
-			"JLPT drills on Learn between meetings; kanji lookups from menus I couldn’t read last trip. " +
+			"Exam drills on Learn between meetings; kanji lookups from menus I couldn’t read last trip. " +
 			"Progress session id in Settings ties quiz scores here on the Study log tab — streaks beat guilt.",
 		tags: ["learn", "jlpt"],
 	},
