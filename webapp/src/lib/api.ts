@@ -84,6 +84,17 @@ export const api = {
 	knowledgeList: () => get<Dialogic<string[]>>("/api/knowledge"),
 	knowledgeGet: (page: string) =>
 		get<Dialogic<string>>(`/api/knowledge/${encodeURIComponent(page)}`),
+	/** Direct URL for an <audio> tag — proxies speech-mcp, so no CORS/port wiring in the browser. */
+	speakWavUrl: (text: string, provider = "windows") =>
+		`${API}/api/crossconnect/speak.wav?${new URLSearchParams({ text, provider }).toString()}`,
+	librarySearch: (query: string, limit = 10) =>
+		get<Dialogic>(
+			`/api/crossconnect/library_search?${new URLSearchParams({ query, limit: String(limit) }).toString()}`,
+		),
+	mediaSearch: (query: string, mediaType = "", limit = 10) =>
+		get<Dialogic>(
+			`/api/crossconnect/media_search?${new URLSearchParams({ query, media_type: mediaType, limit: String(limit) }).toString()}`,
+		),
 	skillText: () =>
 		fetch(`${BACKEND}/skills/japanophile-expert/SKILL.md`).then((r) => {
 			if (!r.ok) throw new Error(`skill: ${r.status}`);

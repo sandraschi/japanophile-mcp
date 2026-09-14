@@ -66,6 +66,24 @@ Reads data/progress.db `answers` (the table `jlpt/answer` writes to).
 | streak | consecutive UTC days ending today with >=1 answer logged |
 | due | question_ids answered at least once, never correctly — a missed-question queue, NOT a full SM-2/FSRS scheduler |
 
+## crossconnect(operation, text, query, tag, media_type, provider, voice_id, limit)
+
+Thin proxies to sibling fleet MCP servers over their existing REST APIs —
+no vendored copy of their data. Each peer is checked live on every call;
+unreachable returns `success: false` with a start hint, never a traceback.
+Env override: SPEECH_MCP_URL, CALIBRE_MCP_URL, PLEX_MCP_URL (defaults
+:10909 / :10720 / :10740). See docs/CONFIGURATION.md.
+
+| operation | params | behavior |
+|---|---|---|
+| speak | text, provider, voice_id | POST speech-mcp `/api/v1/tts` — plays on speech-mcp's OWN speaker (agent voice output). For audio the caller can play, the webapp instead uses `GET /api/crossconnect/speak.wav` directly. |
+| library_search | query, tag, limit | GET calibre-mcp `/api/search/`. calibre-mcp's `query` param is currently a no-op server-side (verified 2026-09-15) — this tool filters client-side over title/authors/tags on top of it so the result is honest regardless. |
+| media_search | query, media_type, limit | GET plex-mcp `/api/search/`. plex-mcp's `media_type` param is currently a no-op server-side (verified 2026-09-15) — this tool filters client-side by `item.type` on top of it. |
+
+Both upstream bugs are flagged as follow-up tasks in the respective repos, not
+fixed in this repo (out of scope) — the client-side workarounds here just keep
+this tool's own contract honest in the meantime.
+
 ## japanophile_help()
 
 Tool list, per-DB status (path or MISSING + fetch hint), knowledge + language

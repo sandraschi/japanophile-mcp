@@ -6,7 +6,7 @@ import {
 	pageLabel,
 	pagesInCluster,
 } from "@/lib/knowledgeClusters";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { api } from "../lib/api";
 
@@ -19,6 +19,29 @@ export default function KnowledgePage() {
 	const [pages, setPages] = useState<string[]>([]);
 	const [current, setCurrent] = useState("");
 	const [error, setError] = useState("");
+	const [listenState, setListenState] = useState<"idle" | "loading" | "error">(
+		"idle",
+	);
+	const audioRef = useRef<HTMLAudioElement>(null);
+
+	const listen = async () => {
+		if (!current) return;
+		setListenState("loading");
+		try {
+			const res = await api.knowledgeGet(current);
+			const text = (res.data ?? "").slice(0, 400).trim();
+			if (!text) throw new Error("No text to read.");
+			const audio = audioRef.current;
+			if (!audio) return;
+			audio.src = api.speakWavUrl(text);
+			await audio.play();
+			setListenState("idle");
+		} catch {
+			// speech-mcp likely not running — degrade quietly, same spirit as a
+			// missing local DB (PRD.md data strategy): a friendly state, no crash.
+			setListenState("error");
+		}
+	};
 	const [cluster, setCluster] = useState<KnowledgeClusterId>(() => {
 		const t = searchParams.get("cluster") ?? "all";
 		return KNOW_TABS.some((c) => c.id === t)
@@ -81,7 +104,8 @@ export default function KnowledgePage() {
 				<Link to="/language" className="text-violet-400 hover:underline">
 					Language
 				</Link>{" "}
-				curriculum (grammar, keigo, exams, materials), use the Language page. Travel:{" "}
+				curriculum (grammar, keigo, exams, materials), use the Language page.
+				Travel:{" "}
 				<Link to="/travel" className="text-violet-400 hover:underline">
 					Travel
 				</Link>
@@ -118,7 +142,32 @@ export default function KnowledgePage() {
 						<p className="text-zinc-500">Pick an article.</p>
 					) : (
 						<>
-							<p className="mb-2 text-sm text-zinc-400">{pageLabel(current)}</p>
+							<div className="mb-2 flex items-center gap-3">
+								<p className="text-sm text-zinc-400">{pageLabel(current)}</p>
+								<button
+									type="button"
+									data-testid="know-listen"
+									onClick={listen}
+									disabled={listenState === "loading"}
+									className="rounded border border-zinc-700 px-2 py-0.5 text-xs text-zinc-400 hover:bg-zinc-800 disabled:opacity-50"
+									title="Read the first ~400 characters aloud via speech-mcp"
+								>
+									{listenState === "loading"
+										? "Loading…"
+										: "🔊 Listen (excerpt)"}
+								</button>
+								{listenState === "error" && (
+									<span className="text-xs text-red-400">
+										speech-mcp not reachable
+									</span>
+								)}
+							</div>
+							{/* biome-ignore lint/a11y/useMediaCaption: TTS output has no source track to caption */}
+							<audio
+								ref={audioRef}
+								data-testid="know-audio"
+								className="hidden"
+							/>
 							<KnowledgeArticleView page={current} />
 						</>
 					)}

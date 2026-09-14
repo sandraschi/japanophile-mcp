@@ -8,10 +8,11 @@ from __future__ import annotations
 
 import argparse
 
+import httpx
 import uvicorn
 from fastapi import APIRouter, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 
 from . import server
@@ -130,6 +131,38 @@ def build_app() -> FastAPI:
     @app.get("/api/knowledge/{page}")
     def api_knowledge_get(page: str) -> JSONResponse:
         return JSONResponse(_call(server.knowledge, "get", page=page))
+
+    @app.get("/api/crossconnect/library_search")
+    def api_library_search(query: str = "", tag: str = "", limit: int = 20) -> JSONResponse:
+        return JSONResponse(
+            _call(server.crossconnect, "library_search", query=query, tag=tag, limit=limit)
+        )
+
+    @app.get("/api/crossconnect/media_search")
+    def api_media_search(
+        query: str = "", media_type: str = "", limit: int = 20
+    ) -> JSONResponse:
+        return JSONResponse(
+            _call(
+                server.crossconnect,
+                "media_search",
+                query=query,
+                media_type=media_type,
+                limit=limit,
+            )
+        )
+
+    @app.get("/api/crossconnect/speak.wav")
+    def api_speak_wav(text: str, provider: str = "windows", voice_id: str = "default"):
+        """Proxy speech-mcp's TTS WAV so the webapp never needs its port/CORS directly."""
+        from .services.crossconnects import tts_wav_url
+
+        try:
+            resp = httpx.get(tts_wav_url(text, provider=provider, voice_id=voice_id), timeout=15.0)
+            resp.raise_for_status()
+        except httpx.HTTPError as exc:
+            raise HTTPException(status_code=502, detail=f"speech-mcp unreachable: {exc}") from exc
+        return Response(content=resp.content, media_type="audio/wav")
 
     from . import language_pages
 

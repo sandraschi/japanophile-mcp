@@ -37,6 +37,7 @@ Seven portmanteau tools, dialogic returns, seeds in `assets/seed/`, learning cor
 | `knowledge` | list, get — **collection=culture** (29 pages) or **collection=language** (grammar/vocab/keigo/exams, 11 pages) | assets/knowledge/japan/*.html, assets/language/*.html |
 | `jp_utils` | kana_convert (hiragana/katakana/romaji), era_to_year, year_to_era | pure Python — Hepburn table + Meiji-Reiwa era table |
 | `remember` | streak, due (missed-question queue) | data/progress.db `answers` table (same store `jlpt/answer` writes) |
+| `crossconnect` | speak, library_search, media_search | proxies speech-mcp/calibre-mcp/plex-mcp REST APIs (2026-09-15, see Crossconnects below) |
 | `japanophile_help` | tool + data status | - |
 
 No structured `grammar` tool: the fleet has no vendored JLPT-graded grammar-point database (unlike Ayaka/Potto Japan), and Makino/Tsutsui's grammar dictionaries are copyrighted — fabricating one would violate the no-fake-data standard. `knowledge(collection=language)` exposes the real vendored grammar prose page instead.
@@ -77,12 +78,12 @@ Learn tools (~15 html/js games), 29 knowledge pages, kanji/JLPT seeds vendored f
 
 ## Crossconnects
 
-- **speech-mcp** — listen/speak drills for the Learn face (voice, not yet wired).
-- **local-llm-mcp** — Chat tutoring (wired today).
-- **calibre-mcp** — Japanese literature, textbooks, and manga library (not yet wired).
-- **plex-mcp** — Japanese movies and anime library (not yet wired).
+- **local-llm-mcp** — Chat tutoring (wired).
+- **speech-mcp** — TTS via `crossconnect(speak)` and the Know page's Listen button; proxied through `/api/crossconnect/speak.wav` so the browser never talks to speech-mcp's port directly (wired 2026-09-15).
+- **calibre-mcp** — `crossconnect(library_search)`, Sandra's Japanese-literature/textbook/manga shelf by query or tag (wired 2026-09-15; client-side query filter works around an upstream bug — calibre-mcp's own `query` param is currently a no-op, see [reports/quality-japanophile-mcp-2026-09-14.md](reports/quality-japanophile-mcp-2026-09-14.md) follow-ups).
+- **plex-mcp** — `crossconnect(media_search)`, Sandra's JP movies/anime by query and media_type (wired 2026-09-15; client-side type filter works around plex-mcp's `media_type` param currently being a no-op).
 - **ai-games-collection** — canonical home for hanafuda/cho-han gameplay; this repo owns learning.
-- Full crossconnect map: `mcp-central-docs/projects/japanophile-mcp/PHILE_PATTERN.md`.
+- Full crossconnect map: `mcp-central-docs/projects/japanophile-mcp/PHILE_PATTERN.md`. No webapp browser UI yet for library_search/media_search — MCP/HTTP only so far.
 
 ## Roadmap
 

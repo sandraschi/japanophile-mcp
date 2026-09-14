@@ -394,6 +394,42 @@ def remember(operation: str, session_id: str = "default", limit: int = 20) -> di
 
 
 @mcp.tool()
+def crossconnect(
+    operation: str,
+    text: str = "",
+    query: str = "",
+    tag: str = "",
+    media_type: str = "",
+    provider: str = "windows",
+    voice_id: str = "default",
+    limit: int = 20,
+) -> dict:
+    """Fleet crossconnects: speak | library_search | media_search. Each proxies a
+    sibling MCP server's REST API (speech-mcp :10909, calibre-mcp :10720,
+    plex-mcp :10740 by default, override via SPEECH_MCP_URL/CALIBRE_MCP_URL/
+    PLEX_MCP_URL). Peer offline returns a fail() with a start hint, not a
+    traceback — see PHILE_PATTERN.md crossconnects section.
+
+    speak: text=... plays via speech-mcp's TTS on ITS OWN speaker (agent voice
+    output), not returned audio. library_search: query and/or tag against
+    Sandra's Calibre library. media_search: query (+ optional media_type)
+    against her Plex library.
+    """
+    from .services import crossconnects as cc
+
+    if operation == "speak":
+        return cc.speak(text, provider=provider, voice_id=voice_id)
+    if operation == "library_search":
+        return cc.library_search(query, tag=tag, limit=limit)
+    if operation == "media_search":
+        return cc.media_search(query, media_type=media_type, limit=limit)
+    return fail(
+        f"Unknown crossconnect operation '{operation}'. Valid: speak, library_search,"
+        " media_search."
+    )
+
+
+@mcp.tool()
 def kanji(
     operation: str,
     query: str = "",
@@ -686,16 +722,16 @@ def japanophile_help() -> dict:
         "vocabulary_rows": _count_table("kanji.db", "vocabulary"),
         "example_rows": _count_table("kanji.db", "examples"),
         "jmdict_rows": _count_table("kanji.db", "jmdict"),
-        "mcp_tools": 7,
+        "mcp_tools": 8,
     }
     return ok(
         "japanophile-mcp: Learn (kanji, jlpt, vocab) + Know (knowledge box, culture"
-        " + language collections) + jp_utils (romaji/kana/era) + remember (streak/due)."
-        " Travel planner + diary are roadmap, not tools yet.",
+        " + language collections) + jp_utils (romaji/kana/era) + remember (streak/due)"
+        " + crossconnect (speech/calibre/plex-mcp). Travel planner + diary are roadmap.",
         {
             "tools": [
                 "kanji", "jlpt", "vocab", "knowledge", "jp_utils", "remember",
-                "japanophile_help",
+                "crossconnect", "japanophile_help",
             ],
             "data": status,
             "metrics": metrics,
