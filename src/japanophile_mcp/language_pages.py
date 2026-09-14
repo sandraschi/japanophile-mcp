@@ -14,6 +14,7 @@ LANGUAGE_TABS: tuple[tuple[str, str], ...] = (
     ("writing", "Writing systems"),
     ("grammar", "Grammar"),
     ("keigo", "Keigo (honorifics)"),
+    ("bloopers", "Bloopers & traps"),
     ("vocabulary", "Vocabulary"),
     ("phonetics", "Phonetics & pitch"),
     ("methods", "Learning methods"),
