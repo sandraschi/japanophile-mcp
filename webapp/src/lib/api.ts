@@ -52,6 +52,21 @@ export interface QuizQuestion {
 	options: { option_letter: string; option_text: string }[];
 }
 
+export interface LibraryBook {
+	id: string;
+	title: string;
+	authors: string[];
+	tags: string[];
+	rating: number | null;
+}
+
+export interface MediaResult {
+	id: string;
+	title: string;
+	type: string;
+	summary: string;
+}
+
 export const api = {
 	health: () => get<{ ok: boolean; repo: string; stage: number }>("/health"),
 	help: () => get<Dialogic>("/api/help"),
@@ -87,12 +102,12 @@ export const api = {
 	/** Direct URL for an <audio> tag — proxies speech-mcp, so no CORS/port wiring in the browser. */
 	speakWavUrl: (text: string, provider = "windows") =>
 		`${API}/api/crossconnect/speak.wav?${new URLSearchParams({ text, provider }).toString()}`,
-	librarySearch: (query: string, limit = 10) =>
-		get<Dialogic>(
-			`/api/crossconnect/library_search?${new URLSearchParams({ query, limit: String(limit) }).toString()}`,
+	librarySearch: (query: string, tag = "", limit = 20) =>
+		get<Dialogic<LibraryBook[]>>(
+			`/api/crossconnect/library_search?${new URLSearchParams({ query, tag, limit: String(limit) }).toString()}`,
 		),
-	mediaSearch: (query: string, mediaType = "", limit = 10) =>
-		get<Dialogic>(
+	mediaSearch: (query: string, mediaType = "", limit = 20) =>
+		get<Dialogic<MediaResult[]>>(
 			`/api/crossconnect/media_search?${new URLSearchParams({ query, media_type: mediaType, limit: String(limit) }).toString()}`,
 		),
 	skillText: () =>

@@ -16,6 +16,7 @@ import Help from "./pages/Help";
 import Know from "./pages/Know";
 import Language from "./pages/Language";
 import Learn from "./pages/Learn";
+import Library from "./pages/Library";
 import Logs from "./pages/Logs";
 import Skills from "./pages/Skills";
 import Tools from "./pages/Tools";
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
 			{ path: "know", element: <Know /> },
 			{ path: "travel", element: <Travel /> },
 			{ path: "diary", element: <Diary /> },
+			{ path: "library", element: <Library /> },
 			{ path: "games", element: <Games /> },
 			{
 				path: "chat",

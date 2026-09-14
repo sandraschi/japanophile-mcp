@@ -1,6 +1,6 @@
 import { AppTopbar } from "@/components/AppTopbar";
-import { cn } from "@/lib/utils";
 import { initThemeFromStorage } from "@/lib/theme";
+import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
@@ -13,6 +13,7 @@ const links = [
 	["Knowledge", "/know"],
 	["Travel", "/travel"],
 	["Diary", "/diary"],
+	["Library", "/library"],
 	["Practice", "/games"],
 	["Chat", "/chat"],
 	["Skills", "/skills"],
@@ -106,7 +107,9 @@ export default function App() {
 									)
 								}
 							>
-								{collapsed ? label.replace(/[^\p{L}\p{N}]/gu, "").slice(0, 2) : label}
+								{collapsed
+									? label.replace(/[^\p{L}\p{N}]/gu, "").slice(0, 2)
+									: label}
 							</NavLink>
 						))}
 					</div>
