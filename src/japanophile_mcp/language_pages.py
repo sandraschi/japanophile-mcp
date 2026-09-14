@@ -19,6 +19,7 @@ LANGUAGE_TABS: tuple[tuple[str, str], ...] = (
     ("phonetics", "Phonetics & pitch"),
     ("methods", "Learning methods"),
     ("materials", "Materials & exchange"),
+    ("mobile", "iPhone & iPad"),
     ("exams", "Exams & benchmarks"),
 )
 
