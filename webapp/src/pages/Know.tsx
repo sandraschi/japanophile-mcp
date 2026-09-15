@@ -29,7 +29,9 @@ export default function KnowledgePage() {
 		setListenState("loading");
 		try {
 			const res = await api.knowledgeGet(current);
-			const text = (res.data ?? "").slice(0, 400).trim();
+			// Gemini (default TTS voice) takes ~20s for 400 chars — trimmed to keep
+			// the wait reasonable; Windows SAPI would tolerate more but sounds worse.
+			const text = (res.data ?? "").slice(0, 200).trim();
 			if (!text) throw new Error("No text to read.");
 			const audio = audioRef.current;
 			if (!audio) return;
@@ -150,10 +152,10 @@ export default function KnowledgePage() {
 									onClick={listen}
 									disabled={listenState === "loading"}
 									className="rounded border border-zinc-700 px-2 py-0.5 text-xs text-zinc-400 hover:bg-zinc-800 disabled:opacity-50"
-									title="Read the first ~400 characters aloud via speech-mcp"
+									title="Read the first ~200 characters aloud via speech-mcp (Gemini voice, can take ~10s)"
 								>
 									{listenState === "loading"
-										? "Loading…"
+										? "Synthesizing…"
 										: "🔊 Listen (excerpt)"}
 								</button>
 								{listenState === "error" && (

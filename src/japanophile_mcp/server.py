@@ -400,7 +400,7 @@ def crossconnect(
     query: str = "",
     tag: str = "",
     media_type: str = "",
-    provider: str = "windows",
+    provider: str = "gemini",
     voice_id: str = "default",
     limit: int = 20,
 ) -> dict:
@@ -411,9 +411,11 @@ def crossconnect(
     traceback — see PHILE_PATTERN.md crossconnects section.
 
     speak: text=... plays via speech-mcp's TTS on ITS OWN speaker (agent voice
-    output), not returned audio. library_search: query and/or tag against
-    Sandra's Calibre library. media_search: query (+ optional media_type)
-    against her Plex library.
+    output), not returned audio. Defaults provider=gemini (noticeably better
+    than Windows SAPI); pass provider="windows" if Gemini isn't configured on
+    speech-mcp. library_search: query and/or tag against Sandra's Calibre
+    library. media_search: query (+ optional media_type) against her Plex
+    library.
     """
     from .services import crossconnects as cc
 

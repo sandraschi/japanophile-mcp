@@ -153,12 +153,17 @@ def build_app() -> FastAPI:
         )
 
     @app.get("/api/crossconnect/speak.wav")
-    def api_speak_wav(text: str, provider: str = "windows", voice_id: str = "default"):
-        """Proxy speech-mcp's TTS WAV so the webapp never needs its port/CORS directly."""
+    def api_speak_wav(text: str, provider: str = "gemini", voice_id: str = "default"):
+        """Proxy speech-mcp's TTS WAV so the webapp never needs its port/CORS directly.
+
+        Gemini synthesis is noticeably slower than Windows SAPI (~20s for a
+        400-char excerpt, measured 2026-09-15) — timeout set generously so a
+        slow-but-successful Gemini call doesn't read as "not reachable".
+        """
         from .services.crossconnects import tts_wav_url
 
         try:
-            resp = httpx.get(tts_wav_url(text, provider=provider, voice_id=voice_id), timeout=15.0)
+            resp = httpx.get(tts_wav_url(text, provider=provider, voice_id=voice_id), timeout=45.0)
             resp.raise_for_status()
         except httpx.HTTPError as exc:
             raise HTTPException(status_code=502, detail=f"speech-mcp unreachable: {exc}") from exc

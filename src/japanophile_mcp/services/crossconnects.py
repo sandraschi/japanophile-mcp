@@ -30,17 +30,25 @@ def _unreachable(name: str, url: str, detail: str) -> dict:
     }
 
 
-def speak(text: str, provider: str = "windows", voice_id: str = "default") -> dict:
+def speak(text: str, provider: str = "gemini", voice_id: str = "default") -> dict:
     """POST speech-mcp /api/v1/tts. Plays on speech-mcp's own speaker (agent-side
     voice output) — for audio the caller can play back, use tts_wav_url instead.
+    Defaults to Gemini over Windows SAPI (voice quality preference); pass
+    provider="windows" explicitly if Gemini isn't configured on speech-mcp.
     """
     if not text.strip():
         return {"success": False, "message": "speak needs non-empty text.", "data": None}
+    # speech-mcp's POST /api/v1/tts passes voice_id="default" through literally to
+    # Gemini as a voice NAME (500s — "default" isn't a real Gemini voice), unlike
+    # its GET /api/v1/tts/wav sibling which normalizes "default" to "Kore" first.
+    # Verified 2026-09-15; worked around here rather than in speech-mcp.
+    if provider == "gemini" and voice_id in ("", "default"):
+        voice_id = "Kore"
     try:
         resp = httpx.post(
             f"{SPEECH_MCP_URL}/api/v1/tts",
             json={"text": text, "provider": provider, "voice_id": voice_id},
-            timeout=15.0,
+            timeout=45.0,  # Gemini is much slower than Windows SAPI — see tts_wav_url note
         )
         resp.raise_for_status()
         return {
@@ -52,8 +60,14 @@ def speak(text: str, provider: str = "windows", voice_id: str = "default") -> di
         return _unreachable("speech-mcp", SPEECH_MCP_URL, str(exc))
 
 
-def tts_wav_url(text: str, provider: str = "windows", voice_id: str = "default") -> str:
-    """Direct speech-mcp WAV URL — for an `<audio>` tag or a streaming HTTP proxy."""
+def tts_wav_url(text: str, provider: str = "gemini", voice_id: str = "default") -> str:
+    """Direct speech-mcp WAV URL — for an `<audio>` tag or a streaming HTTP proxy.
+
+    Defaults to Gemini over Windows SAPI (noticeably better voice quality; Sandra's
+    preference 2026-09-15). If speech-mcp has no Gemini API key configured, that
+    surfaces as a clear 503/error rather than silently degrading — pass
+    provider="windows" explicitly as a fallback if needed.
+    """
     qs = urlencode({"text": text, "provider": provider, "voice_id": voice_id})
     return f"{SPEECH_MCP_URL}/api/v1/tts/wav?{qs}"
 

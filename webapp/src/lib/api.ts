@@ -99,8 +99,9 @@ export const api = {
 	knowledgeList: () => get<Dialogic<string[]>>("/api/knowledge"),
 	knowledgeGet: (page: string) =>
 		get<Dialogic<string>>(`/api/knowledge/${encodeURIComponent(page)}`),
-	/** Direct URL for an <audio> tag — proxies speech-mcp, so no CORS/port wiring in the browser. */
-	speakWavUrl: (text: string, provider = "windows") =>
+	/** Direct URL for an <audio> tag — proxies speech-mcp, so no CORS/port wiring in
+	 * the browser. Defaults to Gemini over Windows SAPI (voice quality preference). */
+	speakWavUrl: (text: string, provider = "gemini") =>
 		`${API}/api/crossconnect/speak.wav?${new URLSearchParams({ text, provider }).toString()}`,
 	librarySearch: (query: string, tag = "", limit = 20) =>
 		get<Dialogic<LibraryBook[]>>(
