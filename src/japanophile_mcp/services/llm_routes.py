@@ -156,9 +156,7 @@ def register_llm_routes(router: Any) -> None:
         endpoint: str = Query(default=""),
     ) -> dict[str, Any]:
         try:
-            return await llm_providers.test_provider(
-                provider, model=model, endpoint=endpoint
-            )
+            return await llm_providers.test_provider(provider, model=model, endpoint=endpoint)
         except ValueError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
 
