@@ -83,6 +83,7 @@ Learn tools (~15 html/js games), 29 knowledge pages, kanji/JLPT seeds vendored f
 - **calibre-mcp** — `crossconnect(library_search)`, Sandra's Japanese-literature/textbook/manga shelf by query or tag (wired 2026-09-15; client-side query filter works around an upstream bug — calibre-mcp's own `query` param is currently a no-op, see [reports/quality-japanophile-mcp-2026-09-14.md](reports/quality-japanophile-mcp-2026-09-14.md) follow-ups).
 - **plex-mcp** — `crossconnect(media_search)`, Sandra's JP movies/anime by query and media_type (wired 2026-09-15; client-side type filter works around plex-mcp's `media_type` param currently being a no-op).
 - **ai-games-collection** — canonical home for hanafuda/cho-han gameplay; this repo owns learning.
+- **Voice Command Bus** — registered as a receiver (`japanophile` entity, direct route to `kanji`/`vocab`/`jlpt`/`knowledge`/`japanophile_help`) in `mcp-central-docs/config/voice_command_bus.yaml` + fleet-agent-mcp's `FLEET_SERVERS` (2026-09-15). **Not yet functional** — this repo's own `/mcp` streamable-HTTP mount currently fails session init; fleet-agent can't reach it until that's fixed (see `mcp-central-docs/standards/VOICE_COMMAND_BUS.md` §4c). See `mcp-central-docs/standards/VOICE_COMMAND_BUS.md` for the full pattern.
 - Full crossconnect map: `mcp-central-docs/projects/japanophile-mcp/PHILE_PATTERN.md`. No webapp browser UI yet for library_search/media_search — MCP/HTTP only so far.
 
 ## Roadmap
