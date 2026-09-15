@@ -404,7 +404,7 @@ def crossconnect(
     voice_id: str = "default",
     limit: int = 20,
 ) -> dict:
-    """Fleet crossconnects: speak | library_search | media_search. Each proxies a
+    """Fleet crossconnects: speak | voices | library_search | media_search. Each proxies a
     sibling MCP server's REST API (speech-mcp :10909, calibre-mcp :10720,
     plex-mcp :10740 by default, override via SPEECH_MCP_URL/CALIBRE_MCP_URL/
     PLEX_MCP_URL). Peer offline returns a fail() with a start hint, not a
@@ -421,13 +421,15 @@ def crossconnect(
 
     if operation == "speak":
         return cc.speak(text, provider=provider, voice_id=voice_id)
+    if operation == "voices":
+        return cc.voices()
     if operation == "library_search":
         return cc.library_search(query, tag=tag, limit=limit)
     if operation == "media_search":
         return cc.media_search(query, media_type=media_type, limit=limit)
     return fail(
-        f"Unknown crossconnect operation '{operation}'. Valid: speak, library_search,"
-        " media_search."
+        f"Unknown crossconnect operation '{operation}'. Valid: speak, voices,"
+        " library_search, media_search."
     )
 
 

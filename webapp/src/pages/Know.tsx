@@ -1,5 +1,6 @@
 import { KnowledgeArticleView } from "@/components/KnowledgeArticleView";
 import { PageTabs } from "@/components/PageTabs";
+import type { VoiceProvider } from "@/lib/api";
 import {
 	KNOWLEDGE_CLUSTERS,
 	type KnowledgeClusterId,
@@ -14,6 +15,25 @@ export { pageLabel } from "@/lib/knowledgeClusters";
 
 const KNOW_TABS = KNOWLEDGE_CLUSTERS;
 
+const TTS_PROVIDER_KEY = "jpn.tts_provider";
+const TTS_VOICE_KEY = "jpn.tts_voice";
+
+function loadPref(key: string, fallback: string): string {
+	try {
+		return localStorage.getItem(key) ?? fallback;
+	} catch {
+		return fallback;
+	}
+}
+
+function savePref(key: string, value: string) {
+	try {
+		localStorage.setItem(key, value);
+	} catch {
+		/* private mode / storage disabled — selection just won't persist */
+	}
+}
+
 export default function KnowledgePage() {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [pages, setPages] = useState<string[]>([]);
@@ -23,6 +43,37 @@ export default function KnowledgePage() {
 		"idle",
 	);
 	const audioRef = useRef<HTMLAudioElement>(null);
+	const [ttsProviders, setTtsProviders] = useState<VoiceProvider[]>([]);
+	const [ttsProvider, setTtsProviderState] = useState(() =>
+		loadPref(TTS_PROVIDER_KEY, "gemini"),
+	);
+	const [ttsVoice, setTtsVoiceState] = useState(() =>
+		loadPref(TTS_VOICE_KEY, "default"),
+	);
+
+	useEffect(() => {
+		api
+			.voices()
+			.then((r) =>
+				setTtsProviders(
+					(r.data?.providers ?? []).filter((p) => p.status === "available"),
+				),
+			)
+			.catch(() => setTtsProviders([]));
+	}, []);
+
+	const changeTtsProvider = (name: string) => {
+		setTtsProviderState(name);
+		savePref(TTS_PROVIDER_KEY, name);
+		setTtsVoiceState("default");
+		savePref(TTS_VOICE_KEY, "default");
+	};
+	const changeTtsVoice = (v: string) => {
+		setTtsVoiceState(v);
+		savePref(TTS_VOICE_KEY, v);
+	};
+	const currentVoices =
+		ttsProviders.find((p) => p.name === ttsProvider)?.voices ?? [];
 
 	const listen = async () => {
 		if (!current) return;
@@ -35,7 +86,7 @@ export default function KnowledgePage() {
 			if (!text) throw new Error("No text to read.");
 			const audio = audioRef.current;
 			if (!audio) return;
-			audio.src = api.speakWavUrl(text);
+			audio.src = api.speakWavUrl(text, ttsProvider, ttsVoice);
 			await audio.play();
 			setListenState("idle");
 		} catch {
@@ -144,7 +195,7 @@ export default function KnowledgePage() {
 						<p className="text-zinc-500">Pick an article.</p>
 					) : (
 						<>
-							<div className="mb-2 flex items-center gap-3">
+							<div className="mb-2 flex flex-wrap items-center gap-2">
 								<p className="text-sm text-zinc-400">{pageLabel(current)}</p>
 								<button
 									type="button"
@@ -152,12 +203,42 @@ export default function KnowledgePage() {
 									onClick={listen}
 									disabled={listenState === "loading"}
 									className="rounded border border-zinc-700 px-2 py-0.5 text-xs text-zinc-400 hover:bg-zinc-800 disabled:opacity-50"
-									title="Read the first ~200 characters aloud via speech-mcp (Gemini voice, can take ~10s)"
+									title="Read the first ~200 characters aloud via speech-mcp"
 								>
 									{listenState === "loading"
 										? "Synthesizing…"
 										: "🔊 Listen (excerpt)"}
 								</button>
+								<select
+									data-testid="know-tts-provider"
+									value={ttsProvider}
+									onChange={(e) => changeTtsProvider(e.target.value)}
+									title="TTS provider (speech-mcp)"
+									className="rounded border border-zinc-700 bg-zinc-900 px-1 py-0.5 text-xs text-zinc-400"
+								>
+									{ttsProviders.length === 0 && (
+										<option value={ttsProvider}>{ttsProvider}</option>
+									)}
+									{ttsProviders.map((p) => (
+										<option key={p.name} value={p.name}>
+											{p.name}
+										</option>
+									))}
+								</select>
+								<select
+									data-testid="know-tts-voice"
+									value={ttsVoice}
+									onChange={(e) => changeTtsVoice(e.target.value)}
+									title="Voice/speaker"
+									className="max-w-[10rem] rounded border border-zinc-700 bg-zinc-900 px-1 py-0.5 text-xs text-zinc-400"
+								>
+									<option value="default">default</option>
+									{currentVoices.map((v) => (
+										<option key={v} value={v}>
+											{v}
+										</option>
+									))}
+								</select>
 								{listenState === "error" && (
 									<span className="text-xs text-red-400">
 										speech-mcp not reachable

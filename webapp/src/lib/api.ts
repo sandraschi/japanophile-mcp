@@ -67,6 +67,12 @@ export interface MediaResult {
 	summary: string;
 }
 
+export interface VoiceProvider {
+	name: string;
+	status: string;
+	voices: string[];
+}
+
 export const api = {
 	health: () => get<{ ok: boolean; repo: string; stage: number }>("/health"),
 	help: () => get<Dialogic>("/api/help"),
@@ -101,8 +107,10 @@ export const api = {
 		get<Dialogic<string>>(`/api/knowledge/${encodeURIComponent(page)}`),
 	/** Direct URL for an <audio> tag — proxies speech-mcp, so no CORS/port wiring in
 	 * the browser. Defaults to Gemini over Windows SAPI (voice quality preference). */
-	speakWavUrl: (text: string, provider = "gemini") =>
-		`${API}/api/crossconnect/speak.wav?${new URLSearchParams({ text, provider }).toString()}`,
+	speakWavUrl: (text: string, provider = "gemini", voiceId = "default") =>
+		`${API}/api/crossconnect/speak.wav?${new URLSearchParams({ text, provider, voice_id: voiceId }).toString()}`,
+	voices: () =>
+		get<Dialogic<{ providers: VoiceProvider[] }>>("/api/crossconnect/voices"),
 	librarySearch: (query: string, tag = "", limit = 20) =>
 		get<Dialogic<LibraryBook[]>>(
 			`/api/crossconnect/library_search?${new URLSearchParams({ query, tag, limit: String(limit) }).toString()}`,

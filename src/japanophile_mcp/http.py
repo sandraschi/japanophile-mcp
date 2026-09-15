@@ -152,6 +152,10 @@ def build_app() -> FastAPI:
             )
         )
 
+    @app.get("/api/crossconnect/voices")
+    def api_voices() -> JSONResponse:
+        return JSONResponse(_call(server.crossconnect, "voices"))
+
     @app.get("/api/crossconnect/speak.wav")
     def api_speak_wav(text: str, provider: str = "gemini", voice_id: str = "default"):
         """Proxy speech-mcp's TTS WAV so the webapp never needs its port/CORS directly.

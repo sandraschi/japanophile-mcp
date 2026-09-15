@@ -60,6 +60,17 @@ def speak(text: str, provider: str = "gemini", voice_id: str = "default") -> dic
         return _unreachable("speech-mcp", SPEECH_MCP_URL, str(exc))
 
 
+def voices() -> dict:
+    """GET speech-mcp /api/v1/voices — real provider/voice list, for a UI dropdown.
+    Never hardcode a voice list here: speech-mcp's providers and cloned voices
+    change independently of this repo.
+    """
+    ok, data, err = get_json(f"{SPEECH_MCP_URL}/api/v1/voices", timeout=10.0)
+    if not ok:
+        return _unreachable("speech-mcp", SPEECH_MCP_URL, err)
+    return {"success": True, "message": "Voices from speech-mcp.", "data": data}
+
+
 def tts_wav_url(text: str, provider: str = "gemini", voice_id: str = "default") -> str:
     """Direct speech-mcp WAV URL — for an `<audio>` tag or a streaming HTTP proxy.
 
