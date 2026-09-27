@@ -6,13 +6,13 @@ default:
 
 bootstrap:
     uv sync --group dev
-    pwsh -File scripts/ensure_data.ps1
+    powershell.exe -File scripts/ensure_data.ps1
 
 ensure-data:
-    pwsh -File scripts/ensure_data.ps1
+    powershell.exe -File scripts/ensure_data.ps1
 
 vendor-data:
-    pwsh -File scripts/vendor_from_donor.ps1
+    powershell.exe -File scripts/vendor_from_donor.ps1
 
 lint:
     uv run ruff check src tests
@@ -35,7 +35,7 @@ serve-http:
     uv run python -m japanophile_mcp.http --port 11193
 
 fetch-data:
-    pwsh -File scripts/ensure_data.ps1
+    powershell.exe -File scripts/ensure_data.ps1
 
 # Bundle for Claude Desktop (MCPB) — fresh copy src -> mcpb/src, then pack
 mcpb-pack:
