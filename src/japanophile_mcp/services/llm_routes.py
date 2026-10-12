@@ -140,7 +140,7 @@ def register_llm_routes(router: Any) -> None:
 
     @router.get("/llm/gpus")
     async def api_llm_gpus() -> dict[str, Any]:
-        return {"gpus": llm_providers.gpu_vram()}
+        return {"gpus": await asyncio.to_thread(llm_providers.gpu_vram)}
 
     @router.get("/llm/models")
     async def api_llm_models(provider: str = Query(...)) -> dict[str, Any]:
