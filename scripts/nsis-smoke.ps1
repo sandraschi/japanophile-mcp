@@ -9,9 +9,19 @@ $Port = 11193
 $UninstKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Japanophile MCP"
 
 function Stop-JpnProcesses {
+    # HARDENED 2026-09-17: was Stop-Process + blind Start-Sleep -Seconds 2, no
+    # verification the processes actually died (see TRAPS_AND_PITFALLS.md #36).
+    # Poll up to 10s; warn (don't silently proceed) if something's still alive.
     Get-Process -Name "japanophile-mcp-app", "japanophile-mcp-backend" -ErrorAction SilentlyContinue |
         Stop-Process -Force -ErrorAction SilentlyContinue
-    Start-Sleep -Seconds 2
+    $waitSec = 10
+    $elapsed = 0
+    while ($elapsed -lt $waitSec) {
+        Start-Sleep -Milliseconds 500
+        $elapsed += 0.5
+        if (-not (Get-Process -Name "japanophile-mcp-app", "japanophile-mcp-backend" -ErrorAction SilentlyContinue)) { return }
+    }
+    Write-Host "  WARNING: japanophile process(es) still alive after ${waitSec}s kill wait" -ForegroundColor DarkYellow
 }
 
 function Get-UninstallString {
@@ -54,8 +64,14 @@ $installProc = Start-Process -FilePath $Setup -ArgumentList "/S" -PassThru -Wait
 if ($installProc.ExitCode -ne 0) {
     throw "Installer exit code $($installProc.ExitCode)"
 }
-Start-Sleep -Seconds 5
-
+# HARDENED 2026-09-17: was a blind Start-Sleep -Seconds 5 then a single Test-Path
+# check - poll instead so a slow/AV-scanned extraction doesn't false-fail.
+$installWaitSec = 20
+$installElapsed = 0
+while ($installElapsed -lt $installWaitSec -and -not (Test-Path $AppExe)) {
+    Start-Sleep -Milliseconds 500
+    $installElapsed += 0.5
+}
 if (-not (Test-Path $AppExe)) {
     throw "App missing after install: $AppExe"
 }
