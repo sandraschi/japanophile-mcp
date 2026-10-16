@@ -1,3 +1,4 @@
+import { apiGet } from "@/api/client";
 import { PageTabs } from "@/components/PageTabs";
 import {
 	CONTRIBUTORS,
@@ -9,6 +10,22 @@ import {
 } from "@/content/legal";
 import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+
+interface DiagnosePage {
+	path: string;
+	label: string;
+	status: string;
+}
+
+interface DiagnoseResult {
+	success: boolean;
+	operation: string;
+	ok: number;
+	of: number;
+	at: string;
+	backend: { reachable: boolean };
+	pages: DiagnosePage[];
+}
 
 const TABS = [
 	{ id: "start", label: "Start here" },
@@ -52,6 +69,9 @@ export default function Help() {
 		return TAB_IDS.has(t) ? (t as TabId) : "start";
 	}, [params]);
 	const [tab, setTab] = useState<TabId>(initial);
+	const [diagRunning, setDiagRunning] = useState(false);
+	const [diag, setDiag] = useState<DiagnoseResult | null>(null);
+	const [diagError, setDiagError] = useState<string | null>(null);
 
 	useEffect(() => {
 		setTab(initial);
@@ -60,6 +80,19 @@ export default function Help() {
 	const selectTab = (id: TabId) => {
 		setTab(id);
 		setParams({ tab: id }, { replace: true });
+	};
+
+	const runDiagnosis = async () => {
+		setDiagRunning(true);
+		setDiagError(null);
+		try {
+			const d = await apiGet<DiagnoseResult>("/webapp/diagnose");
+			setDiag(d);
+		} catch (e) {
+			setDiagError(e instanceof Error ? e.message : String(e));
+		} finally {
+			setDiagRunning(false);
+		}
 	};
 
 	return (
@@ -297,6 +330,48 @@ export default function Help() {
 							scripts/vendor_from_donor.ps1
 						</code>{" "}
 						for asset refresh.
+					</Section>
+					<Section title="WebApp tour (pilot)">
+						The server steers its own UI from{" "}
+						<code className="rounded bg-zinc-800 px-1">
+							webapp/public/ui-map.json
+						</code>{" "}
+						(14 routes, nav testids, presets) instead of scraping the sidebar.
+						Ops are read-only: get_ui_map, tour_page, demo_webapp,
+						diagnose_webapp — call them as the webapp_ops MCP tool, or press Run
+						diagnosis for the same check in-browser.
+						<div data-testid="webapp-diagnose-panel" className="pt-2">
+							<button
+								type="button"
+								data-testid="webapp-diagnose-run"
+								onClick={runDiagnosis}
+								disabled={diagRunning}
+								className="rounded bg-violet-600 px-4 py-2 text-sm font-medium text-white hover:bg-violet-500 disabled:opacity-50"
+							>
+								{diagRunning ? "Running diagnosis..." : "Run diagnosis"}
+							</button>
+							{diagError && (
+								<div className="mt-2 text-sm text-red-400">{diagError}</div>
+							)}
+							{diag && (
+								<div
+									data-testid="webapp-diagnose-result"
+									className="mt-2 text-sm text-zinc-300"
+								>
+									<div>
+										{diag.ok}/{diag.of} pages ok at {diag.at} — backend{" "}
+										{diag.backend.reachable ? "reachable" : "unreachable"}.
+									</div>
+									{diag.pages
+										.filter((p) => p.status !== "receipt-ok")
+										.map((p) => (
+											<div key={p.path} className="text-red-400">
+												{p.path} ({p.label}): {p.status}
+											</div>
+										))}
+								</div>
+							)}
+						</div>
 					</Section>
 				</div>
 			)}

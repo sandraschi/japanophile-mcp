@@ -97,6 +97,9 @@ export default function App() {
 								end={to === "/"}
 								title={label}
 								aria-label={label}
+								data-testid={
+									to === "/" ? "nav-dashboard" : `nav-${to.slice(1)}`
+								}
 								className={({ isActive }) =>
 									cn(
 										"mb-1 block rounded px-3 py-2.5 text-base transition-colors",

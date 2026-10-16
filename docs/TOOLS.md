@@ -88,3 +88,19 @@ this tool's own contract honest in the meantime.
 
 Tool list, per-DB status (path or MISSING + fetch hint), knowledge + language
 page counts, ports. Agents call this first.
+
+## webapp_ops(operation, route, preset, speak)
+
+Steers this repo's own webapp from `webapp/public/ui-map.json` (14 sidebar
+routes, `nav-*` testids, tour presets). Pilot, phase 1: static receipts only,
+all read-only; live Playwright driving is phase 2. Port of the learnbot-mcp
+pilot. Same receipts are served over HTTP (`GET /api/ui-map`,
+`GET /api/webapp/diagnose`) and behind the Help > Technical Run diagnosis
+button.
+
+| operation | params | behavior |
+|---|---|---|
+| get_ui_map | — | the map: routes, nav testids, narration, mutating flags. Works with no backend running |
+| tour_page | route, speak | one-page receipt (testids, dist present, backend reachable). Unknown routes fail with the known-path list |
+| demo_webapp | preset=demo_60s\|onboarding\|full_walk, speak | walks a preset, per-stop receipts. video is null until phase 2 |
+| diagnose_webapp | — | all-route check, snapshots to demos/webapp-ops-pilot/last-diagnosis.json |

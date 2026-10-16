@@ -1,0 +1,192 @@
+{
+  "app": "japanophile-mcp",
+  "at": "2026-10-16T19:26:02+00:00",
+  "pages": [
+    {
+      "path": "/",
+      "label": "Dashboard",
+      "page_testid": "dashboard-hero",
+      "assert": [
+        "dashboard-hero",
+        "kpi-grid",
+        "dashboard-actions"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/language",
+      "label": "Language",
+      "page_testid": "language-article",
+      "assert": [
+        "language-article"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/know",
+      "label": "Knowledge",
+      "page_testid": "know-list",
+      "assert": [
+        "know-list",
+        "know-article"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/travel",
+      "label": "Travel",
+      "page_testid": "travel-page",
+      "assert": [
+        "travel-page",
+        "travel-hero"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/diary",
+      "label": "Diary",
+      "page_testid": "diary-page",
+      "assert": [
+        "diary-page",
+        "diary-entries"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/library",
+      "label": "Library",
+      "page_testid": "library-read-results",
+      "assert": [
+        "library-read-results"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/games",
+      "label": "Practice",
+      "page_testid": "games-list",
+      "assert": [
+        "games-list",
+        "game-frame"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/chat",
+      "label": "Chat",
+      "page_testid": "chat-log",
+      "assert": [
+        "chat-log",
+        "chat-input",
+        "chat-send"
+      ],
+      "mutating": true,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/skills",
+      "label": "Skills",
+      "page_testid": "skill-text",
+      "assert": [
+        "skill-text"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/tools",
+      "label": "MCP Tools",
+      "page_testid": "tools-page",
+      "assert": [
+        "tools-page",
+        "tools-list"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/apps",
+      "label": "Apps",
+      "page_testid": "apps-page",
+      "assert": [
+        "apps-page",
+        "apps-hero"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/settings",
+      "label": "Settings",
+      "page_testid": "ai-settings-page",
+      "assert": [
+        "ai-settings-page"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/help",
+      "label": "Help",
+      "page_testid": "help-page",
+      "assert": [
+        "help-page",
+        "help-panel-start"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    },
+    {
+      "path": "/logs",
+      "label": "Logs",
+      "page_testid": "logs-page",
+      "assert": [
+        "logs-page",
+        "logs-stream"
+      ],
+      "mutating": false,
+      "frontend_dist": true,
+      "backend_reachable": false,
+      "status": "receipt-ok"
+    }
+  ],
+  "backend": {
+    "reachable": false,
+    "error": "ConnectError: [WinError 10061] No connection could be made because the target machine actively refused it"
+  },
+  "ok": 14,
+  "of": 14
+}

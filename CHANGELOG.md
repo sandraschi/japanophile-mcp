@@ -1,5 +1,15 @@
 # CHANGELOG - japanophile-mcp
 
+## Unreleased (2026-10-16) - webapp_ops pilot
+
+- `webapp_ops` MCP tool (get_ui_map/tour_page/demo_webapp/diagnose_webapp,
+  phase-1 static receipts) + `GET /api/ui-map` and `GET /api/webapp/diagnose`
+  on the FastAPI bridge + authoritative `webapp/public/ui-map.json` (14
+  sidebar routes, testids, tour presets). Sidebar NavLinks carry `nav-*`
+  testids; Help > Technical has a Run diagnosis button hitting the new
+  route. Verified: ruff check clean, 8 new tests pass. Port of the
+  learnbot-mcp pilot (second repo).
+
 ## 0.3.1 (2026-09-13) - First GitHub release (MCPB)
 
 - Webapp: fleet LLM settings/onboarding, Ollama inference test, Chat gate + proxy errors.
