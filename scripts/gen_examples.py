@@ -104,6 +104,23 @@ def main() -> None:
     r = call(server.japanophile_help)
     out.append(ex("japanophile_help", "-", {}, r, "Agents call this first: tools plus data status."))
 
+    r = call(server.webapp_ops, "get_ui_map")
+    out.append(ex("webapp_ops", "get_ui_map", {}, r,
+                   "Authoritative UI map: 14 routes plus tour presets."))
+    for route in ["/", "/chat", "/nope"]:
+        r = call(server.webapp_ops, "tour_page", route=route)
+        out.append(ex("webapp_ops", "tour_page", {"route": route}, r,
+                       "One-page static receipt; unknown routes name the 14 known paths."))
+    r = call(server.webapp_ops, "demo_webapp", preset="demo_60s")
+    out.append(ex("webapp_ops", "demo_webapp", {"preset": "demo_60s"}, r,
+                   "Preset walk, per-stop receipts, no video in phase 1."))
+    r = call(server.webapp_ops, "diagnose_webapp")
+    out.append(ex("webapp_ops", "diagnose_webapp", {}, r,
+                   "All-route check plus snapshot path."))
+    r = call(server.webapp_ops, "dance")
+    out.append(ex("webapp_ops", "dance", {}, r,
+                   "Unknown operation returns guidance, not a traceback."))
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     print("wrote {} examples to {}".format(len(out), OUT))

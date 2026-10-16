@@ -1,6 +1,6 @@
 # CHANGELOG - japanophile-mcp
 
-## Unreleased (2026-10-16) - webapp_ops pilot
+## 0.4.0 (2026-10-16) - webapp_ops pilot
 
 - `webapp_ops` MCP tool (get_ui_map/tour_page/demo_webapp/diagnose_webapp,
   phase-1 static receipts) + `GET /api/ui-map` and `GET /api/webapp/diagnose`

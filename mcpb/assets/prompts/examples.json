@@ -1750,22 +1750,22 @@
   "output_summary": "2 result(s) for kanji/random",
   "output_preview": [
    {
-    "kanji": "𥿠",
-    "onyomi": "[]",
-    "kunyomi": "[]",
-    "meanings": "[]",
-    "jlpt": null,
-    "grade": null,
-    "strokes": 11
+    "kanji": "濯",
+    "onyomi": "[\"\\u305f\\u304f\"]",
+    "kunyomi": "[\"\\u3059\\u3059.\\u3050\", \"\\u3086\\u3059.\\u3050\"]",
+    "meanings": "[\"Laundry\", \"Wash\", \"Pour On\", \"Rinse\"]",
+    "jlpt": "N2",
+    "grade": "8",
+    "strokes": 17
    },
    {
-    "kanji": "檥",
-    "onyomi": "[\"\\u304e\", \"\\u304c\"]",
-    "kunyomi": "[]",
-    "meanings": "[]",
-    "jlpt": null,
-    "grade": null,
-    "strokes": 17
+    "kanji": "崩",
+    "onyomi": "[\"\\u307b\\u3046\"]",
+    "kunyomi": "[\"\\u304f\\u305a.\\u308c\\u308b\", \"-\\u304f\\u305a.\\u308c\", \"\\u304f\\u305a.\\u3059\"]",
+    "meanings": "[\"Crumble\", \"Die\", \"Demolish\", \"Level\"]",
+    "jlpt": "N1",
+    "grade": "8",
+    "strokes": 11
    }
   ],
   "note": "Drill draw #1."
@@ -1780,22 +1780,22 @@
   "output_summary": "2 result(s) for kanji/random",
   "output_preview": [
    {
-    "kanji": "艎",
-    "onyomi": "[\"\\u3053\\u3046\", \"\\u304a\\u3046\"]",
-    "kunyomi": "[\"\\u3075\\u306d\"]",
-    "meanings": "[\"Fast Boat\"]",
+    "kanji": "湜",
+    "onyomi": "[\"\\u3057\\u3087\\u304f\", \"\\u3058\\u304d\"]",
+    "kunyomi": "[\"\\u304d\\u3088.\\u3044\"]",
+    "meanings": "[\"Transparent\", \"Clear\"]",
     "jlpt": null,
     "grade": null,
-    "strokes": 15
+    "strokes": 12
    },
    {
-    "kanji": "凭",
-    "onyomi": "[\"\\u3072\\u3087\\u3046\", \"\\u3078\\u3044\"]",
-    "kunyomi": "[\"\\u3082\\u305f.\\u308c\\u308b\", \"\\u3088.\\u308b\"]",
-    "meanings": "[\"Lean On\", \"Recline On\", \"Lie Heavy\"]",
+    "kanji": "蕪",
+    "onyomi": "[\"\\u3076\", \"\\u3080\"]",
+    "kunyomi": "[\"\\u304b\\u3076\", \"\\u304b\\u3076\\u3089\", \"\\u3042\\u308c\\u308b\"]",
+    "meanings": "[\"Turnip\"]",
     "jlpt": null,
-    "grade": null,
-    "strokes": 8
+    "grade": "9",
+    "strokes": 15
    }
   ],
   "note": "Drill draw #2."
@@ -1810,22 +1810,22 @@
   "output_summary": "2 result(s) for kanji/random",
   "output_preview": [
    {
-    "kanji": "貋",
-    "onyomi": "[\"\\u304b\\u3093\"]",
-    "kunyomi": "[]",
-    "meanings": "[]",
+    "kanji": "騂",
+    "onyomi": "[\"\\u305b\\u3044\", \"\\u3057\\u3087\\u3046\", \"\\u3051\\u3044\", \"\\u304d\\u3087\\u3046\"]",
+    "kunyomi": "[\"\\u3042\\u304b\\u3046\\u307e\"]",
+    "meanings": "[\"Red\", \"Brown\", \"Bay\", \"Neat\", \"Harmonious\"]",
     "jlpt": null,
     "grade": null,
-    "strokes": 14
+    "strokes": 17
    },
    {
-    "kanji": "圬",
-    "onyomi": "[\"\\u304a\", \"\\u3046\", \"\\u3053\"]",
-    "kunyomi": "[\"\\u3053\\u3066\", \"\\u306c.\\u308b\"]",
-    "meanings": "[\"Plaster Over With Layer Of Mud\"]",
+    "kanji": "穅",
+    "onyomi": "[\"\\u3053\\u3046\"]",
+    "kunyomi": "[\"\\u306c\\u304b\", \"\\u3080\\u306a.\\u3057\\u3044\"]",
+    "meanings": "[\"Chaff\", \"Bran\", \"Husks Of Grain\", \"(from Which Comes: Poor, Remiss)\"]",
     "jlpt": null,
     "grade": null,
-    "strokes": 6
+    "strokes": 16
    }
   ],
   "note": "Drill draw #3."
@@ -1840,22 +1840,22 @@
   "output_summary": "2 result(s) for kanji/random",
   "output_preview": [
    {
-    "kanji": "實",
-    "onyomi": "[\"\\u3058\\u3064\", \"\\u3057\\u3064\"]",
-    "kunyomi": "[\"\\u307f\", \"\\u307f\\u306e.\\u308b\", \"\\u307e\\u3053\\u3068.\\u306b\", \"\\u307f\\u306e.\\u308a\", \"\\u307f\\u3061.\\u308b\"]",
-    "meanings": "[\"Truth\", \"Reality\"]",
+    "kanji": "輿",
+    "onyomi": "[\"\\u3088\"]",
+    "kunyomi": "[\"\\u304b\\u3054\", \"\\u3053\\u3057\"]",
+    "meanings": "[\"Palanquin\", \"Bier\", \"Public Opinion\", \"The Earth\"]",
     "jlpt": null,
-    "grade": "10",
-    "strokes": 14
+    "grade": "9",
+    "strokes": 17
    },
    {
-    "kanji": "堧",
-    "onyomi": "[\"\\u305c\\u3093\", \"\\u306d\\u3093\", \"\\u3060\", \"\\u306a\", \"\\u3060\\u3093\", \"\\u306a\\u3093\"]",
-    "kunyomi": "[\"\\u3059\\u306a\\u3064\\u3061\"]",
-    "meanings": "[\"Adjoin\"]",
+    "kanji": "賆",
+    "onyomi": "[\"\\u3078\\u3093\", \"\\u3078\\u3044\", \"\\u3072\\u3087\\u3046\"]",
+    "kunyomi": "[\"\\u307e\\u3059\"]",
+    "meanings": "[]",
     "jlpt": null,
     "grade": null,
-    "strokes": 12
+    "strokes": 13
    }
   ],
   "note": "Drill draw #4."
@@ -1870,22 +1870,22 @@
   "output_summary": "2 result(s) for kanji/random",
   "output_preview": [
    {
-    "kanji": "圛",
-    "onyomi": "[\"\\u3048\\u304d\", \"\\u3084\\u304f\"]",
-    "kunyomi": "[\"\\u3081\\u3050\\u308a\\u3086.\\u304f\"]",
-    "meanings": "[\"Used In Place Names\", \"Stratus\"]",
+    "kanji": "奩",
+    "onyomi": "[\"\\u308c\\u3093\"]",
+    "kunyomi": "[\"\\u304f\\u3057\\u3052\", \"\\u306f\\u3053\"]",
+    "meanings": "[\"Lady's Vanity Case\", \"Trousseau\"]",
     "jlpt": null,
     "grade": null,
-    "strokes": 16
+    "strokes": 14
    },
    {
-    "kanji": "縕",
-    "onyomi": "[\"\\u3046\\u3093\", \"\\u304a\\u3093\"]",
-    "kunyomi": "[\"\\u3075\\u308b.\\u3044\"]",
-    "meanings": "[\"Old Cotton\", \"Tangled Hemp\", \"Raveled Silk\", \"Vague\", \"Confused\"]",
+    "kanji": "戜",
+    "onyomi": "[\"\\u3066\\u3064\", \"\\u3067\\u3061\"]",
+    "kunyomi": "[\"\\u3059\\u308b\\u3069.\\u3044\", \"\\u304d.\\u308b\"]",
+    "meanings": "[\"To Scrape\", \"Advantageous\"]",
     "jlpt": null,
     "grade": null,
-    "strokes": 16
+    "strokes": 11
    }
   ],
   "note": "Drill draw #5."
@@ -1897,12 +1897,12 @@
    "level": "N5"
   },
   "success": true,
-  "output_summary": "Question 735 (N5 vocabulary)",
+  "output_summary": "Question 753 (N5 vocabulary)",
   "output_preview": {
-   "id": 735,
+   "id": 753,
    "level": "N5",
    "question_type": "vocabulary",
-   "question_text": "「有る」の意味は次のうちどれですか。"
+   "question_text": "「曇る」の意味は次のうちどれですか。"
   },
   "note": "Quiz draw; answer key withheld, options included."
  },
@@ -1913,12 +1913,12 @@
    "level": "N4"
   },
   "success": true,
-  "output_summary": "Question 839 (N4 vocabulary)",
+  "output_summary": "Question 798 (N4 vocabulary)",
   "output_preview": {
-   "id": 839,
+   "id": 798,
    "level": "N4",
    "question_type": "vocabulary",
-   "question_text": "「研究」の意味は次のうちどれですか。"
+   "question_text": "「なさる」の意味は次のうちどれですか。"
   },
   "note": "Quiz draw; answer key withheld, options included."
  },
@@ -1929,12 +1929,12 @@
    "level": "N3"
   },
   "success": true,
-  "output_summary": "Question 1006 (N3 vocabulary)",
+  "output_summary": "Question 1015 (N3 vocabulary)",
   "output_preview": {
-   "id": 1006,
+   "id": 1015,
    "level": "N3",
    "question_type": "vocabulary",
-   "question_text": "「パイプ」の意味は次のうちどれですか。"
+   "question_text": "「通過」の意味は次のうちどれですか。"
   },
   "note": "Quiz draw; answer key withheld, options included."
  },
@@ -1945,12 +1945,12 @@
    "level": "N2"
   },
   "success": true,
-  "output_summary": "Question 1080 (N2 vocabulary)",
+  "output_summary": "Question 1046 (N2 vocabulary)",
   "output_preview": {
-   "id": 1080,
+   "id": 1046,
    "level": "N2",
    "question_type": "vocabulary",
-   "question_text": "「刺身」の意味は次のうちどれですか。"
+   "question_text": "「大小」の意味は次のうちどれですか。"
   },
   "note": "Quiz draw; answer key withheld, options included."
  },
@@ -1961,12 +1961,12 @@
    "level": "N1"
   },
   "success": true,
-  "output_summary": "Question 1152 (N1 vocabulary)",
+  "output_summary": "Question 1175 (N1 vocabulary)",
   "output_preview": {
-   "id": 1152,
+   "id": 1175,
    "level": "N1",
    "question_type": "vocabulary",
-   "question_text": "「タイムリー」の意味は次のうちどれですか。"
+   "question_text": "「ロープウエイ」の意味は次のうちどれですか。"
   },
   "note": "Quiz draw; answer key withheld, options included."
  },
@@ -1974,16 +1974,16 @@
   "tool": "jlpt",
   "operation": "answer",
   "input": {
-   "question_id": 742,
+   "question_id": 781,
    "answer": "Z",
    "session_id": "examples-gen"
   },
   "success": true,
   "output_summary": "Answer recorded: not correct.",
   "output_preview": {
-   "question_id": 742,
+   "question_id": 781,
    "given": "Z",
-   "correct": "ア",
+   "correct": "ウ",
    "is_correct": false
   },
   "note": "Grading records to the progress store."
@@ -1995,10 +1995,10 @@
    "session_id": "examples-gen"
   },
   "success": true,
-  "output_summary": "Session 'examples-gen': 0/1 correct.",
+  "output_summary": "Session 'examples-gen': 0/2 correct.",
   "output_preview": {
    "session_id": "examples-gen",
-   "answered": 1,
+   "answered": 2,
    "correct": 0
   },
   "note": "Session score summary."
@@ -2008,7 +2008,7 @@
   "operation": "list",
   "input": {},
   "success": true,
-  "output_summary": "29 knowledge page(s).",
+  "output_summary": "31 culture page(s).",
   "output_preview": [
    "2026-snapshot",
    "20thcentury",
@@ -2023,7 +2023,7 @@
    "page": "2026-snapshot"
   },
   "success": true,
-  "output_summary": "Knowledge page: 2026-snapshot.",
+  "output_summary": "Culture page: 2026-snapshot.",
   "output_preview": "Japan Now - September 2026 Snapshot\nJapan Now - September 2026 Snapshot\nDated snapshot for the knowledge box. Re-check quarterly; politics and\nprices rot fastest. Sources: Wikipedia 2026-in-Japan reco",
   "note": "Culture page, plain text."
  },
@@ -2034,8 +2034,8 @@
    "page": "20thcentury"
   },
   "success": true,
-  "output_summary": "Knowledge page: 20thcentury.",
-  "output_preview": "﻿\n20th Century History - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n ",
+  "output_summary": "Culture page: 20thcentury.",
+  "output_preview": "﻿\n20th Century History - Japanese Knowledge Tree\n← Back to Knowledge Tree\n💥 20th Century History - Empire, War, and Rebirth\nJapan's most turbulent century: from imperial expansion and devastating war ",
   "note": "Culture page, plain text."
  },
  {
@@ -2045,8 +2045,8 @@
    "page": "anime"
   },
   "success": true,
-  "output_summary": "Knowledge page: anime.",
-  "output_preview": "﻿\nAnime Industry - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n       ",
+  "output_summary": "Culture page: anime.",
+  "output_preview": "﻿\nAnime Industry - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🎬 Anime Industry - ¥2.5 Trillion Animation Giant\nJapan produces 60% of the world's animation. Anime has revolutionized global visual",
   "note": "Culture page, plain text."
  },
  {
@@ -2056,8 +2056,8 @@
    "page": "art"
   },
   "success": true,
-  "output_summary": "Knowledge page: art.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: art.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🎨 Arts & Aesthetics - Beauty in Impermanence\nJapanese art embodies the philosophy of \"mono no aware\" (pathos of things) - finding bea",
   "note": "Culture page, plain text."
  },
  {
@@ -2067,8 +2067,8 @@
    "page": "bakumatsu"
   },
   "success": true,
-  "output_summary": "Knowledge page: bakumatsu.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: bakumatsu.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n⛩️ Bakumatsu Era - Revolution & Opening\nThe \"end of the bakufu\" (1853-1868) marked Japan's dramatic transition from feudal isolation ",
   "note": "Culture page, plain text."
  },
  {
@@ -2078,8 +2078,8 @@
    "page": "battles"
   },
   "success": true,
-  "output_summary": "Knowledge page: battles.",
-  "output_preview": "﻿\nFamous Battles - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n       ",
+  "output_summary": "Culture page: battles.",
+  "output_preview": "﻿\nFamous Battles - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🗡️ Famous Battles - Conflicts That Shaped Japan\nJapanese history is punctuated by decisive battles that determined the course of emp",
   "note": "Culture page, plain text."
  },
  {
@@ -2089,8 +2089,8 @@
    "page": "cuisine"
   },
   "success": true,
-  "output_summary": "Knowledge page: cuisine.",
-  "output_preview": "﻿\nCuisine & Food Culture - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;",
+  "output_summary": "Culture page: cuisine.",
+  "output_preview": "﻿\nCuisine & Food Culture - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🍱 Cuisine & Food Culture - Washoku Heritage\nJapanese cuisine (Washoku) was designated UNESCO Intangible Cultural Heritage in",
   "note": "Culture page, plain text."
  },
  {
@@ -2100,8 +2100,8 @@
    "page": "culture"
   },
   "success": true,
-  "output_summary": "Knowledge page: culture.",
-  "output_preview": "﻿\nCultural Concepts - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n    ",
+  "output_summary": "Culture page: culture.",
+  "output_preview": "﻿\nCultural Concepts - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🎌 Cultural Concepts - The Philosophy of Wa\nJapanese culture is built on concepts that often have no direct Western equivalent.\n  ",
   "note": "Culture page, plain text."
  },
  {
@@ -2111,8 +2111,8 @@
    "page": "dailylife"
   },
   "success": true,
-  "output_summary": "Knowledge page: dailylife.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: dailylife.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🏠 Daily Life & Social Customs - Wa in Action\nJapanese daily life revolves around harmony (wa), respect, and ritual. From bowing to bu",
   "note": "Culture page, plain text."
  },
  {
@@ -2122,8 +2122,8 @@
    "page": "economy"
   },
   "success": true,
-  "output_summary": "Knowledge page: economy.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: economy.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n💰 Economic History - From Rice to Riches\nJapan's economic journey from feudal rice-based system to world's third-largest economy demo",
   "note": "Culture page, plain text."
  },
  {
@@ -2133,8 +2133,8 @@
    "page": "education"
   },
   "success": true,
-  "output_summary": "Knowledge page: education.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: education.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🎓 Education System - Excellence & Pressure\nJapan's education system produces globally competitive students but at significant persona",
   "note": "Culture page, plain text."
  },
  {
@@ -2144,8 +2144,19 @@
    "page": "emperors"
   },
   "success": true,
-  "output_summary": "Knowledge page: emperors.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: emperors.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n👑 Imperial Line - 2,000 Years of Continuity\nJapan's imperial family claims the world's longest continuous monarchy, with an unbroken ",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "games-gambling"
+  },
+  "success": true,
+  "output_summary": "Culture page: games-gambling.",
+  "output_preview": "Games & Gambling - Japanese Knowledge Tree\n← Back to Knowledge Tree\nGames & Gambling (遊び・賭け)\nJapan exports Nintendo and arcade culture, but its deepest game traditions are older:\nGo\nand\nshogi\non the r",
   "note": "Culture page, plain text."
  },
  {
@@ -2155,8 +2166,8 @@
    "page": "geography"
   },
   "success": true,
-  "output_summary": "Knowledge page: geography.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: geography.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🗻 Geography & Natural Environment - Island Nation\nJapan's geography shapes its culture, economy, and vulnerabilities. An archipelago ",
   "note": "Culture page, plain text."
  },
  {
@@ -2166,30 +2177,8 @@
    "page": "history"
   },
   "success": true,
-  "output_summary": "Knowledge page: history.",
-  "output_preview": "﻿\nHistory - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n            pa",
-  "note": "Culture page, plain text."
- },
- {
-  "tool": "knowledge",
-  "operation": "get",
-  "input": {
-   "page": "japanese-knowledge-tree"
-  },
-  "success": true,
-  "output_summary": "Knowledge page: japanese-knowledge-tree.",
-  "output_preview": "Japanese Knowledge Tree - 知識の木\n.knowledge-tree-container {\n            max-width: 1200px;\n            margin: 0 auto;\n            padding: 20px;\n        }\n\n        .tree-header {\n            text-alig",
-  "note": "Culture page, plain text."
- },
- {
-  "tool": "knowledge",
-  "operation": "get",
-  "input": {
-   "page": "kanji-table"
-  },
-  "success": true,
-  "output_summary": "Knowledge page: kanji-table.",
-  "output_preview": "漢字表 - Kanji Table\n.kanji-table-container {\n            width: 90%;\n            max-width: 1400px;\n            margin: 0 auto;\n            padding: 20px;\n        }\n\n        .kanji-table-header {\n      ",
+  "output_summary": "Culture page: history.",
+  "output_preview": "﻿\nHistory - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🏯 History - Japan's 2,000 Year Civilization\nJapan's recorded history spans over 2,000 years of continuous civilization, with remarkable res",
   "note": "Culture page, plain text."
  },
  {
@@ -2199,8 +2188,8 @@
    "page": "kombini"
   },
   "success": true,
-  "output_summary": "Knowledge page: kombini.",
-  "output_preview": "﻿\nConvenience Stores & Supermarkets - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            co",
+  "output_summary": "Culture page: kombini.",
+  "output_preview": "﻿\nConvenience Stores & Supermarkets - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🏪 Japan's Convenience Store & Supermarket Revolution\n55,000+ convenience stores and 30,000+ supermarkets\n- Japan'",
   "note": "Culture page, plain text."
  },
  {
@@ -2210,8 +2199,8 @@
    "page": "language"
   },
   "success": true,
-  "output_summary": "Knowledge page: language.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: language.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n📝 Language & Writing Systems - Kanji Complexity\nJapanese language combines three writing systems: kanji (Chinese characters), hiragan",
   "note": "Culture page, plain text."
  },
  {
@@ -2221,8 +2210,8 @@
    "page": "literature"
   },
   "success": true,
-  "output_summary": "Knowledge page: literature.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: literature.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n📚 Literature & Arts - Words That Shaped Culture\nJapanese literature spans 1,300 years, from ancient poetry to modern novels. Influenc",
   "note": "Culture page, plain text."
  },
  {
@@ -2232,8 +2221,8 @@
    "page": "manga"
   },
   "success": true,
-  "output_summary": "Knowledge page: manga.",
-  "output_preview": "﻿\nManga Culture - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: manga.",
+  "output_preview": "﻿\nManga Culture - Japanese Knowledge Tree\n← Back to Knowledge Tree\n📚 Manga Culture - ¥600 Billion Industry\nJapan's comic book industry is larger than Hollywood + Bollywood combined, with 40,000+ new t",
   "note": "Culture page, plain text."
  },
  {
@@ -2243,8 +2232,8 @@
    "page": "modern"
   },
   "success": true,
-  "output_summary": "Knowledge page: modern.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: modern.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🚀 Modern Japan - Innovation & Tradition\nContemporary Japan masterfully blends cutting-edge technology with deep cultural traditions.\n",
   "note": "Culture page, plain text."
  },
  {
@@ -2254,8 +2243,19 @@
    "page": "personages"
   },
   "success": true,
-  "output_summary": "Knowledge page: personages.",
+  "output_summary": "Culture page: personages.",
   "output_preview": "Historical Figures - Japanese Knowledge Tree\n← Back to Knowledge Tree\n👥 Historical Figures by Era - Japan's Timeline of Greatness\nJapanese history spans over 2,000 years of continuous civilization. He",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "police-justice"
+  },
+  "success": true,
+  "output_summary": "Culture page: police-justice.",
+  "output_preview": "Police & Criminal Justice - Japanese Knowledge Tree\n← Back to Knowledge Tree\nPolice & Criminal Justice (警察・刑事司法)\nJapan feels extraordinarily safe on the street, and the police are highly visible.\n    ",
   "note": "Culture page, plain text."
  },
  {
@@ -2265,8 +2265,8 @@
    "page": "problems"
   },
   "success": true,
-  "output_summary": "Knowledge page: problems.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: problems.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n⚠️ Societal Challenges - Japan's Modern Struggles\nJapan faces profound societal challenges despite its economic success and social ha",
   "note": "Culture page, plain text."
  },
  {
@@ -2276,8 +2276,8 @@
    "page": "religion"
   },
   "success": true,
-  "output_summary": "Knowledge page: religion.",
-  "output_preview": "﻿\nReligion & Belief - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n    ",
+  "output_summary": "Culture page: religion.",
+  "output_preview": "﻿\nReligion & Belief - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🕉️ Religion & Belief Systems in Japan\nJapan's religious landscape is uniquely syncretic\n- most Japanese practice both Shinto and ",
   "note": "Culture page, plain text."
  },
  {
@@ -2287,8 +2287,8 @@
    "page": "samurai"
   },
   "success": true,
-  "output_summary": "Knowledge page: samurai.",
-  "output_preview": "Samurai - The Way of the Warrior\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n            paddi",
+  "output_summary": "Culture page: samurai.",
+  "output_preview": "Samurai - The Way of the Warrior\n← Back to Knowledge Tree\n侍\n⚔️ The Samurai: Warriors of Feudal Japan\nThe samurai (侍) were the hereditary military nobility and officer caste of medieval and early-moder",
   "note": "Culture page, plain text."
  },
  {
@@ -2298,8 +2298,19 @@
    "page": "samurai-era"
   },
   "success": true,
-  "output_summary": "Knowledge page: samurai-era.",
-  "output_preview": "Samurai Era - Rise & Fall of the Shoguns\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n         ",
+  "output_summary": "Culture page: samurai-era.",
+  "output_preview": "Samurai Era - Rise & Fall of the Shoguns\n← Back to Knowledge Tree\n武家時代\n⚔️ The Samurai Era: 700 Years of Military Rule\nFor roughly 700 years (1185–1868), Japan was ruled not by Emperors, but by a milit",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "shopping"
+  },
+  "success": true,
+  "output_summary": "Culture page: shopping.",
+  "output_preview": "Shopping & Vending - Japanese Knowledge Tree\n← Back to Knowledge Tree\nShopping & Vending (買い物・自動販売機)\nJapan is a retail laboratory: more vending machines per capita than almost anywhere,\n              ",
   "note": "Culture page, plain text."
  },
  {
@@ -2309,8 +2320,8 @@
    "page": "strengths"
   },
   "success": true,
-  "output_summary": "Knowledge page: strengths.",
-  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n        ",
+  "output_summary": "Culture page: strengths.",
+  "output_preview": "﻿\nImperial Line - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🌟 National Strengths - Why Japan Works So Well\nDespite its challenges, Japan possesses remarkable strengths that make it one of the w",
   "note": "Culture page, plain text."
  },
  {
@@ -2320,8 +2331,8 @@
    "page": "timeline"
   },
   "success": true,
-  "output_summary": "Knowledge page: timeline.",
-  "output_preview": "﻿\nHistorical Timeline - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n  ",
+  "output_summary": "Culture page: timeline.",
+  "output_preview": "﻿\nHistorical Timeline - Japanese Knowledge Tree\n← Back to Knowledge Tree\n📜 Historical Timeline - From Jomon to Modern Era\nJapan's recorded history spans over 2,000 years of continuous civilization, wi",
   "note": "Culture page, plain text."
  },
  {
@@ -2331,8 +2342,19 @@
    "page": "travel"
   },
   "success": true,
-  "output_summary": "Knowledge page: travel.",
-  "output_preview": "﻿\nTravel Japan - Japanese Knowledge Tree\n.back-button {\n            position: fixed;\n            top: 20px;\n            left: 20px;\n            background: #FF6B6B;\n            color: white;\n         ",
+  "output_summary": "Culture page: travel.",
+  "output_preview": "﻿\nTravel Japan - Japanese Knowledge Tree\n← Back to Knowledge Tree\n🎌 Travel Japan - The Budget Way\nJapan is EXPENSIVE for tourists... except when it's not!\nThe key is avoiding tourist traps and using l",
+  "note": "Culture page, plain text."
+ },
+ {
+  "tool": "knowledge",
+  "operation": "get",
+  "input": {
+   "page": "yakuza"
+  },
+  "success": true,
+  "output_summary": "Culture page: yakuza.",
+  "output_preview": "Yakuza & Boryokudan - Japanese Knowledge Tree\n← Back to Knowledge Tree\nYakuza / Boryokudan (ヤクザ・暴力団)\nThere is\nno romantic “yakuza tab”\nin travel brochures — only reality, fiction, and law.\nBoryokudan\n",
   "note": "Culture page, plain text."
  },
  {
@@ -2341,9 +2363,50 @@
   "input": {
    "query": "water"
   },
-  "success": false,
-  "output_summary": "kanji.db is not present (135MB kanji + 400k vocab + 278k examples + jmdict (ai-games-collection)). Run scripts/fetch_data.ps1 to fetch it, or copy it from an ai-games-collection checkout into data/.",
-  "output_preview": null,
+  "success": true,
+  "output_summary": "vocab 20 + jmdict 20 result(s).",
+  "output_preview": {
+   "vocabulary": [
+    {
+     "expression": "滝川",
+     "reading": "たきがわ",
+     "translation": "rapids <s(\"waterfall river\")>",
+     "tags": "Gj~2kun"
+    },
+    {
+     "expression": "滝川",
+     "reading": "たきがわ",
+     "translation": "rapids <s(\"waterfall river\")>",
+     "tags": "Gj~geog"
+    },
+    {
+     "expression": "滝川",
+     "reading": "たきがわ",
+     "translation": "rapids <s(\"waterfall river\")>",
+     "tags": "Gj~water"
+    }
+   ],
+   "jmdict": [
+    {
+     "expression": "ＢＷＲ",
+     "reading": "ビー・ダブリュー・アール;ビーダブリューアール(sk)",
+     "translation": "(n) boiling-water reactor/BWR/EntL2616590",
+     "tags": ""
+    },
+    {
+     "expression": "ＨＷＲ",
+     "reading": "エイチ・ダブリュー・アール;エイチダブリューアール(sk);エッチダブリューアール(sk)",
+     "translation": "(n) (See 重水炉) heavy-water reactor/HWR/EntL2617590",
+     "tags": ""
+    },
+    {
+     "expression": "ＬＷＲ",
+     "reading": "エル・ダブリュー・アール;エルダブリューアール(sk)",
+     "translation": "(n) (See 軽水炉) light-water reactor/LWR/EntL2617430",
+     "tags": ""
+    }
+   ]
+  },
   "note": "Big-DB search or the friendly fetch hint when kanji.db is absent."
  },
  {
@@ -2360,7 +2423,7 @@
   "operation": "-",
   "input": {},
   "success": true,
-  "output_summary": "japanophile-mcp: Learn (kanji, jlpt, vocab) + Know (knowledge box). Travel planner + diary are roadmap, not tools yet.",
+  "output_summary": "japanophile-mcp: Learn (kanji, jlpt, vocab) + Know (knowledge box, culture + language collections) + jp_utils (romaji/kana/era) + remember (streak/due) + crossconnect (speech/calibre/plex-mcp) + webapp_ops (self tour/diagnose). Travel planner + diary are roadmap.",
   "output_preview": {
    "tools": [
     "kanji",
@@ -2368,16 +2431,94 @@
     "vocab"
    ],
    "data": {
-    "kanji_database.db": "D:/Dev/repos/japanophile-mcp/assets/seed/kanji_database.db",
-    "jlpt_questions.db": "D:/Dev/repos/japanophile-mcp/data/jlpt_questions.db",
-    "kanji.db": "MISSING - run scripts/fetch_data.ps1"
+    "kanji_database.db": "ready (D:/Dev/repos/japanophile-mcp/assets/seed/kanji_database.db)",
+    "jlpt_questions.db": "ready (D:/Dev/repos/japanophile-mcp/data/jlpt_questions.db)",
+    "kanji.db": "ready (D:/Dev/repos/japanophile-mcp/data/kanji.db)",
+    "wakan_vocab.json": "ready (D:/Dev/repos/japanophile-mcp/data/wakan_vocab.json)"
    },
-   "knowledge_pages": 29,
-   "ports": {
-    "backend": 11193,
-    "frontend": 11194
-   }
+   "metrics": {
+    "kanji_entries": 13108,
+    "jlpt_questions": 600,
+    "knowledge_pages": 33,
+    "language_pages": 11,
+    "vocabulary_rows": 400210,
+    "example_rows": 278746,
+    "jmdict_rows": 214543,
+    "mcp_tools": 9
+   },
+   "knowledge_pages": 33
   },
   "note": "Agents call this first: tools plus data status."
+ },
+ {
+  "tool": "webapp_ops",
+  "operation": "get_ui_map",
+  "input": {},
+  "success": true,
+  "output_summary": "",
+  "output_preview": null,
+  "note": "Authoritative UI map: 14 routes plus tour presets."
+ },
+ {
+  "tool": "webapp_ops",
+  "operation": "tour_page",
+  "input": {
+   "route": "/"
+  },
+  "success": true,
+  "output_summary": "",
+  "output_preview": null,
+  "note": "One-page static receipt; unknown routes name the 14 known paths."
+ },
+ {
+  "tool": "webapp_ops",
+  "operation": "tour_page",
+  "input": {
+   "route": "/chat"
+  },
+  "success": true,
+  "output_summary": "",
+  "output_preview": null,
+  "note": "One-page static receipt; unknown routes name the 14 known paths."
+ },
+ {
+  "tool": "webapp_ops",
+  "operation": "tour_page",
+  "input": {
+   "route": "/nope"
+  },
+  "success": false,
+  "output_summary": "",
+  "output_preview": null,
+  "note": "One-page static receipt; unknown routes name the 14 known paths."
+ },
+ {
+  "tool": "webapp_ops",
+  "operation": "demo_webapp",
+  "input": {
+   "preset": "demo_60s"
+  },
+  "success": true,
+  "output_summary": "",
+  "output_preview": null,
+  "note": "Preset walk, per-stop receipts, no video in phase 1."
+ },
+ {
+  "tool": "webapp_ops",
+  "operation": "diagnose_webapp",
+  "input": {},
+  "success": true,
+  "output_summary": "",
+  "output_preview": null,
+  "note": "All-route check plus snapshot path."
+ },
+ {
+  "tool": "webapp_ops",
+  "operation": "dance",
+  "input": {},
+  "success": false,
+  "output_summary": "Unknown webapp_ops operation 'dance'. Valid: get_ui_map, tour_page, demo_webapp, diagnose_webapp.",
+  "output_preview": null,
+  "note": "Unknown operation returns guidance, not a traceback."
  }
 ]
