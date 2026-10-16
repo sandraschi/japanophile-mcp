@@ -64,6 +64,20 @@ def build_app() -> FastAPI:
     def api_help() -> JSONResponse:
         return JSONResponse(_call(server.japanophile_help))
 
+    @app.get("/api/ui-map")
+    def api_ui_map() -> JSONResponse:
+        from .webapp_ops import load_ui_map
+
+        ui_map = load_ui_map()
+        ui_map.pop("_source", None)
+        return JSONResponse(ui_map)
+
+    @app.get("/api/webapp/diagnose")
+    def api_webapp_diagnose() -> JSONResponse:
+        from .webapp_ops import op_diagnose_webapp
+
+        return JSONResponse(op_diagnose_webapp())
+
     @app.get("/api/kanji/{operation}")
     def api_kanji(
         operation: str,

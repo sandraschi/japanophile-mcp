@@ -695,6 +695,39 @@ def knowledge(operation: str, page: str = "", collection: str = "culture") -> di
 
 
 @mcp.tool()
+def webapp_ops(
+    operation: str, route: str = "/", preset: str = "demo_60s", speak: bool = False
+) -> dict:
+    """Steer this repo's own webapp from its authoritative UI map (pilot, phase 1).
+
+    get_ui_map: 14 sidebar routes + testids + tour presets, no browser needed.
+    tour_page: one-page static receipt (route, testids, narration, dist present,
+    backend reachable). demo_webapp: walk a preset (demo_60s, onboarding,
+    full_walk), receipts only, no video yet. diagnose_webapp: all-route check,
+    snapshots to demos/webapp-ops-pilot/last-diagnosis.json. All read-only;
+    live Playwright driving is phase 2. speak=true voiceovers via speech-mcp,
+    degrading honestly when absent. Port of the learnbot-mcp pilot.
+    """
+    from .webapp_ops import (
+        OPERATIONS,
+        op_demo_webapp,
+        op_diagnose_webapp,
+        op_get_ui_map,
+        op_tour_page,
+    )
+
+    if operation == "get_ui_map":
+        return op_get_ui_map()
+    if operation == "tour_page":
+        return op_tour_page(route=route, speak=speak)
+    if operation == "demo_webapp":
+        return op_demo_webapp(preset=preset, speak=speak)
+    if operation == "diagnose_webapp":
+        return op_diagnose_webapp()
+    return fail(f"Unknown webapp_ops operation '{operation}'. Valid: {', '.join(OPERATIONS)}.")
+
+
+@mcp.tool()
 def japanophile_help() -> dict:
     """List tools, data status, and next steps for agents and IDEs."""
     status = {}
@@ -726,16 +759,24 @@ def japanophile_help() -> dict:
         "vocabulary_rows": _count_table("kanji.db", "vocabulary"),
         "example_rows": _count_table("kanji.db", "examples"),
         "jmdict_rows": _count_table("kanji.db", "jmdict"),
-        "mcp_tools": 8,
+        "mcp_tools": 9,
     }
     return ok(
         "japanophile-mcp: Learn (kanji, jlpt, vocab) + Know (knowledge box, culture"
         " + language collections) + jp_utils (romaji/kana/era) + remember (streak/due)"
-        " + crossconnect (speech/calibre/plex-mcp). Travel planner + diary are roadmap.",
+        " + crossconnect (speech/calibre/plex-mcp) + webapp_ops (self tour/diagnose)."
+        " Travel planner + diary are roadmap.",
         {
             "tools": [
-                "kanji", "jlpt", "vocab", "knowledge", "jp_utils", "remember",
-                "crossconnect", "japanophile_help",
+                "kanji",
+                "jlpt",
+                "vocab",
+                "knowledge",
+                "jp_utils",
+                "remember",
+                "crossconnect",
+                "webapp_ops",
+                "japanophile_help",
             ],
             "data": status,
             "metrics": metrics,

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://sandraschi.github.io/fleet/schemas/ui-map-v1.json",
+  "app": "japanophile-mcp",
+  "version": "0.3.1",
+  "generated_from": "webapp/src/App.tsx + webapp/src/main.tsx",
+  "generated_at": "2026-10-16",
+  "backend": { "port": 11193, "health_path": "/health" },
+  "frontend": { "port": 11194 },
+  "routes": [
+    { "path": "/", "label": "Dashboard", "testid": "nav-dashboard", "page_testid": "dashboard-hero", "narrate": "Dashboard: hero summary, KPI grid, data status, entry actions.", "assert": ["dashboard-hero", "kpi-grid", "dashboard-actions"], "mutating": false },
+    { "path": "/language", "label": "Language", "testid": "nav-language", "page_testid": "language-article", "narrate": "Language: study tabs and reference article.", "assert": ["language-article"], "mutating": false },
+    { "path": "/know", "label": "Knowledge", "testid": "nav-know", "page_testid": "know-list", "narrate": "Knowledge: Japan culture box, article list and reader with TTS listen.", "assert": ["know-list", "know-article"], "mutating": false },
+    { "path": "/travel", "label": "Travel", "testid": "nav-travel", "page_testid": "travel-page", "narrate": "Travel: trip planner with flights and trains panels.", "assert": ["travel-page", "travel-hero"], "mutating": false },
+    { "path": "/diary", "label": "Diary", "testid": "nav-diary", "page_testid": "diary-page", "narrate": "Diary: travel and study entries with progress.", "assert": ["diary-page", "diary-entries"], "mutating": false },
+    { "path": "/library", "label": "Library", "testid": "nav-library", "page_testid": "library-read-results", "narrate": "Library: read and watch search over calibre and plex crossconnects.", "assert": ["library-read-results"], "mutating": false },
+    { "path": "/games", "label": "Practice", "testid": "nav-games", "page_testid": "games-list", "narrate": "Practice: Japanese language games list and frame.", "assert": ["games-list", "game-frame"], "mutating": false },
+    { "path": "/chat", "label": "Chat", "testid": "nav-chat", "page_testid": "chat-log", "narrate": "Chat: message log, input and send behind the LLM page gate.", "assert": ["chat-log", "chat-input", "chat-send"], "mutating": true },
+    { "path": "/skills", "label": "Skills", "testid": "nav-skills", "page_testid": "skill-text", "narrate": "Skills: skill text surface.", "assert": ["skill-text"], "mutating": false },
+    { "path": "/tools", "label": "MCP Tools", "testid": "nav-tools", "page_testid": "tools-page", "narrate": "MCP Tools: tool list with runner for dynamic routes.", "assert": ["tools-page", "tools-list"], "mutating": false },
+    { "path": "/apps", "label": "Apps", "testid": "nav-apps", "page_testid": "apps-page", "narrate": "Apps: fleet app catalog with hero, filters and views.", "assert": ["apps-page", "apps-hero"], "mutating": false },
+    { "path": "/settings", "label": "Settings", "testid": "nav-settings", "page_testid": "ai-settings-page", "narrate": "Settings: AI provider setup.", "assert": ["ai-settings-page"], "mutating": false },
+    { "path": "/help", "label": "Help", "testid": "nav-help", "page_testid": "help-page", "narrate": "Help: tabbed guide from first steps to MCP ports.", "assert": ["help-page", "help-panel-start"], "mutating": false },
+    { "path": "/logs", "label": "Logs", "testid": "nav-logs", "page_testid": "logs-page", "narrate": "Logs: activity stream with filters, export and clear.", "assert": ["logs-page", "logs-stream"], "mutating": false }
+  ],
+  "tour_presets": {
+    "demo_60s": ["/", "/language", "/know", "/chat", "/travel"],
+    "onboarding": ["/", "/settings", "/chat"],
+    "full_walk": ["all"]
+  },
+  "notes": "testid = sidebar data-testid to click (nav-* on NavLinks). assert = page data-testids a live drive waits for. mutating = page can write/send - demo must skip interact. /tools/:name (tool-runner-run) is a dynamic route, not in the sidebar map."
+}
