@@ -1,7 +1,7 @@
 # japanophile-mcp
 
 <p align="center">
-  <a href="https://github.com/sandraschi/japanophile-mcp/releases/tag/v0.3.1"><img src="https://img.shields.io/github/v/release/sandraschi/japanophile-mcp?style=flat-square" alt="Release"></a>
+  <a href="https://github.com/sandraschi/japanophile-mcp/releases/tag/v0.4.0"><img src="https://img.shields.io/github/v/release/sandraschi/japanophile-mcp?style=flat-square" alt="Release"></a>
   <a href="https://github.com/casey/just"><img src="https://img.shields.io/badge/just-ready_to_go-7c5cfc?style=flat-square&logo=just&logoColor=white" alt="Just"></a>
   <a href="https://python.org"><img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"></a>
   <a href="https://github.com/PrefectHQ/fastmcp"><img src="https://img.shields.io/badge/FastMCP-3.4%2B-7c5cfc?style=flat-square" alt="FastMCP"></a>

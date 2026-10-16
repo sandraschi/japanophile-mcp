@@ -1,7 +1,7 @@
 {
   "$schema": "https://sandraschi.github.io/fleet/schemas/ui-map-v1.json",
   "app": "japanophile-mcp",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "generated_from": "webapp/src/App.tsx + webapp/src/main.tsx",
   "generated_at": "2026-10-16",
   "backend": { "port": 11193, "health_path": "/health" },
