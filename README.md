@@ -27,7 +27,7 @@ Claude Desktop bundle: `just mcpb-pack` → `dist/japanophile-mcp-v{version}.mcp
 
 ## Stage 1: MCP tools
 
-Seven portmanteau tools, dialogic returns, seeds in `assets/seed/`, learning corpora in `data/` (committed). Deliberately thin on the MCP side by design — this repo is primarily a human webapp (quizzes, games, reading), MCP tools are the agent-facing afterthought, not the product. `vocab`, `jp_utils`, and `remember` were added 2026-09-14 to close the gap against narrower competing MCP servers (Jisho MCP, JLPT Study MCP, Japan Utils MCP, Ayaka, Potto Japan) — see [reports/quality-japanophile-mcp-2026-09-14.md](reports/quality-japanophile-mcp-2026-09-14.md):
+Eight portmanteau tools, dialogic returns, seeds in `assets/seed/`, learning corpora in `data/` (committed). Deliberately thin on the MCP side by design — this repo is primarily a human webapp (quizzes, games, reading), MCP tools are the agent-facing afterthought, not the product. `vocab`, `jp_utils`, and `remember` were added 2026-09-14 to close the gap against narrower competing MCP servers (Jisho MCP, JLPT Study MCP, Japan Utils MCP, Ayaka, Potto Japan) — see [reports/quality-japanophile-mcp-2026-09-14.md](reports/quality-japanophile-mcp-2026-09-14.md):
 
 | Tool | Operations | Data |
 |---|---|---|
@@ -38,6 +38,7 @@ Seven portmanteau tools, dialogic returns, seeds in `assets/seed/`, learning cor
 | `jp_utils` | kana_convert (hiragana/katakana/romaji), era_to_year, year_to_era | pure Python — Hepburn table + Meiji-Reiwa era table |
 | `remember` | streak, due (missed-question queue) | data/progress.db `answers` table (same store `jlpt/answer` writes) |
 | `crossconnect` | speak, library_search, media_search | proxies speech-mcp/calibre-mcp/plex-mcp REST APIs (2026-09-15, see Crossconnects below) |
+| `webapp_ops` | get_ui_map, tour_page, demo_webapp, diagnose_webapp | steers this repo's own webapp from `webapp/public/ui-map.json` (14 routes, phase-1 static receipts, port of the learnbot-mcp pilot 2026-10-16) |
 | `japanophile_help` | tool + data status | - |
 
 No structured `grammar` tool: the fleet has no vendored JLPT-graded grammar-point database (unlike Ayaka/Potto Japan), and Makino/Tsutsui's grammar dictionaries are copyrighted — fabricating one would violate the no-fake-data standard. `knowledge(collection=language)` exposes the real vendored grammar prose page instead.

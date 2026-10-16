@@ -62,3 +62,16 @@ never a traceback. Canonical-home rule: new JP-learning work lands here.
 - SRS algorithm choice (SM-2 vs FSRS) for the diary-linked review scheduler.
 - JP/EN parallel knowledge pages: machine-translate + human pass, or human first?
 - jmdict vs EDICT licensing notes for the .mcpb bundle (Stage 2).
+
+## 8. webapp_ops pilot (2026-10-16, second repo after learnbot-mcp)
+
+The server steers its own webapp from an authoritative map instead of
+scraping the sidebar: `webapp_ops` MCP tool (get_ui_map/tour_page/
+demo_webapp/diagnose_webapp, phase-1 static receipts, all read-only) +
+`GET /api/ui-map` and `GET /api/webapp/diagnose` on the FastAPI bridge +
+`webapp/public/ui-map.json` (14 sidebar routes, `nav-*` testids, tour
+presets). Sidebar NavLinks carry the testids; Help > Technical has a Run
+diagnosis button on the new route. Voiceover soft-links speech-mcp
+(`SPEECH_MCP_URL`), degrading honestly when absent. Live Playwright driving
+is phase 2. Pattern lives in learnbot-mcp (`demos/webapp-ops-pilot/`); this
+repo proves the port to a sync-FastMCP/FastAPI codebase.
