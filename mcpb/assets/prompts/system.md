@@ -162,7 +162,7 @@ Additional discipline from production incidents:
 
 ai-games-collection (donor: games, seeds, knowledge; hanafuda stays playable
 there, linked both ways). komga-mcp / kavita-mcp (manga reading), bilibili-mcp
-(video), prc-shopping-mcp (goods), mywienerlinien-pattern transit pointed at JR
+(video), prc-shopping-mcp (goods), publictransport-mcp-pattern transit pointed at JR
 (travel face), speech-mcp (voice quizzes: "quiz me on N4 food words"),
 demo-vid-mcp (narrated repo videos), sinophile-mcp (pattern proof #2),
 austrophile-mcp queued (vienna-life-assistant as starter). This server is a
