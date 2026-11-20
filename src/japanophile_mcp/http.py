@@ -21,10 +21,19 @@ from .db import ASSET_ROOT, REPO_ROOT
 
 def build_app() -> FastAPI:
     app = FastAPI(title="japanophile-mcp", version="0.3.1")
-    # Webapp origin (11194), Tauri, LAN dev: same open-CORS posture as fleet.
+    # Webapp origin (11194), backend (11193), and Tauri.
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=[
+            "http://127.0.0.1:11194",
+            "http://localhost:11194",
+            "http://127.0.0.1:11193",
+            "http://localhost:11193",
+            "tauri://localhost",
+            "http://tauri.localhost",
+            "https://tauri.localhost",
+        ],
+        allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
@@ -153,9 +162,7 @@ def build_app() -> FastAPI:
         )
 
     @app.get("/api/crossconnect/media_search")
-    def api_media_search(
-        query: str = "", media_type: str = "", limit: int = 20
-    ) -> JSONResponse:
+    def api_media_search(query: str = "", media_type: str = "", limit: int = 20) -> JSONResponse:
         return JSONResponse(
             _call(
                 server.crossconnect,
